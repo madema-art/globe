@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "m000016",
+  "category": "natural-feature",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "高山の植生と熱帯の低地林が、ひとつの保護地域に共存します。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "溶岩原、湿地、サバンナ、雪を載せる山々が連なります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ニーラゴンゴやニアムラギラなどの活火山が特徴です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "コンゴ民主共和国東部にあり、マウンテンゴリラの生息地です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "コンゴ東部の、ゴリラと活火山、高山の自然で知られる広大な国立公園です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ヴィルンガ国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 0.9166666666666666,
+      "longitude": 29.166666666666668,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "標高と地形の違いが、多様な生息環境を生みます。資料に記載された動物の頭数や氷雪の広がりは変化するため、固定した現在値として出題しません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "世界遺産登録年（1979年）。景観や伝統の成立年代ではありません。",
+      "at": {
+        "year": 1979,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "ヴィルンガ国立公園に関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/63/",
+      "title": "ユネスコ世界遺産センター登録資料63",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N0 55 0 E29 10 0 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "central-africa",
+    "era": "not-applicable",
+    "countryGroup": "cd",
+    "cultures": [
+      "c000016"
+    ],
+    "themes": [
+      "ecology",
+      "geology"
+    ],
+    "subjectKeys": [
+      "s000016"
+    ],
+    "destinationKey": "d000016",
+    "learningObjective": "標高と地形の違いが、多様な生息環境を生みます。資料に記載された動物の頭数や氷雪の広がりは変化するため、固定した現在値として出題しません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

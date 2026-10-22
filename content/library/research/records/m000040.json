@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "id": "m000040",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "通常は地球深部と結びつく岩石を、ここでは地表で調べられる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "露出した海洋地殻とマントル由来の物質が、プレートテクトニクスの証拠となる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "後の氷河作用が、この地質記録にフィヨルド、断崖、谷、湖を加えた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "この保護景観は、ニューファンドランド島の西海岸にある。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ニューファンドランド島西部で、マントル由来の岩石の露出と氷河景観で有名なカナダの国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "グロス・モーン国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 49.612500000000004,
+      "longitude": -57.53138888888889,
+      "label": "グロス・モーン国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "プレート運動の証拠と、その後の氷河作用の両方が保存されている。マントル由来の岩石の露頭であり、地球内部全体をのぞける穴ではない。公園の公表基準点を広い保護景観の代表として用いる。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1987,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/419/",
+      "title": "Gros Morne National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N49 36 45 W57 31 53 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [
+    "m000046"
+  ],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "north-america",
+    "era": "not-applicable",
+    "countryGroup": "g051",
+    "destinationKey": "d-m000040",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "tectonics",
+      "coasts",
+      "glaciers"
+    ],
+    "subjectKeys": [
+      "s-m000040"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

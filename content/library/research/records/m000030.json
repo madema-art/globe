@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000030",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "水が流れる川が一時的にしか現れない土地で、空気によって届く水が生き物を支えている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "砂は川、海流、風がつながる仕組みを通じて運ばれてきた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "古く半ば固まった砂丘群の上に、若く動き続ける砂丘群が重なっている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "海岸砂漠に適応した無脊椎動物や爬虫類、哺乳類にとって、霧が重要な水源となる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ナミビアの大西洋岸で、霧の影響を受ける巨大な砂丘景観として世界遺産に登録された砂海を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ナミブ砂海",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -24.885277777777777,
+      "longitude": 15.407777777777778,
+      "label": "ナミブ砂海の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "乾燥地でも利用できる水分が全くないわけではなく、出典では霧が生態系の中心となる。土砂の輸送は内陸と沿岸の砂丘を結びつける。目標は登録された砂海の代表基準点であり、すべての砂丘に唯一の中心があるという意味ではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 2013,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/1430/",
+      "title": "Namib Sand Sea — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S24 53 7 E15 24 28 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "southern-africa",
+    "era": "not-applicable",
+    "countryGroup": "g042",
+    "destinationKey": "d-m000030",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "deserts",
+      "coasts",
+      "ecology"
+    ],
+    "subjectKeys": [
+      "s-m000030"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

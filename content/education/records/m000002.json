@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "m000002",
+  "category": "settlement",
+  "subjectType": "古代都市の遺跡",
+  "authoredLocale": "ja",
+  "clues": [
+    { "text": "２つの自然の陥没穴が、地下水を利用する暮らしを支えました。", "sourceIds": ["r1"] },
+    { "text": "円形の天文観測施設には、らせん階段に由来する呼び名があります。", "sourceIds": ["r1"] },
+    { "text": "マヤの建築技術と、メキシコ中部に由来する要素が交わる都市でした。", "sourceIds": ["r1"] },
+    { "text": "ユカタン半島にあり、大球戯場と戦士の神殿が残ります。", "sourceIds": ["r1"] },
+    { "text": "メキシコの有名なマヤ都市遺跡で、ククルカンの神殿という階段状ピラミッドが目印です。", "sourceIds": ["r1"] }
+  ],
+  "answer": {
+    "identity": "チチェン・イツァ",
+    "target": { "kind": "point", "referenceFrame": "WGS84", "latitude": 20.682738889, "longitude": -88.568653889, "label": "古代都市遺跡の代表地点", "modernContext": "現在のメキシコ、ユカタン州。古代の文化圏を現代の国境と同一視しません。" },
+    "explanation": "この都市の建築は、マヤの伝統と他地域との交流を伝えます。水場、球戯場、神殿、観測施設は、都市生活と儀礼、自然環境の結びつきを学ぶ入口になります。",
+    "sourceIds": ["r1"]
+  },
+  "history": { "date": { "kind": "period", "label": "１０～１５世紀ごろの文化的影響", "start": { "year": 900, "era": "CE", "approximate": true }, "end": { "year": 1500, "era": "CE", "approximate": true } }, "cultures": ["マヤ", "メキシコ中部との文化的交流"] },
+  "sources": [{ "id": "r1", "url": "https://whc.unesco.org/en/list/483/", "title": "ユネスコ世界遺産センター登録資料４８３", "publisher": "ユネスコ世界遺産センター", "accessedOn": "2026-10-22", "notes": "各手がかり、文化的意義、資料掲載の年代幅と代表座標を照合。北緯２０度４０分５７.８６秒、西経８８度３４分７.１５４秒を十進度に換算。独自の短い要約であり原文転載や画像使用なし。" }],
+  "uncertainty": "建設、移住、支配関係の年代や解釈には幅があります。資料自体も創建年代に複数の伝承を挙げています。期間は文化的影響の概略で、都市の正確な存続期間ではありません。代表座標は遺跡全体を示す目印です。",
+  "editorial": { "clueOrderReviewed": true, "reviewStatus": "source-checked-sample", "notes": "水利用、観測施設、文化圏、半島の建築群、著名な神殿の順で絞り込み。資料との照合は実施したが、専門家による独立査読や易しさのプレイテストは未実施。" },
+  "relatedIds": []
+}

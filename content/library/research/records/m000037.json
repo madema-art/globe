@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000037",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "淡水魚と数百種の鳥が、水と陸の入り交じる景観を共有している。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "大河の河口に広がる多数の湖と湿地が、生き物の生息地となる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "重要なのは一つの滝や峡谷ではなく、ヨーロッパでよく保存された広大な三角州である。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "この三角州をつくる川は、中欧と南東欧の広い範囲を通って黒海に注ぐ。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ヨーロッパの大河が黒海に注ぐ前に湖と湿地へ広がる、ルーマニアの世界遺産の三角州を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ドナウ・デルタ",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 45.083330000000004,
+      "longitude": 29.5,
+      "label": "ドナウ・デルタの登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "川全体や上流の任意の場所ではなく、河口の三角州を扱う。湖と湿地が、出典に記された鳥類や淡水魚の多様性を支えている。登録された三角州の基準点を用いるが、水路と海岸線はその一点を越えて広がっている。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1991,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/588/",
+      "title": "Danube Delta — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N45 4 59.988 E29 30 0 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "europe",
+    "era": "not-applicable",
+    "countryGroup": "g049",
+    "destinationKey": "d-m000037",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "rivers",
+      "wetlands",
+      "birds"
+    ],
+    "subjectKeys": [
+      "s-m000037"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

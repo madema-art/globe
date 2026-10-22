@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "River channels here have a history that predates the mountains they cut through.",
+    "Karst features include a complex limestone cave system alongside deep canyons.",
+    "The protected landscape contains a great waterfall as well as boreal and alpine wildlife habitats.",
+    "It follows the South Nahanni River in Canada’s Northwest Territories.",
+    "Find the remote Canadian park whose river canyons and Virginia Falls lie north of the sixtieth parallel."
+  ],
+  "identity": "Nahanni National Park",
+  "targetLabel": "Nahanni National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "This river landscape illustrates that a river can maintain a course while mountains develop around it. Canyons, caves and a major waterfall give several independent geographical connections. The target is the UNESCO property’s reference point, not the entire river or an exact waterfall viewpoint.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

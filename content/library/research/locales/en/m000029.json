@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Mountain forest forms a belt around the base of an isolated volcanic massif.",
+    "Large mammals inhabit the protected area around a peak that rises far above nearby plains.",
+    "Its snowy summit creates a striking contrast with the surrounding savannah.",
+    "The mountain reaches 5,895 metres, making it the highest point on the African continent.",
+    "Find Tanzania’s national park protecting the great free-standing volcanic mountain near the Kenyan border."
+  ],
+  "identity": "Kilimanjaro National Park",
+  "targetLabel": "Kilimanjaro National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "An isolated volcano can connect sharply different environments over a short horizontal distance. Here the source describes mountain forest, savannah surroundings and Africa’s highest summit. The park reference point represents the protected massif; it is not a claim that all of this mountain occupies one exact point.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

@@ -12,6 +12,9 @@ jobs:
       - run: npm ci
       - run: npx playwright install chromium
       - run: npm test
+      - run: npm run content:validate
+      - run: npm run content:publish
+      - run: npm run content:develop -- --enable-development-content
       - run: npm run build
       - run: npm run test:build
       - run: npm run test:service

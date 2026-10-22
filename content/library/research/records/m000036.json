@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000036",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "この地域の地下水の動物には、氷期からの環境変化を生き延びたものがいる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "氷の下で噴火すると、ヨークルフロイプと呼ばれる突然の洪水が起こりうる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "その洪水は、氷河の前の堆積平原や河川、急速に変化する峡谷をつくり替える。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "保護区の中心となる巨大な氷帽の下に、複数の中心火山が位置している。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "アイスランド南東部で、広大な氷帽と活発な火山活動が出会う国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ヴァトナヨークトル国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 64.57736305555555,
+      "longitude": -16.881540555555556,
+      "label": "ヴァトナヨークトル国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "氷、噴火、流水の相互作用を見られる景観である。ヨークルフロイプは急な氷河湖決壊などの洪水を指し、ここでは出典が噴火に関連する例を記述する。世界中の同種の洪水がすべて同じ原因だとはしない。目標には公園の登録基準点を使う。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 2019,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/1604/",
+      "title": "Vatnajökull National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N64 34 38.507 W16 52 53.546 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "europe",
+    "era": "not-applicable",
+    "countryGroup": "g048",
+    "destinationKey": "d-m000036",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "glaciers",
+      "volcanoes",
+      "floods"
+    ],
+    "subjectKeys": [
+      "s-m000036"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

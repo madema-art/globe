@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "A mountain conservation landscape is also a home of living cultural traditions, rather than empty wilderness.",
+    "Snow leopards and red pandas are among the rare animals described in its World Heritage account.",
+    "Glaciers and deep valleys shape the landscape around its exceptionally high peaks.",
+    "Sherpa communities are closely associated with this protected Himalayan landscape in Nepal.",
+    "Find the Nepalese national park dominated by Mount Everest, the world’s highest peak."
+  ],
+  "identity": "Sagarmatha National Park",
+  "targetLabel": "Sagarmatha National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The clues identify a protected mountain landscape through ecology, glaciation and the presence of Sherpa culture. The source’s older numerical summit height is deliberately omitted; the mystery does not require choosing between height measurements. The official park reference point represents the park rather than a climbing destination.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

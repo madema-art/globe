@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000028",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "珍しい野生のヤギが、高原の草地と深い谷を崖が隔てる景観に生き残っている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "隆起した高原が長く侵食され、鋭い峰々と非常に急な崖が残された。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "およそ千五百メートルも落ち込む断崖があり、標高差そのものが景観の特徴となっている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "エチオピア高原にあるこの山岳保護区では、ゲラダヒヒも暮らしている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "エチオピア北部で、固有のワリアアイベックスが高地の崖に暮らす国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "シミエン国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 13.183333333333334,
+      "longitude": 38.06666666666667,
+      "label": "シミエン国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "高原の侵食が生んだ断崖と、希少な高地動物の生息地を結びつけて学ぶ。目標は公園の公表基準点であり、特定の山頂や動物の観察地点ではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1978,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/9/",
+      "title": "Simien Mountains National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N13 10 60 E38 4 0 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "east-africa",
+    "era": "not-applicable",
+    "countryGroup": "g040",
+    "destinationKey": "d-m000028",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "mountains",
+      "erosion",
+      "wildlife"
+    ],
+    "subjectKeys": [
+      "s-m000028"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

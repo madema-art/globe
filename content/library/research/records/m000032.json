@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000032",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "長い隔離の歴史によって、この淡水の生態系は進化を研究する上で特に重要になった。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ユネスコがおよそ二千五百万年前からの歴史を持つと記す湖盆で、独特の動物相が発達した。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ユネスコの記述では、凍っていない世界の地表淡水貯留量のおよそ五分の一を蓄える。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "シベリア南東部に位置する、世界で最も深い湖である。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "モンゴルの北側で、独自に適応した淡水の生物と結びつく、非常に古く広大なシベリアの湖を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "バイカル湖",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 53.17361111111111,
+      "longitude": 107.66250000000001,
+      "label": "バイカル湖の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "湖の古さ、深さ、隔離が進化上の重要性を説明する。淡水量の比較は凍っていない地表の淡水を対象とし、地下水や氷を含むすべての水ではない。目標は登録範囲の代表基準点であり、湖岸全体に唯一の正解点があるとはしない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1996,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/754/",
+      "title": "Lake Baikal — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N53 10 25 E107 39 45 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "north-asia",
+    "era": "not-applicable",
+    "countryGroup": "g044",
+    "destinationKey": "d-m000032",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "lakes",
+      "evolution",
+      "freshwater"
+    ],
+    "subjectKeys": [
+      "s-m000032"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

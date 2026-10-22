@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "m000008",
+  "category": "event",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "保存の価値は、建築の美しさだけでなく、残された骨組みが伝える記憶にあります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "被害の直後の状態をとどめるため、多くの人が保存に取り組みました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "この建物の残骸は、核兵器の廃絶と平和への願いを表しています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "１９４５年８月６日、原子爆弾の爆心地近くにあった建物です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "日本の都市に残る、原爆ドームとして知られる平和の記念物を探してください。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "広島平和記念碑",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 34.39555611111111,
+      "longitude": 132.4536111111111,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "この場所は、破壊の技術を称えるためではなく、人命への被害と平和への責任を考えるために保存されています。資料の「唯一」という表現は爆心地付近の特定範囲に関するもので、市全域の建物すべてを指しません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "at": {
+        "year": 1945,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "広島平和記念碑に関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/775/",
+      "title": "ユネスコ世界遺産センター登録資料775",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N34 23 44.002 E132 27 13 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "east-asia",
+    "era": "twentieth-century",
+    "countryGroup": "jp",
+    "cultures": [
+      "c000008"
+    ],
+    "themes": [
+      "peace",
+      "social-memory"
+    ],
+    "subjectKeys": [
+      "s000008"
+    ],
+    "destinationKey": "d000008",
+    "learningObjective": "この場所は、破壊の技術を称えるためではなく、人命への被害と平和への責任を考えるために保存されています。資料の「唯一」という表現は爆心地付近の特定範囲に関するもので、市全域の建物すべてを指しません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

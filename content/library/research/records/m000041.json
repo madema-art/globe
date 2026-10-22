@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000041",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "先住民の言葉で大きな水を意味する表現に由来する川名が、景観の規模にふさわしい。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "水辺を囲む亜熱帯林には、バクやホエザル、ジャガーなどが暮らす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "多くの滝が玄武岩の崖から落ち、空中に水しぶきを広げる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "この滝群は、アルゼンチンとブラジルの国境の一部をなす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ブラジルと共有する巨大な馬蹄形の滝群の脇にある、アルゼンチン側の国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "イグアス国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -25.577356944444443,
+      "longitude": -54.286073055555555,
+      "label": "イグアス国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "国境をまたぐ滝群に結びつく、アルゼンチン側の登録公園を扱う。先住民の語に関する語源説明はユネスコの解説に基づき、表記が一つしかないとはしない。目標は公園の基準点で、滝群やブラジル側の公園はさらに広く分布する。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1984,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/303/",
+      "title": "Iguazú National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S25 34 38.485 W54 17 9.863 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "south-america",
+    "era": "not-applicable",
+    "countryGroup": "g052",
+    "destinationKey": "d-m000041",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "waterfalls",
+      "rainforests",
+      "rivers"
+    ],
+    "subjectKeys": [
+      "s-m000041"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

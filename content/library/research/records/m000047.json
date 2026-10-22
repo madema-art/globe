@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000047",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "数世紀にわたる観測が、氷床と気候の研究に役立ってきた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "速く動く氷河が、巨大な氷床から海へ向けて氷を運ぶ。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "氷河の先端が崩れるとフィヨルドに氷山が生じ、内陸の氷の動きと海がつながる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "保護されたフィヨルドは、北極圏内にあるグリーンランドの西海岸に位置する。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "セルメク・クヤレクと呼ばれる氷河が海へ出る、グリーンランドの世界遺産の氷のフィヨルドを探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "イルリサット・アイスフィヨルド",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 69.13333333333333,
+      "longitude": -49.5,
+      "label": "イルリサット・アイスフィヨルドの登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "氷床の氷が流出氷河を通じてフィヨルドに達する過程をたどる。変化の速い年間流出量の数値は、現在の測定値のようには用いない。目標は公表された登録基準点で、移動する氷河の崩壊前線ではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 2004,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/1149/",
+      "title": "Ilulissat Icefjord — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N69 7 60 W49 30 0 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "arctic",
+    "era": "not-applicable",
+    "countryGroup": "g056",
+    "destinationKey": "d-m000047",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "glaciers",
+      "fjords",
+      "climate"
+    ],
+    "subjectKeys": [
+      "s-m000047"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

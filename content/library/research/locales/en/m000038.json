@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "A landscape viewed from above can expose a rock record far older than the landform cut into it.",
+    "Sandstone, shale and limestone preserve evidence of changing ancient environments.",
+    "Erosion by a river has opened a deep gorge across an uplifted plateau.",
+    "Nearly horizontal layers in this Arizona landscape reveal a long span of Earth history.",
+    "Find the national park around the immense canyon carved by the Colorado River in northern Arizona."
+  ],
+  "identity": "Grand Canyon National Park",
+  "targetLabel": "Grand Canyon National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The age of exposed rocks and the age of canyon excavation are different questions. The clues distinguish the old sedimentary record from later river erosion. The official park reference point represents a huge canyon landscape; neither every rim overlook nor the whole river is a uniquely correct point.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

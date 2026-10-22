@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000024",
+  "category": "culture",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "崖の住居、穀倉、水槽が、島の暮らしを伝えています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "隔離された島で、北アフリカに由来する文化が発展しました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "儀礼の洞窟は、季節や天体との関係があった可能性があります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "カナリア諸島で、１５世紀のヨーロッパによる征服以前の文化を伝えます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "グラン・カナリア島の山地にある、洞窟集落と聖地の文化的景観です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "リスコ・カイドとグラン・カナリアの聖なる山々",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 28.04438888888889,
+      "longitude": -15.661194444444444,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "島の社会は、住居や貯蔵施設だけでなく、環境への適応と儀礼の空間からも学べます。天体崇拝との結びつきは、資料でも可能性として記されており、確定した事実として扱いません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 1,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1500,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "リスコ・カイドとグラン・カナリアの聖なる山々に関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/1578/",
+      "title": "ユネスコ世界遺産センター登録資料1578",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N28 2 39.8 W15 39 40.3 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "north-africa",
+    "era": "multi-era",
+    "countryGroup": "es-canary",
+    "cultures": [
+      "c000024"
+    ],
+    "themes": [
+      "religion",
+      "agriculture"
+    ],
+    "subjectKeys": [
+      "s000024"
+    ],
+    "destinationKey": "d000024",
+    "learningObjective": "島の社会は、住居や貯蔵施設だけでなく、環境への適応と儀礼の空間からも学べます。天体崇拝との結びつきは、資料でも可能性として記されており、確定した事実として扱いません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

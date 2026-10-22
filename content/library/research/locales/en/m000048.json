@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Clusters of conical hills and isolated towers show how different karst forms can occur together.",
+    "Marine inundation has turned a limestone landscape into a seascape.",
+    "Vegetated limestone pillars and many islands rise directly from the water.",
+    "The combined World Heritage property lies in the Gulf of Tonkin in north-eastern Viet Nam.",
+    "Find the celebrated Vietnamese limestone bay and adjoining island archipelago near Hai Phong, known for tower-like islands."
+  ],
+  "identity": "Ha Long Bay – Cat Ba Archipelago",
+  "targetLabel": "Ha Long Bay – Cat Ba Archipelago — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The current UNESCO property includes both the bay and the adjoining archipelago, so the record uses the combined identity rather than an obsolete extent. Its published reference point represents that combined property, not each limestone tower. Karst form and marine flooding explain the distinctive seascape.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}
