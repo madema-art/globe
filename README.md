@@ -4,6 +4,8 @@ A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath 
 
 This initial release provides a working Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. The orbital lines on the title are abstract decoration, not an Earth asset. Gameplay and geographical assets await coordination with Claude.
 
+The `codex/education-mode` work adds an independent [five-clue Education Mode foundation](docs/EDUCATION_MODE.md): world geography/history, authored clues, explicit selection/reveal/explanation, and no scores or timers. It is headless and awaits joint review before title/Earth integration.
+
 ## Launch on Windows
 
 Install Git, Node.js 22.12 or newer, and Google Chrome. Clone this existing repository to `D:\globe` if needed. Double-click `Start-Globe.bat`. The launcher installs locked dependencies on the first build, checks GitHub, builds when needed, and opens Chrome. Internet is needed for the first dependency installation; later launches can use an existing build offline.
@@ -40,7 +42,8 @@ Start-Globe.bat             Windows entry point
 launcher.config.json       Tracked branch, ports, update interval
 src/engine/                Three.js runtime and rendering
 src/runtime/               App lifecycle and safe version refresh
-src/game/                  Future challenges and scoring
+src/game/education/        Headless five-clue session, validation, input, Earth bridge
+content/education/         Japanese authoring records and English localization
 src/geography/             Future coordinate/data adapters
 src/shaders/               Future shader sources
 assets/blender/            Claude's editable visual sources

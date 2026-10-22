@@ -2,7 +2,7 @@
 
 ## Initial runtime
 
-Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision UI. `src/engine/title-scene.js` renders abstract orbital linework with a capped device pixel ratio. The accessible DOM title remains usable if WebGL is unavailable. There is currently no Earth mesh, geographical imagery, terrain system, or gameplay implementation.
+Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision UI. `src/engine/title-scene.js` renders abstract orbital linework with a capped device pixel ratio. The accessible DOM title remains usable if WebGL is unavailable. Claude develops Earth independently. The headless Education Mode engine in `src/game/education/` is not yet wired into the title or Earth.
 
 `src/runtime/version.js` isolates version refresh from UI rendering. Every future transition to title must invoke `titleEntered()`. A version response must recheck the current state before reload, even if a request started at the title and completed after gameplay began. Gameplay modules must not call `location.reload`.
 
@@ -11,7 +11,7 @@ Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision UI
 - Engine: render loop, camera, input, scene lifecycle, resource disposal, performance instrumentation.
 - Geography: authoritative coordinates and independent data adapters. Keep lat/lon records independent of mesh representation.
 - Asset adapters: load Claude's approved manifests, meshes, textures, and optional levels of detail behind stable interfaces.
-- Game: challenge state, answer evaluation, score, timer, and persistence independent of rendering.
+- Game: five-clue educational session states, safe clue views, explicit reveal/explanation, and continuation independent of rendering. No grading, score, or timer.
 - Overlays: political boundaries, labels, and educational layers independent of physical Earth shading.
 - UI/runtime: title, gameplay transitions, settings, accessibility, and safe update deferral.
 
@@ -21,7 +21,15 @@ These are boundaries for future work, not invented APIs with no consumers. Agree
 
 Use WGS84 latitude/longitude in degrees at data boundaries; record longitude convention explicitly (proposed `[-180,180)`, east positive) and latitude `[-90,90]`, north positive. Never interchange degrees/radians or lat/lon order implicitly. Heights need a named datum and units. The actual Three.js axis mapping, texture seam, prime-meridian alignment, north orientation, physical scale, and any ellipsoid/sphere approximation must be agreed with Claude and tested at poles, equator, antimeridian, and known landmarks before assets integrate. GeoJSON order is longitude then latitude; adapters must declare conversions.
 
-Do not silently treat rendered terrain as precise survey data. Distance scoring should operate on geographic coordinates using an agreed geodesic method, not arbitrary screen-space or mesh distances.
+Do not silently treat rendered terrain as precise survey data. Education Mode records the player's selected coordinates without evaluating distance or accuracy. Any future feedback/evaluation system must remain separate and requires owner design approval.
+
+## Headless educational boundary
+
+`MysterySession` owns validated content privately and exposes immutable, allowlisted snapshots. Clue snapshots contain only neutral IDs, lifecycle/action flags, and already unlocked localized clues. Source references, historical context, identity, target, and explanation appear only in `ANSWER_REVEAL`. Targets are unavailable in idle, clues, and complete states. Each action is explicit; no automatic hint/reveal/advance scheduling exists.
+
+`createConfirmationInput` handles configurable keyboard/gamepad rising edges independently of session rules. Keyboard X defaults to `KeyX`; controller mappings require an explicitly labeled binding. `createEducationEarthBridge` accepts host-supplied center-coordinate and navigation capabilities rather than assuming Claude function names. Async picks use session revisions to reject stale results. Navigation begins only during reveal and receives an abort signal when leaving that reveal.
+
+`content/education/` contains Japanese canonical records and separate English localization files. It is outside `public/` and imported by neither the title nor the production entry point. The host injects IO into the loader. Treat raw records as trusted authoring data, never player-facing payloads. See [EDUCATION_MODE.md](EDUCATION_MODE.md) for schemas, lifecycle examples, and integration obligations. Final UI and Claude adapters require review before integration.
 
 ## Performance expectations
 
