@@ -1,0 +1,42 @@
+{
+  "bmng-200407": {
+    "sha256": "dea8b4dc8a4f93f5f8bce0c8c85a508a178e7901e9ed8e6bf86e6ce7ef6d61e2",
+    "bytes": 21125326,
+    "acquired": "2026-10-22"
+  },
+  "bmng-clouds": {
+    "sha256": "d137775d8966ab8d443fd5126dc6e7ad72072bc1ed50555c5818d221735daf0f",
+    "bytes": 35870468,
+    "acquired": "2026-10-22"
+  },
+  "black-marble-2016": {
+    "sha256": "3fbc8aae3529dc1ebfcf3aa9361bd3dfc11d19950a6af6d8ed2df61bd8b0134d",
+    "bytes": 3064569,
+    "acquired": "2026-10-22"
+  },
+  "etopo-2022-60s": {
+    "sha256": "74bbc5c23e85188d93f0beba8116babf69e1a8f160e8dc9f053bf8df01b197b6",
+    "bytes": 478290125,
+    "acquired": "2026-10-22"
+  },
+  "ne-10m-land": {
+    "sha256": "e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc",
+    "bytes": 3269070,
+    "acquired": "2026-10-22"
+  },
+  "ne-10m-lakes": {
+    "sha256": "0803a06f9c3cb4671d89b68c48b142aad9366ba40f665245e12a913fbc61722a",
+    "bytes": 2349685,
+    "acquired": "2026-10-22"
+  },
+  "ne-10m-admin0": {
+    "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+    "bytes": 4930492,
+    "acquired": "2026-10-22"
+  },
+  "geonames-cities15000": {
+    "sha256": "306220b96c4dc00fd3bd7b2427290afed492a05ad5111d071644d74c79eba707",
+    "bytes": 3362689,
+    "acquired": "2026-10-22"
+  }
+}

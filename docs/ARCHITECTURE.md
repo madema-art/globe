@@ -2,7 +2,20 @@
 
 ## Initial runtime
 
-Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision UI. `src/engine/title-scene.js` renders abstract orbital linework with a capped device pixel ratio. The accessible DOM title remains usable if WebGL is unavailable. There is currently no Earth mesh, geographical imagery, terrain system, or gameplay implementation.
+Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision/explore UI. The Earth renderer (`src/earth/earth-view.js`) draws the title backdrop and the explore screen. If it cannot start, `src/engine/title-scene.js` (abstract orbital linework) is used instead. The accessible DOM title remains usable if WebGL is unavailable. There is no gameplay implementation yet.
+
+## Earth V1 (provisional, under review in issue #1)
+
+- `src/geography/coordinates.js`: WGS84 conventions, geodetic ↔ Earth-fixed conversion, great-circle distance, subsolar point. No Three.js dependency.
+- `src/earth/assets.js`: adapter for `public/earth/v1/earth.json` (tier choice, off-thread decoding, disposal).
+- `src/earth/earth-view.js`: renderer, ellipsoid surface, cloud shell, atmosphere shell, sun model, target marker, picking, demand rendering, `state()`.
+- `src/earth/globe-controls.js`: quaternion grab-trackball, inertia, zoom to cursor, north-up levelling, `flyTo`.
+- `src/earth/explore-panel.js`: development HUD (layer toggles, landmark/coordinate targeting, readout).
+- `src/shaders/earth/*`: GLSL for the surface, clouds and atmosphere.
+- Modes: `title` (globe right of the text, slow spin, not interactive) and `explore` (centred, interactive). Explore is not the title, so the version watcher never reloads during exploration, and leaving explore calls `titleEntered()` like the vision screen.
+- Rendering is demand-driven: draw on interaction or animation, otherwise refresh at ≤ 15 fps for drifting clouds. 3 draw calls for the planet.
+
+Conventions and formats: [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md).
 
 `src/runtime/version.js` isolates version refresh from UI rendering. Every future transition to title must invoke `titleEntered()`. A version response must recheck the current state before reload, even if a request started at the title and completed after gameplay began. Gameplay modules must not call `location.reload`.
 
@@ -19,7 +32,7 @@ These are boundaries for future work, not invented APIs with no consumers. Agree
 
 ## Geographical contract
 
-Use WGS84 latitude/longitude in degrees at data boundaries; record longitude convention explicitly (proposed `[-180,180)`, east positive) and latitude `[-90,90]`, north positive. Never interchange degrees/radians or lat/lon order implicitly. Heights need a named datum and units. The actual Three.js axis mapping, texture seam, prime-meridian alignment, north orientation, physical scale, and any ellipsoid/sphere approximation must be agreed with Claude and tested at poles, equator, antimeridian, and known landmarks before assets integrate. GeoJSON order is longitude then latitude; adapters must declare conversions.
+Use WGS84 latitude/longitude in degrees at data boundaries; record longitude convention explicitly (proposed `[-180,180)`, east positive) and latitude `[-90,90]`, north positive. Never interchange degrees/radians or lat/lon order implicitly. Heights need a named datum and units. Claude's proposal for the Three.js axis mapping, texture seam, prime-meridian alignment, north orientation, physical scale and ellipsoid is in EARTH_ASSET_CONTRACT.md, with tests at the poles, equator, antimeridian and known landmarks. It is pending Codex/owner review. GeoJSON order is longitude then latitude; adapters must declare conversions.
 
 Do not silently treat rendered terrain as precise survey data. Distance scoring should operate on geographic coordinates using an agreed geodesic method, not arbitrary screen-space or mesh distances.
 

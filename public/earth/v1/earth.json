@@ -1,0 +1,94 @@
+{
+  "schema": "globe.earth-assets/1",
+  "id": "earth-v1",
+  "crs": "EPSG:4326 (WGS84 geodetic lat/lon, degrees)",
+  "projection": "equirectangular; row 0 = 90N, column 0 = 180W; pixel-is-area",
+  "ellipsoid": {
+    "name": "WGS84",
+    "a_m": 6378137.0,
+    "inverse_flattening": 298.257223563
+  },
+  "channels": {
+    "day": "sRGB albedo-like true colour (Blue Marble NG)",
+    "surface": {
+      "r": "water fraction 0..1 (linear)",
+      "g": "east slope, sqrt-encoded",
+      "b": "north slope, sqrt-encoded",
+      "slopeMax": 0.12,
+      "decode": "s = sign(e) * e^2 * slopeMax, e = value * 2 - 1"
+    },
+    "atmos": {
+      "r": "cloud cover 0..1 (linear)",
+      "g": "night lights radiance proxy 0..1 (linear)"
+    }
+  },
+  "tiers": {
+    "high": {
+      "day": {
+        "url": "day-8192x4096.webp",
+        "width": 8192,
+        "height": 4096,
+        "bytes": 2476082
+      },
+      "surface": {
+        "url": "surface-4096x2048.webp",
+        "width": 4096,
+        "height": 2048,
+        "bytes": 4789064
+      },
+      "atmos": {
+        "url": "atmos-4096x2048.jpg",
+        "width": 4096,
+        "height": 2048,
+        "bytes": 3802295
+      }
+    },
+    "medium": {
+      "day": {
+        "url": "day-4096x2048.webp",
+        "width": 4096,
+        "height": 2048,
+        "bytes": 701176
+      },
+      "surface": {
+        "url": "surface-4096x2048.webp",
+        "width": 4096,
+        "height": 2048,
+        "bytes": 4789064
+      },
+      "atmos": {
+        "url": "atmos-4096x2048.jpg",
+        "width": 4096,
+        "height": 2048,
+        "bytes": 3802295
+      }
+    },
+    "low": {
+      "day": {
+        "url": "day-2048x1024.webp",
+        "width": 2048,
+        "height": 1024,
+        "bytes": 197788
+      },
+      "surface": {
+        "url": "surface-2048x1024.webp",
+        "width": 2048,
+        "height": 1024,
+        "bytes": 1257070
+      },
+      "atmos": {
+        "url": "atmos-2048x1024.jpg",
+        "width": 2048,
+        "height": 1024,
+        "bytes": 1050759
+      }
+    }
+  },
+  "credits": [
+    "NASA Earth Observatory, Blue Marble: Next Generation (Reto Stöckli, NASA GSFC)",
+    "NASA Goddard Space Flight Center, Blue Marble clouds (Reto Stöckli), MODIS data",
+    "NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA GSFC",
+    "NOAA National Centers for Environmental Information. 2022: ETOPO 2022 Global Relief Model. https://doi.org/10.25921/fd45-gt74",
+    "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
+  ]
+}

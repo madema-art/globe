@@ -14,7 +14,7 @@
         <p class="eyebrow">CURIOSITY HAS NO BORDERS</p>
         <h1 id="title-heading">A world<br />to discover.</h1>
         <p class="intro">Every place has a story.<br />Get to know the planet we call home.</p>
-        <button id="about-button">Explore the vision <span>↗</span></button>
+        <div class="actions"><button id="earth-button" hidden>Explore the Earth <span>→</span></button><button id="about-button" class="secondary">Explore the vision <span>↗</span></button></div>
         <p class="availability">The journey is taking shape. Geography challenges coming soon.</p>
       </section>
       <section id="vision" hidden aria-labelledby="vision-heading">
@@ -23,7 +23,17 @@
         <p class="detail">Countries, cities, landscapes, and the connections between them. A geography game inspired by Topocopter, built around direct interaction with our planet.</p>
         <button id="back-button">← Back to title</button>
       </section>
-      <footer><span>01 / THE BEGINNING</span><span id="status" role="status">A WORLD IN THE MAKING</span></footer>
+      <section id="explore" hidden aria-label="Explore the Earth">
+        <div class="explore-top"><button id="explore-back" class="secondary">← Title</button><p id="coordinate-readout" role="status" aria-live="off"></p></div>
+        <div class="explore-panel">
+          <p class="eyebrow">DEV · GEOGRAPHIC TARGETING</p>
+          <div class="target-row"><label for="target-select" class="visually-hidden">Fly to a landmark</label><select id="target-select"></select><button id="target-go" type="button">Fly</button></div>
+          <form id="target-form" class="target-row"><label for="target-coords" class="visually-hidden">Latitude, longitude</label><input id="target-coords" placeholder="lat, lon  e.g. -18.91, 47.54" autocomplete="off" /><button type="submit">Go</button></form>
+          <div id="layer-toggles" class="toggles" aria-label="Visual layers"></div>
+          <p class="hint">Drag to turn the Earth · Wheel or pinch to zoom · Arrows / + − on keyboard · Esc returns to title</p>
+        </div>
+      </section>
+      <footer><span>01 / THE BEGINNING</span><span id="credits">Imagery NASA Blue Marble NG, Black Marble · Relief NOAA ETOPO 2022 · Natural Earth · GeoNames (CC BY 4.0)</span><span id="status" role="status">A WORLD IN THE MAKING</span></footer>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

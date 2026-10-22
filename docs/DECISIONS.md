@@ -11,6 +11,16 @@
 - Automatic checks run about every two minutes while the service is alive. Browser checks run about every 20 seconds on the title. Browser timers may be throttled in background tabs.
 - Store checkout-specific service ownership and logs below `%LOCALAPPDATA%\Globe`. Authenticated loopback shutdown affects only the verified Globe instance; never kill arbitrary PIDs.
 
+## 2026-10-22 — Earth V1 prototype (Claude; PROVISIONAL, pending review in issue #1)
+
+- Proposed contract: WGS84 degrees `(lat, lon)` at data boundaries, lon `[-180,180)`. Earth-fixed render frame `+X` = 0°/0°, `+Y` = north, `+Z` = 0°/90°W. Unit = equatorial radius; WGS84 ellipsoid geometry. Per-fragment equirectangular texturing with seam-safe gradients. See EARTH_ASSET_CONTRACT.md.
+- The camera orbits a fixed Earth (grab-trackball, no Euler angles), so overlays and the sun share one Earth-fixed frame.
+- Sources: NASA Blue Marble NG (July 2004), NASA Blue Marble clouds, NASA Black Marble 2016, NOAA ETOPO 2022 60″, Natural Earth 10m, GeoNames cities15000. All downloaded from official hosts by a reproducible pipeline; raw data stays out of Git.
+- Texture tiers high/medium/low (day 8K/4K/2K; surface and atmosphere data 4K/4K/2K), WebP/JPEG. Low tier loads first. No KTX2 yet.
+- Default lighting is a camera-relative "studio" sun so the visible side is lit and a terminator shows at the limb. A "Real sun" toggle uses the current UTC subsolar point.
+- Explore mode added beside title/vision. The title now shows the real Earth instead of the abstract orbit lines; those remain as the no-Earth fallback.
+- Everything above can be reverted by removing `src/earth`, `src/shaders/earth`, `public/earth` and the explore UI hooks.
+
 ## Pending owner/Claude decisions
 
-Earth representation and asset interface; axis mapping and UV seam; source dataset licenses and attribution; initial content set; border/name policy; rendering budgets and reference hardware; project source license; scoring and challenge rules; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.
+Review/approval of Claude's Earth asset contract (axes, UV seam, formats, budgets) and Earth V1 dataset licences; initial content set; border/name policy; rendering budgets and reference hardware; project source license; scoring and challenge rules; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.

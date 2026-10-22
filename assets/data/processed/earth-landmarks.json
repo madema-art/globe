@@ -1,0 +1,218 @@
+{
+  "schema": "globe.landmarks/1",
+  "crs": "WGS84 geodetic; decimal degrees; lon [-180,180) east positive; lat [-90,90] north positive",
+  "sources": {
+    "geonames": "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0 — cities15000.zip acquired 2026-10-22",
+    "natural-earth": "Natural Earth 1:10m Admin 0 Countries (public domain) — area centroid of the largest polygon"
+  },
+  "oceanChecks": [
+    {
+      "name": "Mid-Atlantic",
+      "lat": 0.0,
+      "lon": -30.0
+    },
+    {
+      "name": "Central Pacific",
+      "lat": 0.0,
+      "lon": -150.0
+    },
+    {
+      "name": "Indian Ocean",
+      "lat": -30.0,
+      "lon": 80.0
+    },
+    {
+      "name": "Pacific at antimeridian",
+      "lat": 0.0,
+      "lon": 179.99
+    },
+    {
+      "name": "Southern Ocean",
+      "lat": -60.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Arctic Ocean",
+      "lat": 88.0,
+      "lon": 0.0
+    },
+    {
+      "name": "Mozambique Channel",
+      "lat": -18.0,
+      "lon": 41.0
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "island:madagascar",
+      "name": "Madagascar",
+      "kind": "island",
+      "country": "MG",
+      "lat": -19.3769,
+      "lon": 46.7041,
+      "source": "natural-earth"
+    },
+    {
+      "id": "geonames:1070940",
+      "name": "Antananarivo",
+      "kind": "city",
+      "country": "MG",
+      "lat": -18.91368,
+      "lon": 47.53613,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:2643743",
+      "name": "London",
+      "kind": "city",
+      "country": "GB",
+      "lat": 51.50853,
+      "lon": -0.12574,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3652462",
+      "name": "Quito",
+      "kind": "city",
+      "country": "EC",
+      "lat": -0.22985,
+      "lon": -78.52495,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:1880252",
+      "name": "Singapore",
+      "kind": "city",
+      "country": "SG",
+      "lat": 1.28967,
+      "lon": 103.85007,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3413829",
+      "name": "Reykjavík",
+      "kind": "city",
+      "country": "IS",
+      "lat": 64.13548,
+      "lon": -21.89541,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:2147714",
+      "name": "Sydney",
+      "kind": "city",
+      "country": "AU",
+      "lat": -33.86785,
+      "lon": 151.20732,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:5856195",
+      "name": "Honolulu",
+      "kind": "city",
+      "country": "US",
+      "lat": 21.30694,
+      "lon": -157.85833,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:2198148",
+      "name": "Suva",
+      "kind": "city",
+      "country": "FJ",
+      "lat": -18.13683,
+      "lon": 178.42531,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:5879400",
+      "name": "Anchorage",
+      "kind": "city",
+      "country": "US",
+      "lat": 61.21806,
+      "lon": -149.90028,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3369157",
+      "name": "Cape Town",
+      "kind": "city",
+      "country": "ZA",
+      "lat": -33.92584,
+      "lon": 18.42322,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3833367",
+      "name": "Ushuaia",
+      "kind": "city",
+      "country": "AR",
+      "lat": -54.81084,
+      "lon": -68.31591,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3421319",
+      "name": "Nuuk",
+      "kind": "city",
+      "country": "GL",
+      "lat": 64.18347,
+      "lon": -51.72157,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:1850147",
+      "name": "Tokyo",
+      "kind": "city",
+      "country": "JP",
+      "lat": 35.6895,
+      "lon": 139.69171,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:360630",
+      "name": "Cairo",
+      "kind": "city",
+      "country": "EG",
+      "lat": 30.06263,
+      "lon": 31.24967,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3451190",
+      "name": "Rio de Janeiro",
+      "kind": "city",
+      "country": "BR",
+      "lat": -22.90642,
+      "lon": -43.18223,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:5128581",
+      "name": "New York City",
+      "kind": "city",
+      "country": "US",
+      "lat": 40.71427,
+      "lon": -74.00597,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:1283240",
+      "name": "Kathmandu",
+      "kind": "city",
+      "country": "NP",
+      "lat": 27.70169,
+      "lon": 85.3206,
+      "source": "geonames"
+    },
+    {
+      "id": "geonames:3936456",
+      "name": "Lima",
+      "kind": "city",
+      "country": "PE",
+      "lat": -12.04318,
+      "lon": -77.02824,
+      "source": "geonames"
+    }
+  ]
+}

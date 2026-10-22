@@ -7,3 +7,8 @@
 *.png binary
 *.jpg binary
 *.webp binary
+*.py text eol=lf
+*.glsl text eol=lf
+*.vert text eol=lf
+*.frag text eol=lf
+*.json text eol=lf
