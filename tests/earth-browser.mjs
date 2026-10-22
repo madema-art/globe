@@ -12,6 +12,13 @@ if (!url) {
   const state = await json(path.join(stateDir, 'server.json'));
   url = `http://127.0.0.1:${state.port}/`;
 }
+// Hosted Windows runners render through software WebGL. Exercise the same
+// interaction/lifecycle contract with the supported low texture tier there.
+if (process.env.CI) {
+  const target = new URL(url);
+  target.searchParams.set('earth', 'low');
+  url = target.href;
+}
 const browser = await chromium.launch({ headless: true, executablePath: process.env.GLOBE_CHROMIUM || undefined, args: ['--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const results = path.join(root, 'test-results');
 await mkdir(results, { recursive: true });
@@ -19,7 +26,7 @@ const state = (page) => page.evaluate(() => JSON.parse(window.render_game_to_tex
 // Software WebGL in CI renders a few frames per second; step time explicitly for deterministic animation.
 const advance = (page, seconds) => page.evaluate((s) => window.advanceTime(s * 1000), seconds);
 try {
-  const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
+  const page = await browser.newPage({ viewport: process.env.CI ? { width: 1280, height: 720 } : { width: 1600, height: 900 } });
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => { if (message.type() === 'error' && !/favicon/.test(message.text())) errors.push(message.text()); });
@@ -30,7 +37,7 @@ try {
   assert.equal(s.mode, 'title');
   assert.ok(['high', 'medium', 'low'].includes(s.earth.tier));
   assert.ok(s.earth.drawCalls >= 2 && s.earth.drawCalls <= 8, `draw calls ${s.earth.drawCalls}`);
-  await page.screenshot({ path: path.join(results, 'earth-title.png') });
+  await page.screenshot({ path: path.join(results, 'earth-title.png'), timeout: 120_000 });
 
   await page.getByRole('button', { name: 'Explore the Earth' }).click();
   await advance(page, 3);
@@ -47,7 +54,7 @@ try {
   // The pixel at the centre of the view must pick back to the same coordinate (ray / WGS84 ellipsoid).
   const picked = await page.evaluate(() => window.globeEarth.pickGeodetic(innerWidth / 2, innerHeight / 2));
   assert.ok(picked && Math.abs(picked.lat - -18.9137) < 0.05 && Math.abs(picked.lon - 47.5361) < 0.05, `centre pixel picks ${JSON.stringify(picked)}`);
-  await page.screenshot({ path: path.join(results, 'earth-antananarivo.png') });
+  await page.screenshot({ path: path.join(results, 'earth-antananarivo.png'), timeout: 120_000 });
 
   // Antimeridian and poles: flights succeed and keep coordinates normalised.
   for (const [lat, lon] of [[-17.5, 179.9], [-17.5, -179.9], [85, 0], [-85, 120]]) {
