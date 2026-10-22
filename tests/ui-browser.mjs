@@ -4,8 +4,8 @@ import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { stateDir, root, json, run } from '../scripts/common.mjs';
 
-// Interface checks: title menu focus with keyboard and a SYNTHETIC controller, the mystery screen driven by the
-// presentation preview (no real mystery content), spoiler rules, and title-only update refresh while in a mystery.
+// Interface checks: title menu focus with keyboard and a SYNTHETIC controller, the mystery screen's spoiler rules on
+// the real library, Explore labels, and title-only update refresh while in a mystery.
 let url = process.env.GLOBE_TEST_URL;
 if (!url) {
   await run(process.execPath, ['scripts/launcher.mjs', '--no-browser']);
@@ -40,7 +40,7 @@ try {
   await page.waitForFunction(() => !document.querySelector('#mystery-button').disabled, null, { timeout: 120_000, polling: 250 });
   await advance(0.5);
 
-  // Typography: the Globe typefaces are loaded (OFL, self-hosted).
+  // Typography: the Histography typefaces are loaded (OFL, self-hosted).
   for (const family of ['Bodoni Moda', 'Newsreader', 'Instrument Sans']) {
     assert.ok(await page.evaluate(async (f) => (await document.fonts.load(`16px "${f}"`)).length > 0, family), `${family} loaded`);
   }
@@ -71,13 +71,15 @@ try {
   assert.equal(await focused(), 'mystery-button');
   await tap(0);
   assert.equal(await mode(), 'mystery');
+  // The real library loads asynchronously; step frames while it opens (the full journey is tests/game-browser.mjs).
+  for (let i = 0; i < 600 && (await page.evaluate(() => JSON.parse(window.render_game_to_text()).mystery?.phase)) !== 'clues'; i++) { await advance(0.1); await page.waitForTimeout(50); }
   await advance(2);
   const clues = () => page.evaluate(() => [...document.querySelectorAll('.clue')].map((c) => c.dataset.state));
-  let state = await clues();
+  const state = await clues();
   assert.equal(state.length, 5);
   assert.deepEqual(state.map((s) => s === 'locked'), [false, true, true, true, true], 'one clue at the start');
   // Spoiler rules while investigating.
-  let s = await page.evaluate(() => ({ earth: window.globeEarth.state(), policy: window.globeEarth.labelPolicy, answer: document.querySelector('.answer').innerHTML, hidden: document.querySelector('.answer').hidden, labels: document.querySelectorAll('.atlas-label:not([hidden])').length }));
+  const s = await page.evaluate(() => ({ earth: window.globeEarth.state(), policy: window.globeEarth.labelPolicy, answer: document.querySelector('.answer').innerHTML, hidden: document.querySelector('.answer').hidden }));
   assert.equal(s.policy, 'none', 'no place names during a mystery');
   assert.equal(s.answer, '', 'no answer content in the DOM before reveal');
   assert.equal(s.hidden, true);
@@ -88,41 +90,14 @@ try {
   await page.evaluate(() => { window.globeEarth.controls.zoomTo(0.3); });
   await advance(3);
   assert.equal(await page.evaluate(() => document.querySelectorAll('.atlas-label:not([hidden])').length), 0, 'no labels even at close zoom during a mystery');
-  await page.evaluate(() => { window.globeEarth.controls.zoomTo(2.6); });
-  await advance(3);
-
-  // Next clue: controller A and keyboard Space; previous clues stay visible.
-  await tap(0);
-  await page.keyboard.press('Space');
-  await advance(0.3);
-  state = await clues();
-  assert.deepEqual(state.map((x) => x !== 'locked'), [true, true, true, false, false]);
-  await tap(0); await tap(0);
-  state = await clues();
-  assert.ok(state.every((x) => x !== 'locked'), 'all five clues');
-  assert.equal(await page.locator('.next-label').textContent(), 'Reveal the answer', 'A becomes "Reveal the answer" after five clues');
   await page.screenshot({ path: path.join(results, 'ui-mystery.png'), timeout: 120_000 });
-
-  // Confirm with X: the aimed coordinate is captured, then the reveal shows the answer.
-  const aimed = await page.evaluate(() => window.globeEarth.pickCenter());
-  await tap(2);
-  await advance(4);
-  s = await page.evaluate(() => ({ text: document.querySelector('.answer').textContent, hidden: document.querySelector('.answer').hidden, policy: window.globeEarth.labelPolicy, target: window.globeEarth.state().target, reticle: window.globeEarth.state().reticle }));
-  assert.equal(s.hidden, false);
-  assert.match(s.text, /Sample answer/);
-  assert.match(s.text, new RegExp(`You chose ${Math.abs(aimed.lat).toFixed(1)}`), 'the confirmed selection is shown');
-  assert.equal(s.policy, 'all', 'place names return after the reveal');
-  assert.ok(s.target, 'answer marker only after confirmation');
-  assert.equal(s.reticle, false, 'aiming instruments hidden while reading');
-  await page.screenshot({ path: path.join(results, 'ui-reveal.png'), timeout: 120_000 });
-
-  // Next mystery starts from the whole planet with one clue; B leaves to the title.
-  await tap(0);
-  await advance(3);
-  state = await clues();
-  assert.deepEqual(state.map((x) => x !== 'locked'), [true, false, false, false, false]);
-  assert.equal(await page.evaluate(() => window.globeEarth.state().overlays.level), 1, 'new mystery begins at the planetary view');
   await tap(1);
+  assert.equal(await mode(), 'title');
+  // Explore keeps place names (uniform rules outside mysteries).
+  await page.click('#earth-button');
+  assert.equal(await mode(), 'explore');
+  assert.equal(await page.evaluate(() => window.globeEarth.labelPolicy), 'all');
+  await page.keyboard.press('Escape');
   assert.equal(await mode(), 'title');
 
   // Update lifecycle (production only): a version response during a mystery must not reload; it applies at the title.
@@ -143,5 +118,5 @@ try {
     await navigation;
   }
   assert.deepEqual(errors, []);
-  console.log('UI browser passed: fonts, title focus by keyboard and controller, about page, mystery preview flow (A/Space next clue, X confirm, B leave), spoiler rules (no names, no answer DOM, no marker, no dev tools), reveal, next mystery from the planet view, title-only refresh.');
+  console.log('UI browser passed: fonts, title focus by keyboard and controller, about page, mystery opened with A on the real library, spoiler rules (no names even zoomed, no answer DOM, no marker, no dev tools), B leaves, Explore labels, title-only refresh.');
 } finally { await browser.close(); }

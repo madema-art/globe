@@ -1,4 +1,4 @@
-/* Globe visual identity: "the instrument".
+/* Histography visual identity: "the instrument".
    The interface is engraved onto the instrument that holds the Earth: text sits directly on the night sky,
    structure comes from hairlines, leader lines and the brass bezel, never from boxed panels.
    Tokens are the single source of colour and type; see docs/ART_DIRECTION.md. */
@@ -61,10 +61,13 @@ body::before {
   opacity: 0; transition: opacity 0.8s var(--ease);
 }
 body[data-screen='title']::before, body[data-screen='vision']::before, body[data-screen='mystery']::before, body[data-screen='explore']::before { opacity: 1; }
-body.revealing::before { background: linear-gradient(90deg, rgba(6, 12, 18, 0.9) 0%, rgba(6, 12, 18, 0.78) 34%, rgba(6, 12, 18, 0) 55%); }
+body.revealing::before { background: linear-gradient(90deg, rgba(6, 12, 18, 0.94) 0%, rgba(6, 12, 18, 0.9) 31%, rgba(6, 12, 18, 0.55) 40%, rgba(6, 12, 18, 0) 58%); }
 
 /* ---------------------------------------------------------------- masthead + colophon */
-.masthead { grid-row: 1; padding: 34px var(--gutter) 0; }
+.masthead { grid-row: 1; display: flex; justify-content: space-between; align-items: baseline; padding: 34px var(--gutter) 0; }
+/* Edition mark: the preview channel names itself quietly in the corner, on every screen. */
+.edition-mark { display: none; margin: 0; font: 500 0.8125rem / 1 var(--font-ui); letter-spacing: 0.04em; color: var(--verdigris); }
+body[data-edition='preview'] .edition-mark { display: block; }
 .wordmark {
   font: italic 500 2rem / 1 var(--font-display); font-variation-settings: 'opsz' 96;
   color: var(--paper); text-decoration: none; letter-spacing: -0.01em;
@@ -78,13 +81,10 @@ body[data-screen='title'] .wordmark { opacity: 0; pointer-events: none; }
 /* ---------------------------------------------------------------- title page */
 #title { align-self: center; padding: 0 var(--gutter); max-width: 46rem; }
 .title-wordmark {
-  margin: 0; font: italic 400 clamp(6rem, 12.5vw, 13.5rem) / 0.82 var(--font-display);
-  font-variation-settings: 'opsz' 96; letter-spacing: -0.035em; color: var(--paper);
-  margin-left: -0.06em;
-}
-.title-lede {
-  margin: 0.9rem 0 3.6rem; max-width: 32ch;
-  font: italic 400 var(--step-1) / 1.35 var(--font-text); color: var(--paper-dim);
+  /* The name is set the way this atlas sets a country on the map: Bodoni capitals, widely spaced. */
+  margin: 0 0 3.4rem -0.04em; white-space: nowrap;
+  font: 400 clamp(2.5rem, 4.15vw, 5.4rem) / 1 var(--font-display); font-variation-settings: 'opsz' 96;
+  text-transform: uppercase; letter-spacing: 0.11em; color: var(--paper);
 }
 
 /* The index: menu entries set like an atlas's contents, focus drawn as a cartographic leader line. */
@@ -193,7 +193,7 @@ body[data-input='gamepad'] .glyph [data-for='gamepad'], body:not([data-input='ga
 
 body.revealing .aim { display: none; }
 body.revealing .actions { left: var(--gutter); transform: none; }
-body.revealing .preview-notice { display: none; }
+body.mystery-lobby .aim, body.mystery-lobby .globe-reticle, body.revealing .globe-reticle { display: none; }
 .answer { align-self: center; max-width: 34rem; max-height: calc(100% - 4.5rem); margin-bottom: 4.5rem; mask-image: linear-gradient(180deg, #000 calc(100% - 2.5rem), transparent); overflow-y: auto; padding-right: 1.2rem; scrollbar-width: thin; scrollbar-color: rgba(201, 163, 91, 0.4) transparent; }
 .answer-kicker { margin: 0 0 0.6rem; font: italic 400 var(--step-0) / 1.4 var(--font-text); color: var(--paper-dim); }
 .answer-identity { margin: 0; font: 400 var(--step-4) / 1.02 var(--font-display); font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; color: var(--paper); }
@@ -207,10 +207,32 @@ body.revealing .preview-notice { display: none; }
 .answer-sources li { margin-bottom: 0.35rem; }
 .answer-sources cite { font-style: italic; color: var(--paper); }
 
-.preview-notice {
-  position: absolute; right: var(--gutter); top: 0; max-width: 21rem; margin: 0;
+.answer-sources-heading { margin: 0 0 0.5rem; font: 500 var(--step--1) / 1.4 var(--font-ui); color: var(--paper-dim); }
+.answer-sources a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(201, 163, 91, 0.35); }
+.answer-sources a:is(:hover, :focus-visible) { border-color: var(--brass-bright); outline: none; }
+.source-host { color: var(--paper-faint); font-size: 0.8125rem; }
+/* Map keys: the brass point is the place, the ivory point is the player's choice (as drawn on the globe). */
+.mark-key { display: inline-block; width: 8px; height: 8px; margin-right: 0.55em; border-radius: 50%; vertical-align: 0.08em; }
+.mark-key-target { background: var(--brass-bright); box-shadow: 0 0 0 2px rgba(201, 163, 91, 0.3); }
+.mark-key-choice { background: var(--paper); box-shadow: 0 0 0 1px var(--ink-deep); }
+.mystery-status { margin: 0; max-width: 30ch; min-height: 1.4em; font: 500 var(--step--1) / 1.45 var(--font-ui); color: var(--brass-bright); }
+.mystery-status:empty { display: none; }
+/* Provisional content is identified quietly, never as an approval. */
+.provenance {
+  position: absolute; right: var(--gutter); top: 0; max-width: 19rem; margin: 0;
   font: italic 400 var(--step--1) / 1.45 var(--font-text); color: var(--verdigris); text-align: right;
 }
+body.revealing .provenance, body.mystery-lobby .provenance { display: none; }
+/* Lobby: messages and choices between mysteries (resume, next, recovery), set like the title index. */
+.lobby { align-self: center; grid-column: 1 / -1; max-width: min(36rem, 44vw); }
+.lobby .page-title { margin-bottom: 1.2rem; }
+.lobby-text { margin: 0 0 2.4rem; max-width: 30rem; font: 400 1.3125rem / 1.6 var(--font-text); color: var(--paper); }
+.lobby-text:empty { display: none; }
+.lobby-choices .index-label { font-size: var(--step-2); }
+.lobby-choices .index-label::after, .lobby-choices .index-label::before { display: none; }
+.lobby-choices .index-entry:is(:hover, :focus-visible, .is-focused) .index-label { text-decoration: underline 1px var(--brass); text-underline-offset: 0.22em; }
+.lobby-choices .index-entry:disabled .index-note::after { content: none; }
+.lobby-choices .index-entry:disabled { opacity: 0.55; }
 
 /* Atlas labels (DOM text placed by src/earth/overlays/label-layer.js). Cartographic conventions:
    countries in spaced capitals, water in blue italics, relief features in italics, settlements upright with a point. */
@@ -262,8 +284,7 @@ body[data-screen='mystery'] #credits { display: none; }
   .answer-explanation { font-size: 1.125rem; }
 }
 @media (max-height: 760px) {
-  .title-wordmark { font-size: clamp(5rem, 10vw, 9rem); }
-  .title-lede { margin-bottom: 2.2rem; }
+  .title-wordmark { font-size: clamp(2.3rem, 3.9vw, 4.4rem); margin-bottom: 2.2rem; }
   .index { gap: 1.1rem; }
   .index-label { font-size: var(--step-2); }
 }
@@ -273,4 +294,5 @@ body[data-screen='mystery'] #credits { display: none; }
   #mystery { grid-template-columns: 1fr; }
   .actions { gap: 1.2rem; }
   .index-label::after, .index-label::before { display: none; }
+  .title-wordmark { font-size: 7.6vw; letter-spacing: 0.07em; }
 }

@@ -383,7 +383,18 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
     return { cx: (projected.x + 1) / 2 * width, cy: (1 - projected.y) / 2 * height, r, north: Math.atan2(northCam.x, northCam.y), aiming: !reticle.hidden };
   }
 
-  function render(dt) {
+  // Ambient pacing: the title's slow spin is decoration, so on a device where one frame is expensive
+  // (software WebGL, a very weak GPU) it is redrawn with idle time in between instead of back to back.
+  // That keeps the page responsive (menus, version checks, storage). Player-driven views are never paced.
+  // On a normal GPU frames cost ~16 ms, so the pace never engages.
+  let frameCost = 0;        // smoothed wall time of a rendered frame, in ms
+  let lastCallAt = 0;
+  let renderedLastCall = false;
+  function render(dt, { paced = false } = {}) {
+    const now = performance.now();
+    if (renderedLastCall && lastCallAt) frameCost = frameCost ? frameCost * 0.7 + (now - lastCallAt) * 0.3 : now - lastCallAt;
+    lastCallAt = now;
+    renderedLastCall = false;
     elapsed += dt;
     const targetFrame = mode === 'title' || sideFraming ? 1 : 0;
     if (Math.abs(frame - targetFrame) > 1e-3) {
@@ -421,6 +432,9 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
     sinceRender += dt;
     const idleInterval = layers.clouds && !reduceMotion.matches ? 1 / 15 : Infinity;
     if (!needsRender && sinceRender < idleInterval) return false;
+    const ambient = mode === 'title' || !needsRender; // title spin, or the idle cloud-drift refresh
+    if (paced && ambient && frameCost > 50 && sinceRender < Math.min(4, (frameCost / 1000) * 3)) return false;
+    renderedLastCall = true;
     updateSun();
     renderer.render(scene, camera);
     needsRender = false;

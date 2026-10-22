@@ -49,6 +49,16 @@ The owner played Earth V1 and approved it, and its general technical architectur
 - Explore mode added beside title/vision. The title now shows the real Earth instead of the abstract orbit lines; those remain as the no-Earth fallback.
 - Everything above can be reverted by removing `src/earth`, `src/shaders/earth`, `public/earth` and the explore UI hooks.
 
+## 2026-10-22 — First playable on preview (owner authorization; integrated by Claude)
+
+- Integrate PRs #4/#6 (Claude) and #3/#5/#7 (Codex) into a branch from `origin/preview` by merge commits; publish to `preview` after CI. Feature PRs stay open; nothing goes to `main`.
+- Player-facing name: HISTOGRAPHY, no tagline. Repository, package, paths and launcher keep `globe`.
+- The mystery screen runs on Codex's async `LibraryPlayer` via `createLibraryEarthBridge` only; the synthetic preview source is removed. Continue returns to idle; the next mystery is a separate, deliberate choice.
+- Preview sets `contentChannel: "development"` in its committed launcher configuration. Each Vite build publishes that channel and copies only the pinned release into the immutable build. Stable has no setting and stays production-only. Approval flags and records are never changed.
+- One binding path per action: X via `createConfirmationInput`; A/B/navigation via `ui-input`; analog via the Earth; one gamepad snapshot per frame.
+- Ambient title/idle redraws are paced on devices where a frame is very expensive (software rendering), so the page stays responsive. This was the root cause of the PR #6 CI poll timeout.
+- Browser storage is per origin; the preview normally keeps port 8775. A fallback port shows a recovery notice. A service-side store is a possible Codex follow-up.
+
 ## Pending owner/Claude decisions
 
 Initial content review and approval; border/name policy; rendering budgets and reference hardware; project source license; future feedback design; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.

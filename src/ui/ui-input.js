@@ -1,15 +1,16 @@
 // Interface navigation input: turns keyboard and gamepad buttons into semantic UI actions and tracks the
 // last-used device (so control glyphs show a controller roundel or a keycap).
 //
-// Scope: menus and the mystery screen's action keys. Analog globe control belongs to the Earth
-// (src/earth/gamepad-navigation.js). This is an interim mapping layer: when Codex's input-action
-// infrastructure lands, it can emit the same action names through `dispatch()`.
+// Scope: menus and the mystery screen's navigation/primary/back keys. Analog globe control belongs to the
+// Earth (src/earth/gamepad-navigation.js). Gameplay confirmation (X) is NOT handled here: it has a single
+// binding path through Codex's createConfirmationInput (src/game/education/confirmation-input.js), fed
+// from the same per-frame gamepad snapshot, so a press can never confirm twice.
 //
-// Actions: 'up' | 'down' | 'left' | 'right' | 'activate' | 'back' | 'confirm' | 'next'
-//   Gamepad (standard mapping): D-pad = directions, A (0) = activate / next clue, B (1) = back, X (2) = confirm.
-//   Keyboard: arrows, Enter = activate, Escape = back, X = confirm, Space = next clue.
+// Actions: 'up' | 'down' | 'left' | 'right' | 'activate' | 'back' | 'next'
+//   Gamepad (standard mapping): D-pad = directions, A (0) = activate / primary action, B (1) = back.
+//   Keyboard: arrows, Enter = activate, Escape = back, Space = next clue / primary action.
 
-const PAD_BUTTONS = { 12: 'up', 13: 'down', 14: 'left', 15: 'right', 0: 'a', 1: 'b', 2: 'x' };
+const PAD_BUTTONS = { 12: 'up', 13: 'down', 14: 'left', 15: 'right', 0: 'a', 1: 'b' };
 
 export function createUiInput({ onAction, isEditable = defaultEditable }) {
   const held = new Map(); // `${index}:${id}` -> Set of held button indices
@@ -24,10 +25,10 @@ export function createUiInput({ onAction, isEditable = defaultEditable }) {
 
   function onKeyDown(event) {
     if (event.ctrlKey || event.altKey || event.metaKey) return;
-    const keys = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', Enter: 'activate', Escape: 'back', KeyX: 'confirm', Space: 'next' };
+    const keys = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', Enter: 'activate', Escape: 'back', Space: 'next' };
+    setDevice('keyboard');
     const action = keys[event.code];
     if (!action) return;
-    setDevice('keyboard');
     if (event.repeat && !['up', 'down', 'left', 'right'].includes(action)) return;
     if (isEditable(event.target) && action !== 'back') return;
     if (onAction(action, { source: 'keyboard', event })) event.preventDefault();
@@ -51,7 +52,7 @@ export function createUiInput({ onAction, isEditable = defaultEditable }) {
           // A button already held when the pad (re)connected stays inert until released.
           if (known.has(index) || !(index in PAD_BUTTONS)) continue;
           const name = PAD_BUTTONS[index];
-          onAction(name === 'a' ? 'activate' : name === 'b' ? 'back' : name === 'x' ? 'confirm' : name, { source: 'gamepad', button: name });
+          onAction(name === 'a' ? 'activate' : name === 'b' ? 'back' : name, { source: 'gamepad', button: name });
         }
       }
       held.set(key, now);

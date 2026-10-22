@@ -17,7 +17,7 @@ try {
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'title');
   await mkdir(path.join(root, 'test-results'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'test-results', 'title.png') });
-  await page.getByRole('button', { name: 'About Globe' }).click();
+  await page.getByRole('button', { name: 'About Histography' }).click();
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'vision');
   await page.screenshot({ path: path.join(root, 'test-results', 'vision.png') });
   await page.keyboard.press('Escape');
@@ -32,7 +32,7 @@ try {
   const intercepted = new Promise(resolve => { capture = resolve; });
   await page.route('**/version.json', route => { held = route; capture(); });
   await page.reload(); await intercepted;
-  await page.getByRole('button', { name: 'About Globe' }).click();
+  await page.getByRole('button', { name: 'About Histography' }).click();
   await held.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ id: 'future-build' }) });
   await page.waitForFunction(() => JSON.parse(window.render_game_to_text()).pendingUpdate);
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'vision');

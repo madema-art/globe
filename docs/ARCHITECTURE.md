@@ -17,13 +17,20 @@ Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision/ex
 
 Conventions and formats: [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md).
 
+## First playable (preview, 2026-10-22)
+
+- `src/app/library-host.js`: capabilities for Codex's library (pinned strict JSON reader, browser progress per channel, WGS84 centre reading, abortable reveal navigation). No game rules.
+- `scripts/content/release-plugin.mjs` (Vite plugin): publishes the configured content channel during each build and copies the pinned release into `library/<channel>/` inside the immutable build; defines `__CONTENT_CHANNEL__` and `__FIRST_PORT__`.
+- `src/main.js` wires the host, the mystery screen, Codex's confirmation input (X) and the UI input (A/B/navigation) to one per-frame gamepad snapshot.
+- Details: [FIRST_PLAYABLE.md](FIRST_PLAYABLE.md).
+
 ## Interface (Claude, 2026-10-22)
 
 - Screens in `src/main.js`: `title`, `vision` (About), `explore` (developer exploration) and `mystery`. Only `title` applies a pending build refresh; every transition into it calls `titleEntered()` (unchanged contract).
 - `src/style.css`: design tokens and all interface styling ("the instrument"; see ART_DIRECTION.md). Fonts are in `src/ui/fonts/` (OFL).
 - `src/ui/bezel.js`: SVG instrument ring tracking `earthView.projection()`.
 - `src/ui/focus.js` and `src/ui/ui-input.js`: controller and keyboard focus navigation plus semantic actions (interim, to be fed by Codex's input infrastructure).
-- `src/ui/mystery/`: the mystery presentation (`mystery-screen.js`) and the synthetic `preview-source.js`.
+- `src/ui/mystery/mystery-screen.js`: the mystery presentation (clue ledger, answer reading, lobby states), fed by the library host.
 - Earth additions: `setFraming('center' | 'side')`, `setSelectionMarker`, `setLabelPolicy`, `setLabelExclusions`, `projection()`, label layers and landmark miniatures.
 
 Follow-up modules: `src/earth/gamepad-navigation.js` (dual-stick + trigger control fed by the host's per-frame gamepad snapshot), `src/earth/overlays/*` (zoom-level overlay registry, polyline layers), and the `mystery` presentation with `pickCenter`/`navigateTo`/`resetToPlanetView`. See [EARTH_CONTROLS.md](EARTH_CONTROLS.md), [EARTH_OVERLAYS.md](EARTH_OVERLAYS.md) and [EARTH_GAMEPLAY_API.md](EARTH_GAMEPLAY_API.md).

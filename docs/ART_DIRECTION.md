@@ -33,6 +33,8 @@ Miniatures sit at authentic WGS84 coordinates. Avoid icon spam and visually over
 
 Claude is Globe's lead visual designer (owner decision). The interface no longer uses generic boxed menus. It is drawn as if engraved onto the instrument that holds the Earth: a historical atlas, a museum label and a navigator's instrument, without antique decoration. It must suit every era from the Bronze Age to today.
 
+**Name: HISTOGRAPHY** (owner decision; no tagline or subtitle). The title wordmark is set the way this atlas sets a country on the map: Bodoni Moda capitals with wide spacing (0.11em), alone above the index. The masthead on other screens uses the italic Bodoni lower-case form, *Histography*. The preview edition says "Preview" quietly in verdigris in the top-right corner; provisional content is noted beside the clue ledger, never as an approval.
+
 **Signature element: the bezel.** A thin brass ring with 5° ticks frames the globe's silhouette on every screen (`src/ui/bezel.js`). Its north index always points to geographic north, so when the player rolls the planet the bezel turns with it as a working roll indicator. Close to the surface it hands over to a small compass around the centre reticle. It engraves itself once when the Earth first appears; this is the single orchestrated motion on load.
 
 **Tokens** (`src/style.css :root`):

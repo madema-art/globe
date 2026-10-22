@@ -21,5 +21,9 @@ jobs:
       - run: npm run test:browser
       - if: github.ref == 'refs/heads/preview' || github.base_ref == 'preview'
         run: npm run test:earth
+      - if: github.ref == 'refs/heads/preview' || github.base_ref == 'preview'
+        run: npm run test:ui
+      - if: github.ref == 'refs/heads/preview' || github.base_ref == 'preview'
+        run: npm run test:game
       - if: always()
         run: npm stop
