@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000043",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "季節的な洪水が河川流域の間で栄養を運び、魚の個体群を支える。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "冠水する低地から山の尾根へと急に移る地形が、生態的な変化を生む。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "保護された登録範囲は、巨大な生態系全体ではなく、隣接する四つの保護区からなる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ブラジル中西部にあり、世界最大級の淡水湿地の一部をなす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ボリビアとパラグアイの国境に近い、ブラジル側の世界遺産の湿地保全地域を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "パンタナル保全地域",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -17.656,
+      "longitude": -57.359,
+      "label": "パンタナル保全地域の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "登録された保全地域は、はるかに大きな湿地系のごく一部を守る。洪水は単なる攪乱ではなく、流域や低地、高地を結ぶ生態的な働きでもある。目標は保護区群の代表点であり、湿地全体の中心点を断定するものではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 2000,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/999/",
+      "title": "Pantanal Conservation Area — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S17 39 21.6 W57 21 32.4 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "south-america",
+    "era": "not-applicable",
+    "countryGroup": "g053",
+    "destinationKey": "d-m000043",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "wetlands",
+      "rivers",
+      "ecology"
+    ],
+    "subjectKeys": [
+      "s-m000043"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

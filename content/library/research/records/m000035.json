@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000035",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "この海岸の露頭は、数世紀にわたって珍しい岩石の成因を研究する手がかりになってきた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "その地形は、およそ五千万年前から六千万年前の火山活動と結びついている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "海食崖の下に、何万本もの黒い玄武岩の柱が敷石のように並ぶ。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "その形から、巨人がスコットランドへ海を渡ったという物語が生まれた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "北アイルランドのアントリム海岸で、多角形の玄武岩柱が密集する有名な海辺を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ジャイアンツ・コーズウェーとその海岸",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 55.240833333333335,
+      "longitude": -6.511666666666667,
+      "label": "ジャイアンツ・コーズウェーとその海岸の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "柱状の岩は火山による地形で、巨人の物語は文化的な解釈である。両者を区別することで、同じ景観が科学と伝承を育むことを学べる。目標は海岸の登録範囲の代表点であり、特定の一本の石柱ではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1986,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/369/",
+      "title": "Giant’s Causeway and Causeway Coast — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N55 14 27 W6 30 42 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "europe",
+    "era": "not-applicable",
+    "countryGroup": "g047",
+    "destinationKey": "d-m000035",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "coasts",
+      "volcanoes",
+      "geology"
+    ],
+    "subjectKeys": [
+      "s-m000035"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

@@ -8,12 +8,14 @@ function checksum(text) {
   for (const c of text) { result ^= c.charCodeAt(0); result = Math.imul(result, 16777619); }
   return (result >>> 0).toString(16);
 }
-export function emptyProgress(seed = 'globe-default') {
-  return { schemaVersion: 2, revision: 0, seed, sequence: 0, entries: {}, recent: [], active: null, aliasesApplied: [] };
+export function emptyProgress(seed = 'globe-default', channel = 'production') {
+  return { schemaVersion: 2, revision: 0, seed, sequence: 0, entries: {}, recent: [], active: null, aliasesApplied: [], channel };
 }
 export function validateProgress(value) {
   if (!value || value.schemaVersion > 2) throw new ProgressError('UNSUPPORTED_VERSION');
   if (value.schemaVersion === 1) value = { ...value, schemaVersion: 2, aliasesApplied: value.aliasesApplied || [] };
+  value = { ...value, channel: value.channel === undefined ? 'production' : value.channel };
+  if (!['production', 'development'].includes(value.channel)) throw new ProgressError('CORRUPT_PROGRESS');
   if (value.schemaVersion !== 2 || !Number.isSafeInteger(value.revision) || value.revision < 0 || !Number.isSafeInteger(value.sequence) || value.sequence < 0 || typeof value.seed !== 'string' || !value.seed || !value.entries || typeof value.entries !== 'object' || Array.isArray(value.entries) || !Array.isArray(value.recent) || value.recent.length > 100 || !Array.isArray(value.aliasesApplied) || value.aliasesApplied.some(id => !idPattern.test(id))) throw new ProgressError('CORRUPT_PROGRESS');
   for (const [id, entry] of Object.entries(value.entries)) {
     if (!idPattern.test(id) || !entry || !Number.isSafeInteger(entry.presented) || entry.presented < 1 || typeof entry.revealed !== 'boolean' || typeof entry.completed !== 'boolean' || !Number.isSafeInteger(entry.lastPresented) || entry.lastPresented < 1 || !Number.isSafeInteger(entry.contentVersion) || entry.contentVersion < 1) throw new ProgressError('CORRUPT_PROGRESS');
@@ -37,25 +39,35 @@ export function decodeProgress(text) {
     return validateProgress(JSON.parse(value.payload));
   } catch (error) { throw error instanceof ProgressError ? error : new ProgressError('CORRUPT_PROGRESS'); }
 }
-export function createBrowserProgressAdapter({ storage = globalThis.localStorage, locks = globalThis.navigator?.locks, key = 'globe.education.progress' } = {}) {
+export function createBrowserProgressAdapter({ storage = globalThis.localStorage, locks = globalThis.navigator?.locks, channel = 'production', key = channel === 'development' ? 'globe.education.development.progress' : 'globe.education.progress' } = {}) {
+  if (!['production', 'development'].includes(channel)) throw new TypeError('Invalid progress channel.');
   return {
+    channel,
     read: () => storage.getItem(key), backup: () => storage.getItem(`${key}.backup`),
     write: text => { const old = storage.getItem(key); if (old) storage.setItem(`${key}.backup`, old); storage.setItem(key, text); },
     withLock: operation => { if (!locks?.request) throw new ProgressError('LOCK_UNAVAILABLE'); return locks.request(key, operation); },
   };
 }
 export class ProgressRepository {
-  #adapter; #seed;
-  constructor({ adapter, seed = globalThis.crypto.randomUUID() }) {
+  #adapter; #seed; #channel;
+  constructor({ adapter, seed = globalThis.crypto.randomUUID(), channel = 'production' }) {
     if (!adapter || !['read', 'write', 'withLock'].every(key => typeof adapter[key] === 'function')) throw new TypeError('A locked persistence adapter is required.');
-    this.#adapter = adapter; this.#seed = seed;
+    if (!['production', 'development'].includes(channel) || (adapter.channel && adapter.channel !== channel)) throw new TypeError('Progress channel mismatch.');
+    this.#adapter = adapter; this.#seed = seed; this.#channel = channel;
+  }
+  get channel() { return this.#channel; }
+  #read(text) {
+    const saved = text === null ? emptyProgress(this.#seed, this.#channel) : decodeProgress(text);
+    if (saved.channel !== this.#channel) throw new ProgressError('CONTENT_PROGRESS_CHANNEL_MISMATCH');
+    return saved;
   }
   async transaction(operation) {
     try {
       return await this.#adapter.withLock(async () => {
         const text = await this.#adapter.read();
-        const progress = text === null ? emptyProgress(this.#seed) : decodeProgress(text);
+        const progress = this.#read(text);
         const result = await operation(progress);
+        if (progress.channel !== this.#channel) throw new ProgressError('CONTENT_PROGRESS_CHANNEL_MISMATCH');
         validateProgress(progress); progress.revision++;
         await this.#adapter.write(encodeProgress(progress));
         return result;
@@ -63,7 +75,7 @@ export class ProgressRepository {
     } catch (error) { throw error instanceof ProgressError ? error : new ProgressError(error?.code === 'CONTENT_UNAVAILABLE' ? 'CONTENT_UNAVAILABLE' : 'STORAGE_FAILURE'); }
   }
   async inspect() {
-    try { const raw = await this.#adapter.read(); return raw === null ? emptyProgress(this.#seed) : decodeProgress(raw); }
+    try { return this.#read(await this.#adapter.read()); }
     catch (error) { throw error instanceof ProgressError ? error : new ProgressError(error?.code === 'CONTENT_UNAVAILABLE' ? 'CONTENT_UNAVAILABLE' : 'STORAGE_FAILURE'); }
   }
   // Explicit recovery only; never silently replace a corrupt primary history.
@@ -71,7 +83,7 @@ export class ProgressRepository {
     return this.#adapter.withLock(async () => {
       const saved = await this.#adapter.backup?.();
       if (!saved) throw new ProgressError('NO_BACKUP');
-      const progress = decodeProgress(saved);
+      const progress = this.#read(saved);
       // Host should export the damaged primary first. write() preserves it as the backup.
       await this.#adapter.write(encodeProgress(progress)); return progress;
     });

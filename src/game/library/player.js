@@ -9,8 +9,14 @@ function sessionRecord(record) { return { ...record, relatedIds: [] }; }
 // Headless async orchestration. IO/persistence completes before any new view is published.
 export class LibraryPlayer {
   #library; #repository; #rules; #locale; #session = null; #state = 'IDLE'; #busy = false;
-  constructor({ library, repository, locale = 'en', diversity = {} }) { this.#library = library; this.#repository = repository; this.#locale = locale; this.#rules = diversity; }
-  getView() { return this.#session ? this.#session.getView() : Object.freeze({ state: this.#state, mode: 'education' }); }
+  constructor({ library, repository, locale = 'en', diversity = {} }) {
+    if ((library.getCatalog().channel || 'production') !== repository.channel) throw new ProgressError('CONTENT_PROGRESS_CHANNEL_MISMATCH');
+    this.#library = library; this.#repository = repository; this.#locale = locale; this.#rules = diversity;
+  }
+  getView() {
+    const view = this.#session ? this.#session.getView() : { state: this.#state, mode: 'education' };
+    return Object.freeze({ ...view, contentChannel: this.#repository.channel, provisional: this.#repository.channel === 'development' });
+  }
   getNavigationTarget() { return this.#session?.getNavigationTarget() || null; }
   async #operate(operation) {
     if (this.#busy) return { accepted: false, reason: 'BUSY' };
@@ -74,7 +80,7 @@ export class LibraryPlayer {
         if (saved.active.revealed) saved.entries[before.mysteryId].revealed = true;
       });
       if (result.accepted) this.#session = candidate;
-      return result;
+      return { ...result, view: this.getView() };
     });
   }
   requestNextClue() { return this.#action('requestNextClue'); }

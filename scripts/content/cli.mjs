@@ -12,6 +12,10 @@ try {
     const audit = await auditLibrary(directory); console.log(JSON.stringify(safeReport(audit), null, 2));
     if (audit.failures.length) process.exitCode = 1;
   } else if (command === 'publish') console.log(JSON.stringify(await publishLibrary(directory, path.join(root, '.library'))));
+  else if (command === 'develop') {
+    if (id !== '--enable-development-content' || options.length) throw new Error('DEVELOPMENT_CONTENT_DISABLED');
+    console.log(JSON.stringify(await publishLibrary(directory, path.join(root, '.library'), { channel: 'development', enableDevelopment: true })));
+  }
   else if (command === 'stage') console.log(JSON.stringify(await stageDraft(directory, path.join(root, 'content/library/drafts'), id)));
   else if (command === 'add') {
     if (!/^m\d{6}$/.test(id || '')) throw new Error('NEUTRAL_ID_REQUIRED');

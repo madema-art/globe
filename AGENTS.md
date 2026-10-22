@@ -1,4 +1,4 @@
-# Shared Globe development instructions
+# Shared HISTOGRAPHY development instructions
 
 Codex and Claude are collaborating on one shared geography game. Neither has exclusive ownership. The user owns final decisions; ChatGPT coordinates design and architecture. GitHub `madema-art/globe` is the shared collaboration hub. The local Windows master is `D:\globe`.
 
@@ -12,3 +12,6 @@ Codex and Claude are collaborating on one shared geography game. Neither has exc
 - Maintain title/gameplay lifecycle boundaries. Production builds must never reload active gameplay. Do not introduce Vite HMR into production serving.
 - Test safety-sensitive infrastructure with temporary repositories, not destructive experiments on the master checkout. Run `npm test`, `npm run build`, and relevant browser/launcher checks. State precisely which Windows behaviors were exercised.
 - Update documentation and progress.md as architecture, ownership, contracts, or behavior evolves. Review other contributors' work before overlapping changes.
+
+- The working title is HISTOGRAPHY, with no tagline/subtitle. Keep `globe` repository names, package IDs, paths and infrastructure for compatibility; visual title changes belong to Claude.
+- Preserve the existing 27 mystery records and localizations. Expand through new neutral IDs; source-checked authoring must never acquire automatic independent-review attestations. Use explicitly enabled development content/progress separately from production. See docs/LIBRARY_INTEGRATION.md.

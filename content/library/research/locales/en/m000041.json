@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "A river name derived from an Indigenous expression for great water suits this landscape’s scale.",
+    "Subtropical forest around the water supports animals such as tapirs, howler monkeys and jaguars.",
+    "Many cascades drop across a basaltic escarpment, filling the air with spray.",
+    "The waterfall system forms part of the border between Argentina and Brazil.",
+    "Find the Argentine national park beside the immense horseshoe-shaped waterfall complex shared with Brazil."
+  ],
+  "identity": "Iguazú National Park",
+  "targetLabel": "Iguazú National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The answer is the Argentine protected property associated with the shared waterfall system. Its Indigenous etymology is attributed to UNESCO’s account rather than used to imply a single universal spelling. The official reference point represents the park; the cascades and the neighbouring Brazilian park occupy a much larger area.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

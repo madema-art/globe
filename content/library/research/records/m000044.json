@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000044",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "氷が繰り返しつくり替えた景観に、樹齢の高いナンキョクブナやマキ科の木々が育つ。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "高山のオウムや希少な飛べない鳥が、この保護地域の動物として記述されている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "広い景観を通るアルパイン断層が、大きなプレート境界を示している。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "度重なる氷河作用が、フィヨルドや岩の海岸、湖、滝を形づくった。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ニュージーランド南島の南西部で、氷河が刻んだフィヨルド地帯を含む巨大な世界遺産の景観を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "テ・ワヒポウナム－南西ニュージーランド",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -45.036027777777775,
+      "longitude": 167.3196111111111,
+      "label": "テ・ワヒポウナム－南西ニュージーランドの登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "大きな登録景観に、地殻運動、氷河作用、森林の歴史が重なっている。目標は世界遺産範囲の代表基準点であり、特定のフィヨルドや氷河、一本の木ではない。各地域にはそれぞれ異なる生態と文化の文脈がある。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1990,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/551/",
+      "title": "Te Wahipounamu – South West New Zealand — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S45 2 9.7 E167 19 10.6 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "oceania",
+    "era": "not-applicable",
+    "countryGroup": "g054",
+    "destinationKey": "d-m000044",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "glaciers",
+      "forests",
+      "tectonics"
+    ],
+    "subjectKeys": [
+      "s-m000044"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

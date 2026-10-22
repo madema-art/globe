@@ -2,12 +2,16 @@ import { ContentValidationError } from '../education/validation.js';
 
 export const idPattern = /^m\d{6}$/;
 const token = /^[a-z0-9][a-z0-9-]{0,63}$/;
-export function validateCatalog(value) {
+export function validateCatalog(value, { allowDevelopment = false } = {}) {
   const bad = () => { throw new ContentValidationError('catalog', 'INVALID_CATALOG'); };
   if (!value || value.schemaVersion !== 1 || typeof value.version !== 'string' || !Array.isArray(value.entries)) bad();
+  const channel = value.channel === undefined ? 'production' : value.channel;
+  if (!['production', 'development'].includes(channel)) bad();
+  if (channel === 'development' && !allowDevelopment) throw new ContentValidationError('catalog', 'DEVELOPMENT_CONTENT_DISABLED');
   const ids = new Set(); const aliases = new Set();
   for (const entry of value.entries) {
-    if (!entry || !idPattern.test(entry.id) || ids.has(entry.id) || !Number.isSafeInteger(entry.contentVersion) || entry.contentVersion < 1 || entry.approved !== true) bad();
+    if (!entry || !idPattern.test(entry.id) || ids.has(entry.id) || !Number.isSafeInteger(entry.contentVersion) || entry.contentVersion < 1 || typeof entry.approved !== 'boolean' || (channel === 'production' && !entry.approved)) bad();
+    if (channel === 'development' && !['source-checked', 'source-checked-sample', 'reviewed'].includes(entry.reviewStatus)) bad();
     ids.add(entry.id);
     for (const field of ['category', 'region', 'era', 'countryGroup', 'destinationKey']) if (!token.test(entry[field])) bad();
     if (!['history', 'geography'].includes(entry.kind)) bad();

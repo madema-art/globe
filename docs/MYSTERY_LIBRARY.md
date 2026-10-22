@@ -1,5 +1,7 @@
 # Mystery library and editorial workflow
 
+For the current **51-record** collection, see [the geography expansion report](GEOGRAPHY_EXPANSION.md). The 27-record statistics below document the preserved first pilot. The official working title is HISTOGRAPHY; repository identifiers remain unchanged.
+
 This is the headless library layer above the five-clue Education Mode foundation. It adds durable discovery history, diversity selection, lazy content access, research files and an approval-gated publisher. Claude owns all visuals and player interface integration. The production entry point does not import this library yet.
 
 ## Modules and host contract
@@ -12,7 +14,7 @@ Create `LibraryPlayer` with the library and a locked progress repository. Call `
 
 Only `getView()` may cross the clue UI boundary. Its immutable base-session projection contains unlocked clues and action flags; answer identity, explanation, chronology, sources and target appear only during `ANSWER_REVEAL`. `getNavigationTarget()` returns null outside reveal. Selection metadata, full records and persistence snapshots must never be rendered or logged as clue views. Japanese canonical data and English text remain separate files outside `public/`. This protects ordinary gameplay, not against a person deliberately opening authoring files or browser requests.
 
-`LibraryPlayer` has an async API. The foundation's synchronous `createEducationEarthBridge` is **not** a drop-in adapter for it. Claude's future host must await persistent actions, suppress duplicate input, cancel stale center picks on exit/revision changes, navigate only after a successful committed reveal, and abort navigation when leaving reveal. Singleton sessions omit catalog relationships so linked answers are not loaded. Nothing here wires input, menus or Earth.
+`LibraryPlayer` has an async API. The foundation's synchronous `createEducationEarthBridge` is **not** a drop-in adapter for it. The new `createLibraryEarthBridge` supplies those async lifecycle/cancellation guarantees without visuals. Claude's host must route all actions through it and honour navigation abort signals. See [the precise integration contract](LIBRARY_INTEGRATION.md). Singleton sessions omit catalog relationships so linked answers are not loaded. Nothing here wires input, menus or Earth.
 
 ## Selection and progress
 
@@ -105,3 +107,7 @@ History/geography classification is 22/5. This is an architectural and editorial
 `npm test` includes synthetic schema/date/leak tests from the foundation plus library/persistence/pipeline tests. New tests exercise a 10,000-entry catalog, seeded order, no repeated presentations, diversity and scarcity, related/destination spacing, content updates/aliases, lazy digest checks, concurrent repositories and stale tabs, corruption/quota/backup behavior, per-clue resume and confirmation, five-clue explicit reveal, publication approval invalidation/versioning, draft staging, duplicate/source/locale checks and aggregate-only pilot validation. `npm run content:validate`, `npm run content:publish` and `npm run build` provide the remaining pipeline/build checks. No renderer, browser interaction, launcher or menu behavior is implemented by this change.
 
 Local verification on Windows: 72 automated tests (46 existing, 26 new), content validation, approval-gated publication and the production build passed. The immutable build-publication check also passed. Browser/service checks were left to existing CI because this change has no visual or launcher integration and the installed preview was left running.
+
+## Explicit development channel
+
+`npm run content:develop -- --enable-development-content` exports source-checked/reviewed provisional records only under `.library/development/`. Its catalog/loader require explicit development opt-in, retain true unapproved flags and use an isolated progress namespace. Ordinary publication and loading remain production-only by default. `LibraryPlayer.getView()` and action-result views include safe `contentChannel`/`provisional` fields. No stable server route, launcher or entry point enables the channel automatically. Full commands, compatibility and host obligations are in [LIBRARY_INTEGRATION.md](LIBRARY_INTEGRATION.md).
