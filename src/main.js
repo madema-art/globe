@@ -47,7 +47,14 @@ try {
       onStatus: ({ loading, tier }) => { document.body.dataset.earthTier = tier; document.body.classList.toggle('earth-loading', loading); },
     });
     panel = createExplorePanel(document.querySelector('#explore'), earth);
-    scene = { render: (seconds) => { earth.render(seconds); if (mode === 'explore') panel.update(); } };
+    scene = {
+      render: (seconds) => {
+        // One gamepad snapshot per frame, shared by every consumer (Earth navigation now; education input later).
+        earth.pollGamepads(navigator.getGamepads?.() ?? []);
+        earth.render(seconds);
+        if (mode === 'explore') panel.update();
+      },
+    };
     earth.ready.then(() => { document.querySelector('#earth-button').hidden = false; })
       .catch((error) => { console.warn('Earth assets unavailable', error); document.querySelector('#status').textContent = 'EARTH ASSETS UNAVAILABLE'; });
   } catch (error) {

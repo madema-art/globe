@@ -17,6 +17,8 @@ Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision/ex
 
 Conventions and formats: [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md).
 
+Follow-up modules: `src/earth/gamepad-navigation.js` (dual-stick + trigger control fed by the host's per-frame gamepad snapshot), `src/earth/overlays/*` (zoom-level overlay registry, polyline layers), and the `mystery` presentation with `pickCenter`/`navigateTo`/`resetToPlanetView`. See [EARTH_CONTROLS.md](EARTH_CONTROLS.md), [EARTH_OVERLAYS.md](EARTH_OVERLAYS.md) and [EARTH_GAMEPLAY_API.md](EARTH_GAMEPLAY_API.md).
+
 `src/runtime/version.js` isolates version refresh from UI rendering. Every future transition to title must invoke `titleEntered()`. A version response must recheck the current state before reload, even if a request started at the title and completed after gameplay began. Gameplay modules must not call `location.reload`.
 
 ## Intended module boundaries

@@ -4,7 +4,7 @@ import { formatLatLon, normalizeLongitude } from '../geography/coordinates.js';
 // Development explore HUD: layer toggles, geographic targeting demo and a live coordinate readout.
 // Not the quiz system; it exercises the coordinate API that the quiz will use.
 
-const LAYER_LABELS = { clouds: 'Clouds', atmosphere: 'Atmosphere', nightLights: 'Night lights', relief: 'Relief', ocean: 'Ocean glint', realSun: 'Real sun' };
+const LAYER_LABELS = { clouds: 'Clouds', atmosphere: 'Atmosphere', nightLights: 'Night lights', relief: 'Relief', ocean: 'Ocean glint', realSun: 'Real sun', borders: 'Borders', rivers: 'Rivers' };
 
 export const landmarks = landmarkData.landmarks;
 
@@ -53,7 +53,8 @@ export function createExplorePanel(root, earth) {
       const parts = [];
       if (s.target) parts.push(`◎ ${s.target.name ?? 'Target'} ${formatLatLon(s.target.lat, s.target.lon)}`);
       parts.push(s.hover ? `Cursor ${formatLatLon(s.hover.lat, s.hover.lon)}` : `View ${formatLatLon(s.camera.lat, s.camera.lon)}`);
-      parts.push(`Alt ${Math.round(s.camera.altitude * 6378)} km`);
+      parts.push(`Alt ${Math.round(s.camera.altitude * 6378)} km · L${s.overlays.level}`);
+      if (s.gamepad.active) parts.push('🎮');
       const text = parts.join('   ');
       if (text !== last) { readout.textContent = text; last = text; }
     },

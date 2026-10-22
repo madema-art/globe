@@ -110,6 +110,36 @@
       "acquired": "2026-10-22"
     },
     {
+      "id": "ne-10m-boundaries",
+      "title": "Natural Earth 1:10m Cultural: Admin 0 Boundary Lines (land)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_boundary_lines_land.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-boundary-lines/",
+      "resolution": "1:10,000,000 vector lines, WGS84 (Natural Earth default de facto worldview)",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_admin_0_boundary_lines_land.zip",
+      "sha256": "16ead035f539c8b6c23650c5845d86ad3556553e7456bdf9b4730210f26aacbe",
+      "bytes": 1036202,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-rivers",
+      "title": "Natural Earth 1:10m Physical: Rivers + Lake Centerlines",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_lake_centerlines.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-rivers-lake-centerlines/",
+      "resolution": "1:10,000,000 vector lines, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_rivers_lake_centerlines.zip",
+      "sha256": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38",
+      "bytes": 2079507,
+      "acquired": "2026-10-22"
+    },
+    {
       "id": "geonames-cities15000",
       "title": "GeoNames gazetteer extract: cities with population > 15000",
       "provider": "GeoNames (geonames.org)",
@@ -291,6 +321,42 @@
       "license": "CC BY 4.0 (GeoNames) + public domain (Natural Earth)",
       "attribution": [
         "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0"
+      ]
+    },
+    {
+      "name": "public/earth/v1/overlays/borders-10m.bin",
+      "derived_from": [
+        "ne-10m-boundaries"
+      ],
+      "format": "globe.polylines/1",
+      "bytes": 347388,
+      "sha256": "d8b7387770713fd4e14daffecc9cc0a41b757bf45a2081ed6defb09ebe3a834e",
+      "processing": [
+        "Read Natural Earth shapefile polylines",
+        "Filter by feature class / scalerank (see BORDER_CLASSES, RIVER_LEVELS)",
+        "Quantise lat/lon to int16 at 1/180 degree"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
+      ]
+    },
+    {
+      "name": "public/earth/v1/overlays/rivers-10m.bin",
+      "derived_from": [
+        "ne-10m-rivers"
+      ],
+      "format": "globe.polylines/1",
+      "bytes": 733020,
+      "sha256": "2a96bce5355978edc52fa06cdd1fa7868ed33fed950ff120d732bd988aabe9f0",
+      "processing": [
+        "Read Natural Earth shapefile polylines",
+        "Filter by feature class / scalerank (see BORDER_CLASSES, RIVER_LEVELS)",
+        "Quantise lat/lon to int16 at 1/180 degree"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
       ]
     }
   ]

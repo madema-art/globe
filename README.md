@@ -2,7 +2,7 @@
 
 A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath the camera, zoom toward destinations, and locate countries, cities, and geographical features. There is no helicopter.
 
-This release provides a Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. It also includes the **Earth V1 prototype**: a real, interactive 3D Earth built from NASA, NOAA, Natural Earth and GeoNames data. Choose **Explore the Earth** on the title. Drag to turn the planet, use the wheel to zoom, pick a landmark to fly to, and press Esc to return. Earth V1 and its asset contract were approved by the owner (see docs/DECISIONS.md). Gameplay has not started yet.
+This release provides a Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. It also includes the **Earth V1 prototype**: a real, interactive 3D Earth built from NASA, NOAA, Natural Earth and GeoNames data. Choose **Explore the Earth** on the title. Drag to turn the planet, use the wheel to zoom, pick a landmark to fly to, and press Esc to return. Earth V1 and its asset contract were approved by the owner (see docs/DECISIONS.md). A gamepad also works: the left stick rotates, the right stick rolls and fine-tunes, RT/LT zoom, and a right-stick click restores north-up. Country borders and rivers fade in as you zoom ([controls](docs/EARTH_CONTROLS.md), [overlays](docs/EARTH_OVERLAYS.md), [art direction](docs/ART_DIRECTION.md)). Gameplay has not started yet.
 
 ## Launch on Windows
 

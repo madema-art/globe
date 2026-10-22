@@ -11,6 +11,15 @@
 - Automatic checks run about every two minutes while the service is alive. Browser checks run about every 20 seconds on the title. Browser timers may be throttled in background tabs.
 - Store checkout-specific service ownership and logs below `%LOCALAPPDATA%\Globe`. Authenticated loopback shutdown affects only the verified Globe instance; never kill arbitrary PIDs.
 
+## 2026-10-22 — Art direction, progressive detail, spoilers, controller (owner; implemented by Claude in a follow-up PR)
+
+- **Purpose:** an educational game about world geography and world history (Bronze Age to the present). Gameplay is five progressively easier clues leading to a location, with no timers, scores or rounds. Codex owns the five-clue engine; Claude owns the Earth experience and its geographic interaction.
+- **Art direction:** a serious, sophisticated illustrated amusement-park/atlas map wrapped around the accurate 3D Earth, with curated miniature landmarks and skylines. No roads, street grids or street-level imagery. See ART_DIRECTION.md.
+- **Progressive detail:** four continuous levels (planetary → continental → regional → landmark) with smooth fades. Implemented as an altitude-keyed overlay registry; borders and rivers are the first layers. See EARTH_OVERLAYS.md. The border/naming policy is still open (provisional: Natural Earth de facto).
+- **Spoiler protection:** no answer-aware Earth APIs, uniform overlay rules, no markers in the `mystery` presentation, every mystery starts from the whole planet, the dev panel only in `explore`, reveal navigation only after confirmation.
+- **Controller:** dual-stick three-axis quaternion control. Left stick rotates east/west and north/south; right stick X rolls; right stick Y is fine pitch; RT/LT give analog zoom. A fixed centre reticle. X/A/B are gameplay actions owned by the education engine; the Earth exposes rotation/zoom and shares the host's single per-frame gamepad snapshot. Levelling never fights a deliberate roll and can be disabled. See EARTH_CONTROLS.md.
+- **Default stick convention** (proposal, to tune after hands-on testing): the surface follows the stick, like dragging. Per-axis `invert` exists.
+
 ## 2026-10-22 — Earth V1 approved by the owner
 
 The owner played Earth V1 and approved it, and its general technical architecture, for integration into `main` (PR #2). Answers to the open questions in issue #1:
