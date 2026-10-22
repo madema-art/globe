@@ -10,6 +10,8 @@ The Earth V1 textures in `public/earth/v1/` and the landmark sample in `assets/d
 - **ETOPO 2022 Global Relief Model** (60 arc-second surface elevation). NOAA National Centers for Environmental Information, 2022. https://doi.org/10.25921/fd45-gt74
 - **Natural Earth** (1:10m land, lakes, admin-0 countries). Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com.
 - **GeoNames** (cities15000). Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Changes: a subset of 18 city records (name, country, coordinates) was extracted.
+- **Wikidata** (landmark coordinates, property P625). Wikidata is published under CC0 1.0; attribution is not required but is noted.
+- **Typefaces**: Bodoni Moda (© 2020 The Bodoni Moda Project Authors), Newsreader (© 2020 The Newsreader Project Authors) and Instrument Sans (© 2022 The Instrument Sans Project Authors), all under the SIL Open Font License 1.1; see `src/ui/fonts/*.OFL.txt`.
 
 ## Licence summary
 
@@ -19,6 +21,8 @@ The Earth V1 textures in `public/earth/v1/` and the landmark sample in `assets/d
 | NOAA ETOPO 2022 | US Government work, public domain. Citation requested | Permitted |
 | Natural Earth | Public domain | Permitted |
 | GeoNames | CC BY 4.0. Attribution required; indicate changes | Permitted with attribution |
+| Wikidata | CC0 1.0 | Permitted |
+| Typefaces | SIL Open Font License 1.1 (bundle licence; do not sell fonts alone; Reserved Font Names apply to modified versions) | Permitted with the game |
 
 NASA's guidance: https://www.nasa.gov/nasa-brand-center/images-and-media/. Natural Earth terms: https://www.naturalearthdata.com/about/terms-of-use/.
 

@@ -16,6 +16,7 @@ export function createOverlayManager({ parent, onChange = () => {} }) {
   const layers = new Map();
   let lastAltitude = NaN;
   let level = 1;
+  let frame = 0;
 
   function apply(layer, altitude) {
     const fade = layer.fadeIn ?? DETAIL_LEVELS[layer.level]?.fadeIn;
@@ -55,7 +56,8 @@ export function createOverlayManager({ parent, onChange = () => {} }) {
         level = detailLevelAt(altitude);
         for (const layer of layers.values()) changed = apply(layer, altitude) || changed;
       }
-      for (const layer of layers.values()) if (layer.group.visible && layer.onCamera) changed = layer.onCamera(camera, altitude) || changed;
+      frame++;
+      for (const layer of layers.values()) if (layer.group.visible && layer.onCamera) changed = layer.onCamera(camera, altitude, frame) || changed;
       return changed;
     },
     get level() { return level; },

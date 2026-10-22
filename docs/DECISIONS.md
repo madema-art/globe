@@ -11,6 +11,15 @@
 - Automatic checks run about every two minutes while the service is alive. Browser checks run about every 20 seconds on the title. Browser timers may be throttled in background tabs.
 - Store checkout-specific service ownership and logs below `%LOCALAPPDATA%\Globe`. Authenticated loopback shutdown affects only the verified Globe instance; never kill arbitrary PIDs.
 
+## 2026-10-22 — Responsibilities and visual identity (owner; implemented by Claude)
+
+- **Responsibilities:** Claude = all visual design and implementation (everything the player sees). Codex = educational data, game logic, persistence, input infrastructure and general project infrastructure. Claude presents the engine's state; it does not duplicate engine logic.
+- **New visual identity, "the instrument"** (replaces the original title/menu boxes): the brass bezel signature, night-chart ink, ivory text, brass for interaction, and Bodoni Moda + Newsreader + Instrument Sans (OFL). Menus are index entries with leader-line focus; the mystery screen has a clue ledger I–V, an action strip and an answer reading with the globe framed aside. See ART_DIRECTION.md.
+- **Label policy during mysteries:** no place names at all while investigating (uniform, answer-independent); names return in Explore and after the reveal. Lines and unlabeled miniatures remain.
+- **Landmark miniatures:** oblique pop-up dioramas at constant apparent size, lit by the Earth's sun. Three procedural prototypes (Giza, Eiffel Tower, Mount Fuji), with coordinates from Wikidata (CC0). Production models will be Blender glTF, after an LFS/storage policy.
+- **Mystery preview:** until PR #3 is integrated, the mystery screen runs on clearly labelled synthetic view data (no engine, no real content).
+- **Interim UI input:** keyboard Space = next clue, X = confirm, Esc = back; controller D-pad/A/B/X for navigation and actions. To be unified with Codex's input-action layer.
+
 ## 2026-10-22 — Art direction, progressive detail, spoilers, controller (owner; implemented by Claude in a follow-up PR)
 
 - **Purpose:** an educational game about world geography and world history (Bronze Age to the present). Gameplay is five progressively easier clues leading to a location, with no timers, scores or rounds. Codex owns the five-clue engine; Claude owns the Earth experience and its geographic interaction.

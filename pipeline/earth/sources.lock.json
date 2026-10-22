@@ -48,5 +48,20 @@
     "sha256": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38",
     "bytes": 2079507,
     "acquired": "2026-10-22"
+  },
+  "ne-10m-places": {
+    "sha256": "2963ee08f7743f13f37d5243acd77a2f7a510e26a36c7e04b920f1b381f2b251",
+    "bytes": 652145,
+    "acquired": "2026-10-22"
+  },
+  "ne-10m-regions": {
+    "sha256": "cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682",
+    "bytes": 2038519,
+    "acquired": "2026-10-22"
+  },
+  "ne-50m-marine": {
+    "sha256": "9e460b9fe2566d3f466d69096348953f5348bab63ce1328c94c3072b9f48eef1",
+    "bytes": 700610,
+    "acquired": "2026-10-22"
   }
 }

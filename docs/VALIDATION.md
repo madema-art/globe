@@ -42,3 +42,15 @@ Environment: Linux, Node.js 22.22, headless Chromium + SwiftShader (software Web
 - `npm run build`: published.
 - Screenshots inspected: continental borders/rivers over Europe/North Africa (day), borders receding on the night side over Asia, close regional view, mystery reticle on the whole planet.
 - Not exercised: physical controllers (Xbox or others), Windows, real-GPU frame rate.
+
+# Visual identity milestone validation — 2026-10-22 (Claude, Linux cloud container)
+
+Environment: Linux, Node.js 22.22, headless Chromium + SwiftShader (software WebGL). No GPU, no Windows, no physical controller; controller behaviour is verified with synthetic standard-mapping gamepads. The owner asked for no hands-on testing at this stage.
+
+- `npm test`: 22 passing.
+- `npm run build`: published. `test:build` passes with the Linux-only node_modules exclusion described earlier; the fixture now includes `assets/data/processed` (landmark registry).
+- `npm run test:browser` (Codex's lifecycle test, selectors updated for the new menu names; assertions unchanged): passes.
+- `npm run test:earth` (Earth + gamepad suites): pass.
+- `npm run test:ui` (new; production service): checks that fonts load; title focus by keyboard arrows and controller D-pad; About via Enter, back via B; Begin a mystery via A; one clue at the start; spoiler rules while investigating (no place names even at close zoom, no answer markup in the DOM, no marker, no developer tools, reticle shown); next clue with A and Space; previous clues kept; "Reveal the answer" after five; X confirm captures the aimed coordinate; the reveal shows the selection, names return and aiming instruments hide; the next mystery starts from the planet view with one clue; B leaves; a version response during a mystery defers the refresh until the title. Passes.
+- Screenshots inspected at 1920×1080 and 1280×720: title (bezel, leader-line focus), About, Explore, mystery ledger (1, 3 and 5 clues), reveal, continental and regional labels over Europe, and the Giza, Eiffel Tower and Mount Fuji miniatures. Fixed during inspection: label placement on first frame, overlaps between label layers, interface/label collisions, the bezel dash artefact, initial menu focus, ledger/globe overlap (smaller start view and narrower ledger), reveal layout (side framing, actions under the text), the compact layout for ≤ 860 px heights, miniatures sinking into the surface (pop-up view, lifted along the line of sight), and Fuji's inward-facing lathe faces.
+- Not verified: frame rate on real GPUs, physical controllers, Windows rendering of the new fonts, and integration with the real education engine (the mystery screen runs on the labelled synthetic preview).

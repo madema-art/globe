@@ -140,6 +140,51 @@
       "acquired": "2026-10-22"
     },
     {
+      "id": "ne-10m-places",
+      "title": "Natural Earth 1:10m Cultural: Populated Places (simple)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places_simple.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_populated_places_simple.zip",
+      "sha256": "2963ee08f7743f13f37d5243acd77a2f7a510e26a36c7e04b920f1b381f2b251",
+      "bytes": 652145,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-regions",
+      "title": "Natural Earth 1:10m Physical: Geography Regions (polygons)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-physical-labels/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_geography_regions_polys.zip",
+      "sha256": "cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682",
+      "bytes": 2038519,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-50m-marine",
+      "title": "Natural Earth 1:50m Physical: Marine Areas (polygons)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/50m/physical/ne_50m_geography_marine_polys.zip",
+      "page": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-physical-labels/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_50m_geography_marine_polys.zip",
+      "sha256": "9e460b9fe2566d3f466d69096348953f5348bab63ce1328c94c3072b9f48eef1",
+      "bytes": 700610,
+      "acquired": "2026-10-22"
+    },
+    {
       "id": "geonames-cities15000",
       "title": "GeoNames gazetteer extract: cities with population > 15000",
       "provider": "GeoNames (geonames.org)",
@@ -153,6 +198,22 @@
       "sha256": "306220b96c4dc00fd3bd7b2427290afed492a05ad5111d071644d74c79eba707",
       "bytes": 3362689,
       "acquired": "2026-10-22"
+    },
+    {
+      "id": "wikidata",
+      "title": "Wikidata entity coordinates (property P625)",
+      "provider": "Wikimedia Foundation / Wikidata contributors",
+      "url": "https://www.wikidata.org/wiki/Special:EntityData/<QID>.json",
+      "page": "https://www.wikidata.org/",
+      "resolution": "Point coordinates, WGS84",
+      "license": "CC0 1.0 (public domain dedication)",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Coordinates from Wikidata (CC0)",
+      "entities": [
+        "Q37200",
+        "Q243",
+        "Q39231"
+      ]
     }
   ],
   "generated_assets": [
@@ -321,6 +382,44 @@
       "license": "CC BY 4.0 (GeoNames) + public domain (Natural Earth)",
       "attribution": [
         "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0"
+      ]
+    },
+    {
+      "name": "assets/data/processed/landmarks.json",
+      "derived_from": [
+        "wikidata"
+      ],
+      "format": "json",
+      "sha256": "a6f9336541fcbe34964b08e0a1ca745c3c99072e4f3910b766b3a3760bc5b945",
+      "processing": [
+        "Fetch P625 for each curated QID in LANDMARKS",
+        "Round to 5 decimals"
+      ],
+      "license": "CC0 1.0",
+      "attribution": [
+        "Coordinates from Wikidata (CC0)"
+      ]
+    },
+    {
+      "name": "public/earth/v1/labels.json",
+      "derived_from": [
+        "ne-10m-admin0",
+        "ne-10m-places",
+        "ne-10m-regions",
+        "ne-50m-marine"
+      ],
+      "format": "json",
+      "bytes": 68385,
+      "sha256": "55460b4b15069b3d120480e6ee3ca94a8a0490bf87ee4ec0ff81cae8221818a1",
+      "processing": [
+        "Countries: LABEL_X/LABEL_Y, LABELRANK <= 6",
+        "Places: Admin-0 capitals + scalerank <= 2",
+        "Ranges/deserts/regions/continents: centroid of the largest polygon",
+        "Oceans/seas: centroid of the largest polygon, scalerank <= 3"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
       ]
     },
     {
