@@ -1,7 +1,7 @@
 {
   "remote": "origin",
-  "branch": "main",
+  "branch": "preview",
   "updateIntervalMs": 120000,
-  "firstPort": 8765,
-  "lastPort": 8774
+  "firstPort": 8775,
+  "lastPort": 8784
 }

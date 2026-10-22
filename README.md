@@ -1,5 +1,7 @@
 # Globe
 
+This checkout is **Globe Preview**, the shared reviewed development channel at `D:\globe-preview`, tracking `origin/preview` on ports 8775–8784. Double-click **Globe Preview** on the Windows Desktop, then choose **Explore the Earth**. Stable **Globe** stays at `D:\globe` on `origin/main`. See [permanent launchers and preview publishing](docs/PREVIEW_WORKFLOW.md).
+
 A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath the camera, zoom toward destinations, and locate countries, cities, and geographical features. There is no helicopter.
 
 This release provides a Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. It also includes the **Earth V1 prototype**: a real, interactive 3D Earth built from NASA, NOAA, Natural Earth and GeoNames data. Choose **Explore the Earth** on the title. Drag to turn the planet, use the wheel to zoom, pick a landmark to fly to, and press Esc to return. The Earth asset contract is provisional and under review in [issue #1](https://github.com/madema-art/globe/issues/1). Gameplay has not started yet.
