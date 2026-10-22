@@ -1,0 +1,16 @@
+{
+  "clues": [
+    "Angular and rounded grooves alternate along its exterior.",
+    "Nearby stands an unfinished tower planned at roughly twice its scale.",
+    "Built in sandstone, it belongs to the architectural heritage of early Islamic India.",
+    "Look in southern Delhi, in a complex with a mosque and an iron pillar.",
+    "Find Delhi's famous 72.5-metre minaret."
+  ],
+  "identity": "Qutb Minar",
+  "targetLabel": "Representative point for the monument complex",
+  "modernContext": "Present-day Delhi, India; modern coordinates, not medieval political borders.",
+  "explanation": "The tower and surrounding monuments illuminate early Islamic architecture in the subcontinent. Their buildings, decoration, and reused materials invite study of cultural encounters.",
+  "dateLabel": "Broad building history, 12th–16th centuries CE",
+  "cultures": ["Early Islamic India"],
+  "uncertainty": "This is the property's published reference point, not a surveyed entrance. The source describes both an early-13th-century tower and a longer building chronology."
+}
