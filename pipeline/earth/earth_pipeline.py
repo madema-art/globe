@@ -444,7 +444,7 @@ def write_provenance_manifest(outputs: dict, landmarks: Path) -> None:
         'schema': 'globe.asset-provenance/1',
         'generated': dt.date.today().isoformat(),
         'pipeline': 'pipeline/earth/earth_pipeline.py',
-        'status': 'provisional — Earth asset contract under review in https://github.com/madema-art/globe/issues/1',
+        'status': 'approved by the owner 2026-10-22 (Earth V1, PR #2)',
         'sources': sources,
         'generated_assets': generated,
     }

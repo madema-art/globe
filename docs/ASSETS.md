@@ -1,6 +1,6 @@
 # Asset contracts and provenance
 
-Claude has proposed the Earth asset contract in [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md) (review in [issue #1](https://github.com/madema-art/globe/issues/1)). The Earth V1 prototype ships provisional assets that follow it, so it can be evaluated in the game; they are reversible and not yet agreed. Claude leads research and production; Codex integrates approved assets into the runtime.
+Claude has proposed the Earth asset contract in [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md) (review in [issue #1](https://github.com/madema-art/globe/issues/1)). The owner approved the contract and the Earth V1 assets on 2026-10-22 (see DECISIONS.md). Claude leads research and production; Codex integrates approved assets into the runtime.
 
 ## Folder policy
 
@@ -35,10 +35,10 @@ Record a stable ID, author/provider, original URL, download date, dataset versio
 | Title orbital lines | Procedural project code, `src/engine/title-scene.js` | Abstract decoration; no geography |
 | UI typography | Installed system fonts | No font files distributed |
 | Three.js, Vite, Playwright | Locked npm dependencies | Their package licenses apply |
-| Earth day imagery | NASA Blue Marble NG (July 2004) → `public/earth/v1/day-*.webp` | Provisional (Earth V1); see `assets/earth/MANIFEST.json` |
-| Water mask + terrain slopes | Natural Earth 10m land/lakes + NOAA ETOPO 2022 60″ → `public/earth/v1/surface-*.webp` | Provisional (Earth V1) |
-| Clouds + night lights | NASA Blue Marble clouds + Black Marble 2016 → `public/earth/v1/atmos-*.jpg` | Provisional (Earth V1) |
-| Landmark sample | GeoNames cities15000 (CC BY 4.0) + Natural Earth → `assets/data/processed/earth-landmarks.json` | Provisional; validation and dev targeting only |
+| Earth day imagery | NASA Blue Marble NG (July 2004) → `public/earth/v1/day-*.webp` | Approved (Earth V1); see `assets/earth/MANIFEST.json` |
+| Water mask + terrain slopes | Natural Earth 10m land/lakes + NOAA ETOPO 2022 60″ → `public/earth/v1/surface-*.webp` | Approved (Earth V1) |
+| Clouds + night lights | NASA Blue Marble clouds + Black Marble 2016 → `public/earth/v1/atmos-*.jpg` | Approved (Earth V1) |
+| Landmark sample | GeoNames cities15000 (CC BY 4.0) + Natural Earth → `assets/data/processed/earth-landmarks.json` | Approved; validation and dev targeting only |
 | Borders/labels/rivers | Natural Earth / GeoNames (sources fetched, not yet rendered) | Future overlays, separate from Earth textures |
 
 The owner must select the project source license. Do not add an assumed license or fabricated geographical assets.

@@ -4,7 +4,7 @@
 
 Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision/explore UI. The Earth renderer (`src/earth/earth-view.js`) draws the title backdrop and the explore screen. If it cannot start, `src/engine/title-scene.js` (abstract orbital linework) is used instead. The accessible DOM title remains usable if WebGL is unavailable. There is no gameplay implementation yet.
 
-## Earth V1 (provisional, under review in issue #1)
+## Earth V1 (approved 2026-10-22)
 
 - `src/geography/coordinates.js`: WGS84 conventions, geodetic ↔ Earth-fixed conversion, great-circle distance, subsolar point. No Three.js dependency.
 - `src/earth/assets.js`: adapter for `public/earth/v1/earth.json` (tier choice, off-thread decoding, disposal).

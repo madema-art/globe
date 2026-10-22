@@ -11,7 +11,17 @@
 - Automatic checks run about every two minutes while the service is alive. Browser checks run about every 20 seconds on the title. Browser timers may be throttled in background tabs.
 - Store checkout-specific service ownership and logs below `%LOCALAPPDATA%\Globe`. Authenticated loopback shutdown affects only the verified Globe instance; never kill arbitrary PIDs.
 
-## 2026-10-22 — Earth V1 prototype (Claude; PROVISIONAL, pending review in issue #1)
+## 2026-10-22 — Earth V1 approved by the owner
+
+The owner played Earth V1 and approved it, and its general technical architecture, for integration into `main` (PR #2). Answers to the open questions in issue #1:
+
+- **Camera architecture:** approved. The Earth stays stationary in its Earth-fixed frame; the camera moves around it. The player must experience natural, unrestricted rotation.
+- **Graphics memory:** ≈ 256 MB on the high tier is accepted provisionally. Visual quality has priority; medium and low tiers stay available. Texture compression (KTX2) will be decided after real measurements on the owner's Windows gaming PC.
+- **Git LFS:** compact processed assets stay in ordinary Git and raw downloads stay out of the repository. Agree an LFS/external-storage policy before adding substantially larger textures, Blender files or 3D landmark libraries.
+- **Performance target:** smooth 60 fps at 1920×1080 on the owner's Windows gaming PC. Codex helps identify the hardware and set up benchmarks. Mobile is not a priority.
+- **Linux infrastructure quirks** (`npmCi` npm path, `build-check` `EISDIR`): left to Codex; Claude does not rewrite unrelated infrastructure.
+
+## 2026-10-22 — Earth V1 prototype (Claude; approved above)
 
 - Proposed contract: WGS84 degrees `(lat, lon)` at data boundaries, lon `[-180,180)`. Earth-fixed render frame `+X` = 0°/0°, `+Y` = north, `+Z` = 0°/90°W. Unit = equatorial radius; WGS84 ellipsoid geometry. Per-fragment equirectangular texturing with seam-safe gradients. See EARTH_ASSET_CONTRACT.md.
 - The camera orbits a fixed Earth (grab-trackball, no Euler angles), so overlays and the sun share one Earth-fixed frame.
