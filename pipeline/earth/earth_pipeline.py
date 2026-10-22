@@ -122,6 +122,28 @@ SOURCES = {
         'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
         'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
     },
+    'ne-10m-boundaries': {
+        'title': 'Natural Earth 1:10m Cultural: Admin 0 Boundary Lines (land)',
+        'provider': 'Natural Earth (naturalearthdata.com)',
+        'url': 'https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_boundary_lines_land.zip',
+        'page': 'https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-boundary-lines/',
+        'file': 'ne_10m_admin_0_boundary_lines_land.zip',
+        'resolution': '1:10,000,000 vector lines, WGS84 (Natural Earth default de facto worldview)',
+        'license': 'Public domain.',
+        'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
+        'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
+    },
+    'ne-10m-rivers': {
+        'title': 'Natural Earth 1:10m Physical: Rivers + Lake Centerlines',
+        'provider': 'Natural Earth (naturalearthdata.com)',
+        'url': 'https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_lake_centerlines.zip',
+        'page': 'https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-rivers-lake-centerlines/',
+        'file': 'ne_10m_rivers_lake_centerlines.zip',
+        'resolution': '1:10,000,000 vector lines, WGS84',
+        'license': 'Public domain.',
+        'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
+        'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
+    },
     'geonames-cities15000': {
         'title': 'GeoNames gazetteer extract: cities with population > 15000',
         'provider': 'GeoNames (geonames.org)',
@@ -343,9 +365,77 @@ def build(args) -> None:
         outputs[f'atmos-{size}'] = save(rgb, OUT / f'atmos-{size}x{size // 2}.jpg', 'jpeg444')
 
     landmarks = write_landmarks()
+    build_overlays()
     write_runtime_manifest(outputs)
     write_provenance_manifest(outputs, landmarks)
     Image.fromarray(to_u8(land_preview * 255)).save(RAW / 'land-preview.png')
+
+
+# ---------------------------------------------------------------- vector overlays
+
+BORDER_CLASSES = {'International boundary (verify)': 0, 'Disputed (please verify)': 1, 'Indefinite (please verify)': 1,
+                  'Line of control (please verify)': 1, 'Indeterminant frontier': 1, 'Unrecognized': 1}
+# Rivers by Natural Earth scalerank: <= 4 are the famous large rivers (zoom level 2), 5..7 regional (level 3).
+RIVER_LEVELS = [(4, 0), (7, 1)]
+
+
+def write_polylines(path: Path, lines: list[tuple[int, np.ndarray]]) -> dict:
+    """globe.polylines/1: uint32 count | uint32 pointCounts[count] | uint8 classes[count] | pad to 4 |
+    int16 (lat*180, lon*180) pairs, little-endian. Quantisation 1/180 degree (~600 m)."""
+    lines = [(cls, pts) for cls, pts in lines if len(pts) >= 2]
+    counts = np.array([len(pts) for _, pts in lines], '<u4')
+    classes = np.array([cls for cls, _ in lines], 'u1')
+    coords = np.concatenate([pts[:, ::-1] for _, pts in lines])  # (lon, lat) -> (lat, lon)
+    q = np.round(coords * 180).astype('<i2')
+    header = np.array([len(lines)], '<u4').tobytes() + counts.tobytes() + classes.tobytes()
+    header += b'\0' * (-len(header) % 4)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(header + q.tobytes())
+    print(f'  wrote {path.relative_to(ROOT)} {len(lines)} polylines {int(counts.sum())} points {path.stat().st_size:,} bytes')
+    return {'url': f'overlays/{path.name}', 'format': 'globe.polylines/1', 'polylines': len(lines), 'points': int(counts.sum()),
+            'bytes': path.stat().st_size, 'sha256': sha256_file(path)}
+
+
+def shapefile_lines(zip_name: str):
+    import shapefile  # pyshp
+    archive = zipfile.ZipFile(RAW / zip_name)
+    base = next(n[:-4] for n in archive.namelist() if n.endswith('.shp'))
+    reader = shapefile.Reader(shp=io.BytesIO(archive.read(base + '.shp')), shx=io.BytesIO(archive.read(base + '.shx')),
+                              dbf=io.BytesIO(archive.read(base + '.dbf')), encoding='utf-8')
+    for record in reader.iterShapeRecords():
+        shape = record.shape
+        bounds = list(shape.parts) + [len(shape.points)]
+        for k in range(len(bounds) - 1):
+            yield record.record.as_dict(), np.asarray(shape.points[bounds[k]:bounds[k + 1]], dtype=np.float64)
+
+
+def build_overlays(_args=None) -> None:
+    print('Vector overlays (Natural Earth 10m): country borders, rivers')
+    borders = [(BORDER_CLASSES[r['FEATURECLA']], pts) for r, pts in shapefile_lines('ne_10m_admin_0_boundary_lines_land.zip') if r['FEATURECLA'] in BORDER_CLASSES]
+    rivers = []
+    for r, pts in shapefile_lines('ne_10m_rivers_lake_centerlines.zip'):
+        rank = r['scalerank']
+        level = next((lvl for limit, lvl in RIVER_LEVELS if rank <= limit), None)
+        if level is not None and r['featurecla'] != 'Canal':
+            rivers.append((level, pts))
+    manifest = {
+        'schema': 'globe.earth-overlays/1',
+        'crs': 'EPSG:4326 (WGS84 lat/lon degrees)',
+        'layers': {
+            'borders': {**write_polylines(OUT / 'overlays' / 'borders-10m.bin', borders),
+                        'classes': {'0': 'international boundary', '1': 'disputed / indefinite / line of control / unrecognized'},
+                        'policy': 'Natural Earth default (de facto) worldview; provisional pending the owner border policy',
+                        'source': 'ne-10m-boundaries'},
+            'rivers': {**write_polylines(OUT / 'overlays' / 'rivers-10m.bin', rivers),
+                       'classes': {'0': 'major river (Natural Earth scalerank <= 4)', '1': 'regional river (scalerank 5-7)'},
+                       'source': 'ne-10m-rivers'},
+        },
+        'credits': [SOURCES['ne-10m-boundaries']['attribution']],
+    }
+    path = OUT / 'overlays.json'
+    path.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    print(f'  wrote {path.relative_to(ROOT)}')
+    return manifest
 
 
 def polygon_centroid(ring: np.ndarray) -> tuple[float, float, float]:
@@ -414,7 +504,18 @@ def write_runtime_manifest(outputs: dict) -> None:
     print(f'  wrote {path.relative_to(ROOT)}')
 
 
-def write_provenance_manifest(outputs: dict, landmarks: Path) -> None:
+def existing_outputs() -> dict:
+    """Describe already-built textures (used when only the overlay step runs)."""
+    outputs = {}
+    for path in sorted(OUT.glob('*-*x*.*')):
+        kind, dims = path.stem.split('-', 1)
+        width, height = (int(v) for v in dims.split('x'))
+        outputs[f'{kind}-{width}'] = {'file': path.name, 'width': width, 'height': height, 'bytes': path.stat().st_size, 'sha256': sha256_file(path)}
+    return outputs
+
+
+def write_provenance_manifest(outputs: dict | None, landmarks: Path) -> None:
+    outputs = outputs or existing_outputs()
     lock = load_lock()
     sources = []
     for key, spec in SOURCES.items():
@@ -440,6 +541,14 @@ def write_provenance_manifest(outputs: dict, landmarks: Path) -> None:
                       'format': 'json', 'sha256': sha256_file(landmarks),
                       'processing': ['Select listed cities by ASCII name + country (largest population on ties)', 'Madagascar = area centroid of largest Natural Earth polygon'],
                       'license': 'CC BY 4.0 (GeoNames) + public domain (Natural Earth)', 'attribution': [SOURCES['geonames-cities15000']['attribution']]})
+    overlays = OUT / 'overlays.json'
+    if overlays.exists():
+        for layer in json.loads(overlays.read_text(encoding='utf-8'))['layers'].values():
+            generated.append({'name': f'public/earth/v1/{layer["url"]}', 'derived_from': [layer['source']], 'format': layer['format'],
+                              'bytes': layer['bytes'], 'sha256': layer['sha256'],
+                              'processing': ['Read Natural Earth shapefile polylines', 'Filter by feature class / scalerank (see BORDER_CLASSES, RIVER_LEVELS)',
+                                             'Quantise lat/lon to int16 at 1/180 degree'],
+                              'license': 'Public domain (Natural Earth)', 'attribution': [SOURCES[layer['source']]['attribution']]})
     manifest = {
         'schema': 'globe.asset-provenance/1',
         'generated': dt.date.today().isoformat(),
@@ -493,13 +602,16 @@ def validate(_args=None) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('step', choices=['fetch', 'build', 'validate', 'all'])
+    parser.add_argument('step', choices=['fetch', 'build', 'overlays', 'validate', 'all'])
     parser.add_argument('--strict', action='store_true', help='fail when a source checksum differs from sources.lock.json')
     args = parser.parse_args()
     if args.step in ('fetch', 'all'):
         fetch(args)
     if args.step in ('build', 'all'):
         build(args)
+    if args.step == 'overlays':
+        build_overlays(args)
+        write_provenance_manifest(None, PROCESSED / 'earth-landmarks.json')
     if args.step in ('validate', 'all'):
         validate(args)
 

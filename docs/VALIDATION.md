@@ -31,3 +31,14 @@ Environment: Linux, Node.js 22.22, headless Chromium with SwiftShader (software 
 - `npm run test:browser` (Codex's): passes with the Earth integrated.
 - Screenshots were inspected: title, explore (Africa/Europe), Madagascar close-up, Himalaya relief, north and south poles, Fiji at the antimeridian, real-sun night side over Asia. Fixed during inspection: framing, contrast, the cloud-mosaic seam at ±180°, an over-broad sun glint, and an 8 km centring error from aiming along the ellipsoid normal.
 - Performance: no GPU was available, so 60 fps at 1080p is **unmeasured**. Static facts: 3 draw calls (5 with marker), ~33k surface vertices, ≈ 256 MB estimated texture memory on the high tier (128 MB medium), 11 MB download on high. Demand rendering drops idle redraws to ≤ 15 fps. Use `JSON.parse(render_game_to_text()).earth.renderedFps` on real hardware.
+
+# Earth controls + overlays validation — 2026-10-22 (Claude, Linux cloud container)
+
+Environment: Linux, Node.js 22.22, headless Chromium + SwiftShader (software WebGL). **No physical controller and no GPU.** Gamepad behaviour is verified with a synthetic standard-mapping gamepad that replaces `navigator.getGamepads()`.
+
+- `npm test`: 22 passing (18 earlier + 4 new: detail-level fades, stick/trigger shaping, gamepad navigation against a fake camera, overlay polyline decoding).
+- `npm run test:earth` (production service through the launcher): both `earth-browser.mjs` and the new `earth-gamepad-browser.mjs` pass. The gamepad test covers: dead zones/no drift, left-stick rotation direction, fine right-stick pitch (< 40 % of coarse), right-stick roll kept by levelling, right-stick-click north-up, simultaneous sticks, analog RT pressure, RT/LT altitude limits (0.2 / 6), precision scaling near the surface, crossing the north pole, centre picking in a rolled view (±0.01°), reticle at the exact viewport centre, disconnect/reconnect with a held button, overlay levels (none at planet view; L2 then L3 fade-in), mystery presentation (no marker, abortable and interruptible navigation, start-of-mystery planet view), and no console errors. Time is stepped deterministically.
+- `npm run test:browser` (Codex's): passes.
+- `npm run build`: published.
+- Screenshots inspected: continental borders/rivers over Europe/North Africa (day), borders receding on the night side over Asia, close regional view, mystery reticle on the whole planet.
+- Not exercised: physical controllers (Xbox or others), Windows, real-GPU frame rate.

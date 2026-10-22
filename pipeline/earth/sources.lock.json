@@ -38,5 +38,15 @@
     "sha256": "306220b96c4dc00fd3bd7b2427290afed492a05ad5111d071644d74c79eba707",
     "bytes": 3362689,
     "acquired": "2026-10-22"
+  },
+  "ne-10m-boundaries": {
+    "sha256": "16ead035f539c8b6c23650c5845d86ad3556553e7456bdf9b4730210f26aacbe",
+    "bytes": 1036202,
+    "acquired": "2026-10-22"
+  },
+  "ne-10m-rivers": {
+    "sha256": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38",
+    "bytes": 2079507,
+    "acquired": "2026-10-22"
   }
 }
