@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Its monumental public squares reveal successive stages in the city’s development.",
+    "Temples, altars, and ball courts formed a political and ritual centre.",
+    "Its culture contributed to mathematics, astronomy, and hieroglyphic writing.",
+    "This Classic-period Maya city lies in present-day Honduras.",
+    "Find Honduras’s celebrated Maya ruins, with their royal acropolis and monumental plazas."
+  ],
+  "identity": "Copán",
+  "targetLabel": "Source-published representative point",
+  "modernContext": "Modern WGS84 reference point; distinguish this location from historical names and changing political boundaries.",
+  "explanation": "Architecture and writing illuminate knowledge and ritual as well as dynastic history. The broad Classic-period range describes a major cultural phase, not the full span of human occupation.",
+  "dateLabel": "Approximate historical phase discussed in the clues.",
+  "cultures": [
+    "Communities associated with this place"
+  ],
+  "uncertainty": "Source-checked authorial pilot, awaiting independent review. The published coordinate anchors a property, not a surveyed entrance or its full extent; broad dates and interpretations require care."
+}

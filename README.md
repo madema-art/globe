@@ -61,3 +61,7 @@ docs/                      Shared design and collaboration records
 Codex and Claude are collaborators on one game. GitHub is the common hub and remote backup: [madema-art/globe](https://github.com/madema-art/globe). Work on `codex/<feature>` or `claude/<feature>`, push commits, and use reviewed pull requests into `main`. The initial bootstrap is committed directly to the empty repository at the owner's request; subsequent work uses feature branches. Never force-push, reset away work, or overwrite another developer's source tree. See [collaboration](docs/COLLABORATION.md), [architecture](docs/ARCHITECTURE.md), [asset policy](docs/ASSETS.md), and [roadmap](docs/ROADMAP.md).
 
 Source licensing has not yet been selected by the owner. Public visibility does not grant a project license. Dependency licenses remain applicable; see their package metadata.
+
+## Mystery library
+
+The headless library adds durable presentation history, seeded diversity selection, lazy records and a separate research/review/publication pipeline. Run `npm.cmd run content:validate`, `npm.cmd run content:report` and `npm.cmd run content:publish` for spoiler-free checks. The pilot contains 27 source-checked mysteries and 135 clues; independent review/approval is pending, so the published playable pool is empty. See [the workflow, architecture and aggregate coverage](docs/MYSTERY_LIBRARY.md). Visual integration remains with Claude.

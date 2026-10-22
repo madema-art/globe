@@ -4,7 +4,7 @@ Codex, Claude, ChatGPT, and the owner are building one game. GitHub at `https://
 
 ## Working responsibilities
 
-Codex: infrastructure, Three.js engine, runtime integration, Windows launch/update system. Claude: Earth asset research, Blender visual development, imagery, terrain datasets, geographical asset production. ChatGPT: game design, architecture coordination, implementation planning. Owner: final decisions. Responsibilities guide coordination; they do not establish exclusive ownership.
+Codex: educational content, research/citations, validation, selection/diversity, durable local player history and headless gameplay logic; maintain infrastructure only within a separately scoped task. Claude: all visual work, including Earth, renderer, menus, typography, clue UI, transitions, shaders, assets and styling. Content-library work must not change visuals or the launcher/update system. ChatGPT: game design, architecture coordination, implementation planning. Owner: final decisions. Responsibilities guide coordination; they do not establish exclusive ownership.
 
 ## Exchange work
 
@@ -20,3 +20,5 @@ No force pushes, destructive resets/cleans, branch switching by the launcher, or
 Launcher updates are deliberately blocked on feature branches and dirty trees. Keep the production master clean for automatic `main` updates; use a development worktree/clone for ongoing work. If the master has local commits, use the normal review workflow before expecting automatic updates.
 
 Use docs/DECISIONS.md as the lasting coordination record; PR descriptions provide context and evidence. Update AGENTS.md and CLAUDE.md when responsibilities or working rules change. Never imply that Claude has reviewed an asset contract until an actual review is recorded.
+
+The mystery-library work is stacked on `codex/education-mode` while PR #3 remains unmerged. Its PR targets that branch, not `main`; after the foundation merges, retarget/rebase deliberately before integration. Review source and locale files privately: the owner is also a player and must not receive answer/clue/coordinate dumps. See [MYSTERY_LIBRARY.md](MYSTERY_LIBRARY.md) for aggregate coverage and the editorial gate.

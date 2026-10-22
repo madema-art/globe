@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000001",
+  "category": "built-site",
+  "subjectType": "歴史的な塔",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "外壁には、角張った溝と丸みのある溝が交互に刻まれています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "近くには、この塔の約２倍の規模を目指しながら未完成に終わった別の塔があります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "赤色などの砂岩で造られ、インドの初期イスラーム建築を伝えています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "デリー南部にあり、同じ遺跡群には古いモスクと鉄柱があります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "デリーに立つ高さ７２.５メートルの有名なミナレットです。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "クトゥブ・ミナール",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 28.52583,
+      "longitude": 77.18528,
+      "label": "クトゥブ・ミナール建造物群の代表地点",
+      "modernContext": "現在のインド、デリー。現代の座標であり、中世の政治境界ではありません。"
+    },
+    "explanation": "この塔と周囲の建築群は、インド亜大陸における初期イスラーム建築の発展を伝えます。建築、装飾、再利用された部材は、複雑な文化的接触の歴史を考える手がかりです。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "１２～１６世紀の建造史（概略）",
+      "start": {
+        "year": 1199,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1503,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "インドの初期イスラーム建築"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/233/",
+      "title": "ユネスコ世界遺産センター登録資料２３３",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "各手がかり、建造史、解説、掲載座標を照合。北緯２８度３１分３２.９８８秒、東経７７度１１分７.００８秒を十進度に換算。解説の要約であり引用ではない。画像や原文転載なし。"
+    }
+  ],
+  "uncertainty": "代表地点は建造物群の掲載座標であり、建物の入口を測量した位置ではありません。資料の短い説明は１３世紀初頭、詳細説明は１１９９～１５０３年を扱うため、年代は長い建造史の概略として表示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "細部、比較対象、文化圏、都市、特徴的寸法の順で情報を追加。易しさは編集判断であり、独立した歴史専門家やプレイヤーによる検証は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "south-asia",
+    "era": "medieval",
+    "countryGroup": "in",
+    "cultures": [
+      "c000001"
+    ],
+    "themes": [
+      "architecture",
+      "cultural-exchange"
+    ],
+    "subjectKeys": [
+      "s000001"
+    ],
+    "destinationKey": "d000001",
+    "learningObjective": "建造物と文化の交流を地理と結びつけて学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

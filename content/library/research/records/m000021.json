@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "m000021",
+  "category": "culture",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "屋根の下には、主要な２つの公演ホールとレストランがあります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "重なり合うシェル状の形が、建物の構造と外観を特徴づけます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "１９５７年の国際的な審査で、デンマークの建築家の案が選ばれました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "１９７３年に開かれた、港の半島の先に立つ公演施設です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "オーストラリアの港町で、白い帆のような屋根で名高い建物です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "シドニー・オペラハウス",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -33.85666666666667,
+      "longitude": 151.21527777777777,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "舞台芸術の施設は、建築の形と構造の革新が交わる場でもあります。設計案の選定年と、建物が開かれた年を区別すると、長い制作過程が見えてきます。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "at": {
+        "year": 1973,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "シドニー・オペラハウスに関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/166/",
+      "title": "ユネスコ世界遺産センター登録資料166",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 S33 51 24 E151 12 55 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "oceania",
+    "era": "twentieth-century",
+    "countryGroup": "au",
+    "cultures": [
+      "c000021"
+    ],
+    "themes": [
+      "art",
+      "engineering"
+    ],
+    "subjectKeys": [
+      "s000021"
+    ],
+    "destinationKey": "d000021",
+    "learningObjective": "舞台芸術の施設は、建築の形と構造の革新が交わる場でもあります。設計案の選定年と、建物が開かれた年を区別すると、長い制作過程が見えてきます。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

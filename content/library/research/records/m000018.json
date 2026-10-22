@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000018",
+  "category": "culture",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "１２世紀と１３世紀の彫刻と窓が、一体となって保存されています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "大火のあと、およそ２６年間で主要な再建が進められました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "聖母マリアへの巡礼と結びつく、宗教建築の重要な場所です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "フランスの初期ゴシック建築と、ステンドグラスの代表例です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "１１９４年の火災後に再建された、フランスの著名なゴシック大聖堂です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "シャルトル大聖堂",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 48.4475,
+      "longitude": 1.4872222222222222,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "大聖堂は、構造技術、彫刻、光の表現、巡礼者の活動が重なる場所です。再建の期間と、建物のすべての部分が造られた期間とは区別します。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 1145,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1220,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "シャルトル大聖堂に関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/81/",
+      "title": "ユネスコ世界遺産センター登録資料81",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N48 26 51 E1 29 14 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "europe",
+    "era": "medieval",
+    "countryGroup": "fr",
+    "cultures": [
+      "c000018"
+    ],
+    "themes": [
+      "art",
+      "religion"
+    ],
+    "subjectKeys": [
+      "s000018"
+    ],
+    "destinationKey": "d000018",
+    "learningObjective": "大聖堂は、構造技術、彫刻、光の表現、巡礼者の活動が重なる場所です。再建の期間と、建物のすべての部分が造られた期間とは区別します。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

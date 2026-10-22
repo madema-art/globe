@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000025",
+  "category": "built-site",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "碑文は、建造の年代をたどる手がかりです。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "帝国内外の職人が、彫刻、象嵌、書、ドームの制作などに参加しました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ヤムナー川岸の庭園が、建物の景観を構成しています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "シャー・ジャハーンが、妻ムムターズ・マハルを記念して造らせました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "アグラにある、白大理石の巨大な霊廟を探してください。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "タージ・マハル",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 27.17417,
+      "longitude": 78.04222,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "著名な建築は、君主の命令だけでなく、多くの職人の仕事から生まれます。主要な霊廟の完成と、周囲の施設の完成は同じ年ではありません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 1632,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1653,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "タージ・マハルに関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/252/",
+      "title": "ユネスコ世界遺産センター登録資料252",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N27 10 27.012 E78 2 31.992 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "south-asia",
+    "era": "early-modern",
+    "countryGroup": "in",
+    "cultures": [
+      "c000025"
+    ],
+    "themes": [
+      "architecture",
+      "craft"
+    ],
+    "subjectKeys": [
+      "s000025"
+    ],
+    "destinationKey": "d000025",
+    "learningObjective": "著名な建築は、君主の命令だけでなく、多くの職人の仕事から生まれます。主要な霊廟の完成と、周囲の施設の完成は同じ年ではありません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

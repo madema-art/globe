@@ -4,6 +4,7 @@ dist/
 work/
 test-results/
 coverage/
+.library/
 *.log
 *.tmp
 *.temp
