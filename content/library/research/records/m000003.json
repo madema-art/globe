@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000003",
+  "category": "civilization",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "遺跡の保護範囲には、古代都市だけでなく村落や農地も含まれます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "内外２重の市壁は、都市の防御を考える手がかりです。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "門、宮殿、神殿は、王権と宗教が結びついた都市を伝えます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "紀元前６２６～５３９年、メソポタミアの大帝国の首都でした。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "現在のイラクで、バグダッドの約８５キロ南にある著名な古代都市遺跡です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "バビロン",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 32.54196944444444,
+      "longitude": 44.420833333333334,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "都市の防御、祭祀、王権を一緒に読むことで、古代国家の暮らしと支配の空間が見えてきます。空中庭園との伝統的な結びつきは、考古学的な位置の確定とは区別する必要があります。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 626,
+        "era": "BCE",
+        "approximate": true
+      },
+      "end": {
+        "year": 539,
+        "era": "BCE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "バビロンに関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/278/",
+      "title": "ユネスコ世界遺産センター登録資料278",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 N32 32 31.09 E44 25 15 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "west-asia",
+    "era": "classical",
+    "countryGroup": "iq",
+    "cultures": [
+      "c000003"
+    ],
+    "themes": [
+      "urbanism",
+      "religion"
+    ],
+    "subjectKeys": [
+      "s000003"
+    ],
+    "destinationKey": "d000003",
+    "learningObjective": "都市の防御、祭祀、王権を一緒に読むことで、古代国家の暮らしと支配の空間が見えてきます。空中庭園との伝統的な結びつきは、考古学的な位置の確定とは区別する必要があります。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

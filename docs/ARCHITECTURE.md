@@ -40,3 +40,9 @@ Initial target: smooth 60 fps on an agreed mainstream desktop at 1080p, measured
 Node serves immutable Vite builds on loopback. Each successful build has a UUID embedded in JavaScript and published through `/version.json`. Asset URLs contain their build ID. Older build folders remain available so open sessions keep loading matching resources. The current pointer changes only after a successful build and source consistency check. Vite HMR is used only by `npm run dev`.
 
 See LAUNCH_AND_UPDATES.md for process ownership and update safety. Launcher/service source updates take full effect on service restart; the running service retains its loaded code until stopped.
+
+## Scalable mystery library
+
+`src/game/library/` composes the existing five-clue session with an async persistent player, a compact metadata catalog, seeded diversity selection and lazy digest-checked records. Presentation is saved before clue exposure. All previously presented IDs remain excluded across launches and content updates; tombstones and aliases preserve history. Explicit exhaustion never starts a repeat pass. Web Locks serialize localStorage writers across same-origin tabs. Failures do not reset history.
+
+Research authoring and approval-gated publication live outside application modules in `content/library/` and `scripts/content/`. Only digest-approved, reviewed records enter a generated release. Current source-checked research is deliberately unapproved. No runtime/UI integration is made. Claude owns all visual integration; the async player requires a future host adapter rather than direct reuse of the synchronous session bridge. See [MYSTERY_LIBRARY.md](MYSTERY_LIBRARY.md) for contracts, failure states, storage-origin limits, pipeline commands and spoiler-free coverage.

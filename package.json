@@ -12,7 +12,14 @@
     "test": "node --test tests/*.test.mjs",
     "test:browser": "node tests/browser.mjs",
     "test:service": "node tests/service-check.mjs",
-    "test:build": "node tests/build-check.mjs"
+    "test:build": "node tests/build-check.mjs",
+    "content:validate": "node scripts/content/cli.mjs validate",
+    "content:report": "node scripts/content/cli.mjs report",
+    "content:publish": "node scripts/content/cli.mjs publish",
+    "content:add": "node scripts/content/cli.mjs add",
+    "content:stage": "node scripts/content/cli.mjs stage",
+    "content:review": "node scripts/content/cli.mjs review",
+    "content:approve": "node scripts/content/cli.mjs approve"
   },
   "dependencies": { "three": "^0.180.0" },
   "devDependencies": { "vite": "^7.1.0", "playwright": "^1.56.0" }

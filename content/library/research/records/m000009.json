@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000009",
+  "category": "historical-process",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "丘の遺構には、狭い通路でつながる石の囲いが残っています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "鳥を載せた石製の柱は、儀礼の空間を考える資料です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "交易の中心となった都市で、丘、囲壁、谷の遺構が組み合わさっています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "１１～１５世紀のショナの人々による都市文明を伝えます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "アフリカ南部にある、巨大な石造都市遺跡で国名とも結びつく場所です。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "グレート・ジンバブエ",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -20.271169999999998,
+      "longitude": 30.93326888888889,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "地域社会による都市建設と遠距離交易の歴史を学べる遺跡です。外来の伝説を、ショナの人々による都市の形成を否定する証拠として扱わないことが重要です。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 1100,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1450,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "グレート・ジンバブエに関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/364/",
+      "title": "ユネスコ世界遺産センター登録資料364",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 S20 16 16.212 E30 55 59.768 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "southern-africa",
+    "era": "medieval",
+    "countryGroup": "zw",
+    "cultures": [
+      "c000009"
+    ],
+    "themes": [
+      "trade",
+      "urbanism"
+    ],
+    "subjectKeys": [
+      "s000009"
+    ],
+    "destinationKey": "d000009",
+    "learningObjective": "地域社会による都市建設と遠距離交易の歴史を学べる遺跡です。外来の伝説を、ショナの人々による都市の形成を否定する証拠として扱わないことが重要です。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

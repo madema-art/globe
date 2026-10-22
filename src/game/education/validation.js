@@ -73,8 +73,8 @@ export function validateLocalization(value, path = 'localization') {
   return structuredClone(value);
 }
 
-export function validateMystery(record, path = 'record') {
-  object(record, path, ['schemaVersion', 'id', 'category', 'subjectType', 'authoredLocale', 'clues', 'answer', 'history', 'sources', 'uncertainty', 'editorial'], ['relatedIds', 'localizations']);
+export function validateMystery(record, path = 'record', { allowDraft = false } = {}) {
+  object(record, path, ['schemaVersion', 'id', 'category', 'subjectType', 'authoredLocale', 'clues', 'answer', 'history', 'sources', 'uncertainty', 'editorial'], ['relatedIds', 'localizations', 'library']);
   if (record.schemaVersion !== 1) fail(`${path}.schemaVersion`);
   neutralId(record.id, `${path}.id`);
   if (!CATEGORIES.includes(record.category)) fail(`${path}.category`);
@@ -121,9 +121,23 @@ export function validateMystery(record, path = 'record') {
   validateHistoricalDate(record.history.date, `${path}.history.date`); stringList(record.history.cultures, `${path}.history.cultures`, 1);
   text(record.uncertainty, `${path}.uncertainty`);
   object(record.editorial, `${path}.editorial`, ['clueOrderReviewed', 'reviewStatus', 'notes']);
-  if (record.editorial.clueOrderReviewed !== true) fail(`${path}.editorial.clueOrderReviewed`, 'EDITORIAL_REVIEW_REQUIRED');
-  if (!['source-checked-sample', 'reviewed'].includes(record.editorial.reviewStatus)) fail(`${path}.editorial.reviewStatus`);
+  if (record.editorial.clueOrderReviewed !== true && !(allowDraft && record.editorial.reviewStatus === 'draft')) fail(`${path}.editorial.clueOrderReviewed`, 'EDITORIAL_REVIEW_REQUIRED');
+  if (![...(allowDraft ? ['draft'] : []), 'source-checked', 'source-checked-sample', 'reviewed'].includes(record.editorial.reviewStatus)) fail(`${path}.editorial.reviewStatus`);
   text(record.editorial.notes, `${path}.editorial.notes`);
+  if (record.library !== undefined) {
+    const m = record.library;
+    object(m, `${path}.library`, ['contentVersion', 'kind', 'region', 'era', 'countryGroup', 'cultures', 'themes', 'subjectKeys', 'destinationKey', 'learningObjective', 'aliases', 'relatedPlaces', 'publication']);
+    if (!Number.isSafeInteger(m.contentVersion) || m.contentVersion < 1 || !['history', 'geography'].includes(m.kind)) fail(`${path}.library`);
+    const token = /^[a-z0-9][a-z0-9-]{0,63}$/;
+    for (const key of ['region', 'era', 'countryGroup', 'destinationKey']) if (typeof m[key] !== 'string' || !token.test(m[key])) fail(`${path}.library.${key}`);
+    for (const key of ['cultures', 'themes', 'subjectKeys']) { stringList(m[key], `${path}.library.${key}`, 1); if (m[key].some(item => !token.test(item))) fail(`${path}.library.${key}`); }
+    text(m.learningObjective, `${path}.library.learningObjective`);
+    array(m.aliases, `${path}.library.aliases`); unique(m.aliases, `${path}.library.aliases`); m.aliases.forEach(id => neutralId(id, `${path}.library.aliases`));
+    array(m.relatedPlaces, `${path}.library.relatedPlaces`);
+    m.relatedPlaces.forEach((place, i) => { object(place, `${path}.library.relatedPlaces[${i}]`, ['label', 'relationship', 'sourceIds']); text(place.label, `${path}.library.relatedPlaces[${i}].label`); text(place.relationship, `${path}.library.relatedPlaces[${i}].relationship`); references(place.sourceIds, `${path}.library.relatedPlaces[${i}].sourceIds`); });
+    object(m.publication, `${path}.library.publication`, ['approved', 'reviewer', 'approvedDigest']);
+    if (typeof m.publication.approved !== 'boolean' || (m.publication.reviewer !== null && typeof m.publication.reviewer !== 'string') || (m.publication.approvedDigest !== null && !/^[a-f0-9]{64}$/.test(m.publication.approvedDigest))) fail(`${path}.library.publication`);
+  }
   if (record.relatedIds !== undefined) {
     array(record.relatedIds, `${path}.relatedIds`); unique(record.relatedIds, `${path}.relatedIds`);
     record.relatedIds.forEach((id, i) => neutralId(id, `${path}.relatedIds[${i}]`));

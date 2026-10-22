@@ -12,11 +12,17 @@ export class MysterySession {
   #selection = null; #revealMethod = null; #lastId = null; #revision = 0; #listeners = new Set();
   #notifying = false;
 
-  constructor({ records, locale = 'en' }) {
+  constructor({ records, locale = 'en', resume = null }) {
     this.#records = validateLibrary(records);
     this.#locale = locale;
     // Fail before a session starts if its chosen locale is incomplete.
     this.#records.forEach(record => localizeMystery(record, locale));
+    if (resume !== null) {
+      if (this.#records.length !== 1 || resume.id !== this.#records[0].id || !Number.isInteger(resume.clueCount) || resume.clueCount < 1 || resume.clueCount > 5 || typeof resume.revealed !== 'boolean') throw new TypeError('Invalid resume checkpoint.');
+      this.#current = this.#records[0]; this.#lastId = this.#current.id; this.#count = resume.clueCount;
+      this.#state = resume.revealed ? 'ANSWER_REVEAL' : 'CLUES_ACTIVE';
+      this.#revealMethod = resume.revealed ? 'resumed' : null;
+    }
   }
   getView() {
     const localized = this.#current ? localizeMystery(this.#current, this.#locale) : null;

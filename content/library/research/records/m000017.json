@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "id": "m000017",
+  "category": "natural-feature",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "沿岸の浅い海から、水深２０００メートルを超える外洋までを含みます。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "小さな砂州から大きな大陸性の島まで、さまざまな島があります。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ジュゴンやアオウミガメなどの生息地として重要です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "オーストラリア北東岸に沿う、広大なサンゴ礁の生態系です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "クイーンズランド沖に広がる、世界最大規模のサンゴ礁群を探してください。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "グレート・バリア・リーフ",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -18.28611111111111,
+      "longitude": 147.70000000000002,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "サンゴ礁は、ひとつの岩礁ではなく、島、沿岸、深海を含む大きな生態系です。生物種の数は資料や分類によって異なるため、ここでは固定の種数を覚える課題にはしません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "世界遺産登録年（1981年）。景観や伝統の成立年代ではありません。",
+      "at": {
+        "year": 1981,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "グレート・バリア・リーフに関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/154/",
+      "title": "ユネスコ世界遺産センター登録資料154",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 S18 17 10 E147 41 60 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "oceania",
+    "era": "not-applicable",
+    "countryGroup": "au",
+    "cultures": [
+      "c000017"
+    ],
+    "themes": [
+      "ecology",
+      "oceans"
+    ],
+    "subjectKeys": [
+      "s000017"
+    ],
+    "destinationKey": "d000017",
+    "learningObjective": "サンゴ礁は、ひとつの岩礁ではなく、島、沿岸、深海を含む大きな生態系です。生物種の数は資料や分類によって異なるため、ここでは固定の種数を覚える課題にはしません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

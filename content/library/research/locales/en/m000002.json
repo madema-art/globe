@@ -1,0 +1,19 @@
+{
+  "clues": [
+    "Two natural sinkholes helped its inhabitants reach underground water.",
+    "A circular observatory here takes its name from a spiral staircase.",
+    "Its architecture combines Maya traditions with influences from central Mexico.",
+    "On the Yucatán peninsula, it preserves a Great Ball Court and a Temple of the Warriors.",
+    "Find the celebrated Maya city in Mexico with Kukulkan's stepped temple pyramid."
+  ],
+  "identity": "Chichén Itzá",
+  "targetLabel": "Representative point for the archaeological city",
+  "modernContext": "Present-day Yucatán, Mexico; ancient cultural geography differs from modern borders.",
+  "explanation": "The city's architecture records Maya traditions and connections with other regions. Its water sources, temples, ball courts, and observatory link urban life, ritual, and environment.",
+  "dateLabel": "Cultural influence, approximately 10th–15th centuries CE",
+  "cultures": [
+    "Maya",
+    "Cultural exchange with central Mexico"
+  ],
+  "uncertainty": "Foundation dates and cultural relationships require interpretation. This broad period describes influence, not exact occupation dates; the coordinate represents the property."
+}
