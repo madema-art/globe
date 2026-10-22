@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000034",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "ここでは生物と地質の働きが協力し、障壁を削るだけでなく、つくり続けている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "カルストの景観を流れる水から炭酸カルシウムが沈殿し、自然の堰を形成する。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "その堰が成長する過程によって、湖や洞窟、滝がつながる景観が生まれる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "上流と下流の湖群の周囲には、クマやオオカミの生息する森林が広がる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "クロアチアで、トゥファの堰が青緑色の湖の連なりを分ける、森林に囲まれた有名な国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "プリトヴィツェ湖群国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 44.87778,
+      "longitude": 15.61444,
+      "label": "プリトヴィツェ湖群国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "水は岩を侵食するだけでなく堆積させる。トゥファやトラバーチンとして説明される炭酸カルシウムの堰が、変化を続ける湖の連なりを支えている。目標は公園の基準点で、個々の湖や滝は別の場所にある。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1979,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/98/",
+      "title": "Plitvice Lakes National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N44 52 40.008 E15 36 51.984 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "europe",
+    "era": "not-applicable",
+    "countryGroup": "g046",
+    "destinationKey": "d-m000034",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "lakes",
+      "waterfalls",
+      "karst"
+    ],
+    "subjectKeys": [
+      "s-m000034"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

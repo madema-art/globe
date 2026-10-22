@@ -1,0 +1,36 @@
+{
+  "schema": "globe.earth-overlays/1",
+  "crs": "EPSG:4326 (WGS84 lat/lon degrees)",
+  "layers": {
+    "borders": {
+      "url": "overlays/borders-10m.bin",
+      "format": "globe.polylines/1",
+      "polylines": 7948,
+      "points": 76911,
+      "bytes": 347388,
+      "sha256": "d8b7387770713fd4e14daffecc9cc0a41b757bf45a2081ed6defb09ebe3a834e",
+      "classes": {
+        "0": "international boundary",
+        "1": "disputed / indefinite / line of control / unrecognized"
+      },
+      "policy": "Natural Earth default (de facto) worldview; provisional pending the owner border policy",
+      "source": "ne-10m-boundaries"
+    },
+    "rivers": {
+      "url": "overlays/rivers-10m.bin",
+      "format": "globe.polylines/1",
+      "polylines": 1455,
+      "points": 181435,
+      "bytes": 733020,
+      "sha256": "2a96bce5355978edc52fa06cdd1fa7868ed33fed950ff120d732bd988aabe9f0",
+      "classes": {
+        "0": "major river (Natural Earth scalerank <= 4)",
+        "1": "regional river (scalerank 5-7)"
+      },
+      "source": "ne-10m-rivers"
+    }
+  },
+  "credits": [
+    "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
+  ]
+}

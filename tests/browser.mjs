@@ -17,7 +17,7 @@ try {
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'title');
   await mkdir(path.join(root, 'test-results'), { recursive: true });
   await page.screenshot({ path: path.join(root, 'test-results', 'title.png') });
-  await page.getByRole('button', { name: 'Explore the vision' }).click();
+  await page.getByRole('button', { name: 'About Histography' }).click();
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'vision');
   await page.screenshot({ path: path.join(root, 'test-results', 'vision.png') });
   await page.keyboard.press('Escape');
@@ -32,13 +32,13 @@ try {
   const intercepted = new Promise(resolve => { capture = resolve; });
   await page.route('**/version.json', route => { held = route; capture(); });
   await page.reload(); await intercepted;
-  await page.getByRole('button', { name: 'Explore the vision' }).click();
+  await page.getByRole('button', { name: 'About Histography' }).click();
   await held.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ id: 'future-build' }) });
   await page.waitForFunction(() => JSON.parse(window.render_game_to_text()).pendingUpdate);
   assert.equal(JSON.parse(await page.evaluate(() => window.render_game_to_text())).mode, 'vision');
   await page.unroute('**/version.json');
   const navigation = page.waitForEvent('domcontentloaded');
-  await page.getByRole('button', { name: 'Back to title' }).click();
+  await page.getByRole('button', { name: 'Return to the title' }).click();
   await navigation;
   await page.waitForFunction(() => JSON.parse(window.render_game_to_text()).mode === 'title');
   // Use real production polling interval: new version causes title refresh after about 20 seconds.

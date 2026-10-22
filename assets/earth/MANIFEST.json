@@ -2,7 +2,7 @@
   "schema": "globe.asset-provenance/1",
   "generated": "2026-10-22",
   "pipeline": "pipeline/earth/earth_pipeline.py",
-  "status": "provisional — Earth asset contract under review in https://github.com/madema-art/globe/issues/1",
+  "status": "approved by the owner 2026-10-22 (Earth V1, PR #2)",
   "sources": [
     {
       "id": "bmng-200407",
@@ -110,6 +110,81 @@
       "acquired": "2026-10-22"
     },
     {
+      "id": "ne-10m-boundaries",
+      "title": "Natural Earth 1:10m Cultural: Admin 0 Boundary Lines (land)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_boundary_lines_land.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-boundary-lines/",
+      "resolution": "1:10,000,000 vector lines, WGS84 (Natural Earth default de facto worldview)",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_admin_0_boundary_lines_land.zip",
+      "sha256": "16ead035f539c8b6c23650c5845d86ad3556553e7456bdf9b4730210f26aacbe",
+      "bytes": 1036202,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-rivers",
+      "title": "Natural Earth 1:10m Physical: Rivers + Lake Centerlines",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_rivers_lake_centerlines.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-rivers-lake-centerlines/",
+      "resolution": "1:10,000,000 vector lines, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_rivers_lake_centerlines.zip",
+      "sha256": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38",
+      "bytes": 2079507,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-places",
+      "title": "Natural Earth 1:10m Cultural: Populated Places (simple)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places_simple.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_populated_places_simple.zip",
+      "sha256": "2963ee08f7743f13f37d5243acd77a2f7a510e26a36c7e04b920f1b381f2b251",
+      "bytes": 652145,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-regions",
+      "title": "Natural Earth 1:10m Physical: Geography Regions (polygons)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-physical-labels/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_geography_regions_polys.zip",
+      "sha256": "cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682",
+      "bytes": 2038519,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-50m-marine",
+      "title": "Natural Earth 1:50m Physical: Marine Areas (polygons)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/50m/physical/ne_50m_geography_marine_polys.zip",
+      "page": "https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-physical-labels/",
+      "resolution": "Natural Earth vector data, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_50m_geography_marine_polys.zip",
+      "sha256": "9e460b9fe2566d3f466d69096348953f5348bab63ce1328c94c3072b9f48eef1",
+      "bytes": 700610,
+      "acquired": "2026-10-22"
+    },
+    {
       "id": "geonames-cities15000",
       "title": "GeoNames gazetteer extract: cities with population > 15000",
       "provider": "GeoNames (geonames.org)",
@@ -123,6 +198,22 @@
       "sha256": "306220b96c4dc00fd3bd7b2427290afed492a05ad5111d071644d74c79eba707",
       "bytes": 3362689,
       "acquired": "2026-10-22"
+    },
+    {
+      "id": "wikidata",
+      "title": "Wikidata entity coordinates (property P625)",
+      "provider": "Wikimedia Foundation / Wikidata contributors",
+      "url": "https://www.wikidata.org/wiki/Special:EntityData/<QID>.json",
+      "page": "https://www.wikidata.org/",
+      "resolution": "Point coordinates, WGS84",
+      "license": "CC0 1.0 (public domain dedication)",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Coordinates from Wikidata (CC0)",
+      "entities": [
+        "Q37200",
+        "Q243",
+        "Q39231"
+      ]
     }
   ],
   "generated_assets": [
@@ -291,6 +382,80 @@
       "license": "CC BY 4.0 (GeoNames) + public domain (Natural Earth)",
       "attribution": [
         "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0"
+      ]
+    },
+    {
+      "name": "assets/data/processed/landmarks.json",
+      "derived_from": [
+        "wikidata"
+      ],
+      "format": "json",
+      "sha256": "a6f9336541fcbe34964b08e0a1ca745c3c99072e4f3910b766b3a3760bc5b945",
+      "processing": [
+        "Fetch P625 for each curated QID in LANDMARKS",
+        "Round to 5 decimals"
+      ],
+      "license": "CC0 1.0",
+      "attribution": [
+        "Coordinates from Wikidata (CC0)"
+      ]
+    },
+    {
+      "name": "public/earth/v1/labels.json",
+      "derived_from": [
+        "ne-10m-admin0",
+        "ne-10m-places",
+        "ne-10m-regions",
+        "ne-50m-marine"
+      ],
+      "format": "json",
+      "bytes": 68385,
+      "sha256": "55460b4b15069b3d120480e6ee3ca94a8a0490bf87ee4ec0ff81cae8221818a1",
+      "processing": [
+        "Countries: LABEL_X/LABEL_Y, LABELRANK <= 6",
+        "Places: Admin-0 capitals + scalerank <= 2",
+        "Ranges/deserts/regions/continents: centroid of the largest polygon",
+        "Oceans/seas: centroid of the largest polygon, scalerank <= 3"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
+      ]
+    },
+    {
+      "name": "public/earth/v1/overlays/borders-10m.bin",
+      "derived_from": [
+        "ne-10m-boundaries"
+      ],
+      "format": "globe.polylines/1",
+      "bytes": 347388,
+      "sha256": "d8b7387770713fd4e14daffecc9cc0a41b757bf45a2081ed6defb09ebe3a834e",
+      "processing": [
+        "Read Natural Earth shapefile polylines",
+        "Filter by feature class / scalerank (see BORDER_CLASSES, RIVER_LEVELS)",
+        "Quantise lat/lon to int16 at 1/180 degree"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
+      ]
+    },
+    {
+      "name": "public/earth/v1/overlays/rivers-10m.bin",
+      "derived_from": [
+        "ne-10m-rivers"
+      ],
+      "format": "globe.polylines/1",
+      "bytes": 733020,
+      "sha256": "2a96bce5355978edc52fa06cdd1fa7868ed33fed950ff120d732bd988aabe9f0",
+      "processing": [
+        "Read Natural Earth shapefile polylines",
+        "Filter by feature class / scalerank (see BORDER_CLASSES, RIVER_LEVELS)",
+        "Quantise lat/lon to int16 at 1/180 degree"
+      ],
+      "license": "Public domain (Natural Earth)",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com"
       ]
     }
   ]

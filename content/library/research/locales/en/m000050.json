@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "A glacier can temporarily block a narrow channel and raise the water level behind it.",
+    "When that ice barrier fails, dramatic ruptures release water into the connected lake system.",
+    "Glaciers fed by a great Patagonian ice field calve into large, milky glacial lakes.",
+    "Rugged mountains and lakes form part of this protected landscape in southern Argentina.",
+    "Find the Argentine national park containing Perito Moreno Glacier and part of the enormous Lake Argentino."
+  ],
+  "identity": "Los Glaciares National Park",
+  "targetLabel": "Los Glaciares National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The source describes the interaction of a glacier tongue, a narrow channel and changing lake levels. It does not establish a timetable for future rupture events. The park’s reference point represents a broad glacial landscape rather than the changing position of any individual ice front.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

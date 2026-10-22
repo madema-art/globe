@@ -3,5 +3,6 @@
   "branch": "preview",
   "updateIntervalMs": 120000,
   "firstPort": 8775,
-  "lastPort": 8784
+  "lastPort": 8784,
+  "contentChannel": "development"
 }

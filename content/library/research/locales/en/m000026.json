@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Ceremonial platforms and stone figures together form a cultural landscape.",
+    "The monumental human figures are understood as representations of ancestors.",
+    "A society of Polynesian origin developed distinctive sculpture and architecture on this Pacific island.",
+    "The island lies roughly thirty-seven hundred kilometres from mainland Chile.",
+    "Find the heritage landscape of Easter Island, famous for its moai statues."
+  ],
+  "identity": "Rapa Nui National Park",
+  "targetLabel": "Source-published representative point",
+  "modernContext": "Modern WGS84 reference point; distinguish this location from historical names and changing political boundaries.",
+  "explanation": "The figures belong to traditions of ancestors and ceremony, not simply an isolated puzzle. The source’s summary and detailed account differ in settlement dating, so the clues do not assert a precise arrival year.",
+  "dateLabel": "Approximate historical phase discussed in the clues.",
+  "cultures": [
+    "Communities associated with this place"
+  ],
+  "uncertainty": "Source-checked authorial pilot, awaiting independent review. The published coordinate anchors a property, not a surveyed entrance or its full extent; broad dates and interpretations require care."
+}

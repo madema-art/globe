@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000031",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "保護された熱帯の景観では、多様なヤシと地下に広がる巨大な空間が共存している。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "調査された洞窟には、多数のコウモリやアナツバメがすんでいる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "カルスト地形と多くの植生帯があり、地質学と生物学の双方にとって重要である。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ボルネオ島のサラワク州にあり、とりわけ大きなサラワク・チャンバーという地下空間を含む。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "標高二千三百七十七メートルの砂岩の山にちなむ名を持ち、巨大な洞窟で知られるマレーシアの国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "グヌン・ムル国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 4.13333,
+      "longitude": 114.91667000000001,
+      "label": "グヌン・ムル国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "熱帯の生物多様性と、カルストや洞窟の景観が結びつく場所である。名称のもとになった峰は砂岩であり、公園内の岩石がすべて石灰岩だとはしない。目標には、地下空間ではなく公表された公園の基準点を用いる。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 2000,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/1013/",
+      "title": "Gunung Mulu National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N4 7 59.988 E114 55 0.012 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "southeast-asia",
+    "era": "not-applicable",
+    "countryGroup": "g043",
+    "destinationKey": "d-m000031",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "karst",
+      "caves",
+      "rainforests"
+    ],
+    "subjectKeys": [
+      "s-m000031"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

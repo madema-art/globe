@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "m000026",
+  "category": "culture",
+  "subjectType": "歴史と地理の学習対象",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "儀礼の基壇は、石像と一緒に文化的景観を構成します。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "巨大な人物像は、祖先を表すものとして解釈されています。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "太平洋の島で、ポリネシアに由来する社会が彫刻と建築を発展させました。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "チリの大陸沿岸から約３７００キロ離れた島です。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "モアイの巨石像で有名な、イースター島の文化遺産を探してください。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ラパ・ヌイ国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -27.074403055555557,
+      "longitude": -109.36568305555555,
+      "label": "出典掲載の代表地点",
+      "modernContext": "現代の位置を示す参照点です。歴史上の名称や政治境界とは区別します。"
+    },
+    "explanation": "石像を孤立した謎として見るだけでなく、儀礼や祖先との関係の中で学びます。資料の短い説明と詳しい説明では入植年代の表現に差があるため、ここでは到来年を出題しません。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "range",
+      "label": "手がかりが扱う歴史的局面の概略。",
+      "start": {
+        "year": 1000,
+        "era": "CE",
+        "approximate": true
+      },
+      "end": {
+        "year": 1700,
+        "era": "CE",
+        "approximate": true
+      }
+    },
+    "cultures": [
+      "ラパ・ヌイ国立公園に関わる地域社会"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/715/",
+      "title": "ユネスコ世界遺産センター登録資料715",
+      "publisher": "ユネスコ世界遺産センター",
+      "accessedOn": "2026-10-22",
+      "notes": "概要および価値の説明と手がかりを照合。座標は掲載値 S27 4 27.851 W109 21 56.459 を十進度に換算。独自の要約で原文や画像の転載なし。登録年は景観形成や文化の起源と区別する。"
+    }
+  ],
+  "uncertainty": "掲載資料に基づく初回照合で、独立した専門家による査読は未実施です。座標はユネスコが掲載する代表点で、入口や境界の測量値ではありません。広い遺跡や景観でも、V1では探索の目印を一点だけ示します。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "５つの手がかりは個別に執筆し、具体性が増す順に配列。英語は自然さ、史実との対応、答えの早期露出を確認。独立査読・実際のプレイヤーによる易しさの検証は保留。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "history",
+    "region": "oceania",
+    "era": "multi-era",
+    "countryGroup": "cl-pacific",
+    "cultures": [
+      "c000026"
+    ],
+    "themes": [
+      "art",
+      "ritual"
+    ],
+    "subjectKeys": [
+      "s000026"
+    ],
+    "destinationKey": "d000026",
+    "learningObjective": "石像を孤立した謎として見るだけでなく、儀礼や祖先との関係の中で学びます。資料の短い説明と詳しい説明では入植年代の表現に差があるため、ここでは到来年を出題しません。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

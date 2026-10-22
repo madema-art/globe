@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000050",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "氷河が狭い水路を一時的にふさぎ、その向こうの水位を上昇させることがある。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "氷の障壁が破れると、激しい崩壊とともに、つながった湖の系へ水が流れる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "パタゴニアの大きな氷原から流れる氷河が、乳白色の大きな氷河湖に氷塊を落とす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "険しい山々と湖が、アルゼンチン南部のこの保護景観の一部をなす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ペリト・モレノ氷河と、巨大なアルヘンティーノ湖の一部を含むアルゼンチンの国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ロス・グラシアレス国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -50.0,
+      "longitude": -73.24944,
+      "label": "ロス・グラシアレス国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "氷河の舌状部、狭い水路、湖の水位変化の関係が出典に記されている。将来いつ崩壊が起きるかを予告するものではない。公園の基準点は広い氷河景観を代表し、変化する氷河末端の位置を固定するものではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1981,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/145/",
+      "title": "Los Glaciares National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S50 0 0 W73 14 57.984 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "south-america",
+    "era": "not-applicable",
+    "countryGroup": "g052",
+    "destinationKey": "d-m000050",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "glaciers",
+      "lakes",
+      "mountains"
+    ],
+    "subjectKeys": [
+      "s-m000050"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

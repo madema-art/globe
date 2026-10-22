@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Biological and geological processes cooperate here to build barriers rather than merely wear them away.",
+    "Calcium carbonate deposited by flowing water forms natural dams in a karst landscape.",
+    "The continuing growth of these barriers helps create connected lakes, caves and waterfalls.",
+    "Upper and lower groups of lakes lie amid forests that shelter bears and wolves.",
+    "Find Croatia’s famous protected lake cascade, where tufa barriers divide a forested chain of blue-green waters."
+  ],
+  "identity": "Plitvice Lakes National Park",
+  "targetLabel": "Plitvice Lakes National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "Water can deposit rock as well as erode it. Calcium-carbonate barriers, often called tufa or travertine in descriptions of this property, help maintain its changing cascade of lakes. The target is the park’s published reference point; individual lakes and waterfalls occupy different positions.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

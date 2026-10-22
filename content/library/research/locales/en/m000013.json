@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Their makers altered an arid ground surface rather than constructing buildings.",
+    "Animals and plants appear alongside immense geometric forms.",
+    "Long-lived practices transformed a desert into a social and ritual landscape.",
+    "Lines extending for kilometres survive on Peru’s dry coastal plain.",
+    "Find southern Peru’s desert landscape famous for enormous ground drawings of animals and plants."
+  ],
+  "identity": "Lines and Geoglyphs of Nasca and Palpa",
+  "targetLabel": "Source-published representative point",
+  "modernContext": "Modern WGS84 reference point; distinguish this location from historical names and changing political boundaries.",
+  "explanation": "The landscape itself became a medium of expression. Dates and functions require interpretation; the many figures should not be reduced to one purpose or a single construction episode.",
+  "dateLabel": "Approximate historical phase discussed in the clues.",
+  "cultures": [
+    "Communities associated with this place"
+  ],
+  "uncertainty": "Source-checked authorial pilot, awaiting independent review. The published coordinate anchors a property, not a surveyed entrance or its full extent; broad dates and interpretations require care."
+}

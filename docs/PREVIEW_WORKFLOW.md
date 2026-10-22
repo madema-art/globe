@@ -1,5 +1,7 @@
 # Permanent stable and preview installations
 
+**Current preview: HISTOGRAPHY first playable** (see [FIRST_PLAYABLE.md](FIRST_PLAYABLE.md)). Double-click **Globe Preview** on the Desktop and choose **Begin a mystery**. Preview builds include the provisional development content library automatically (`contentChannel: "development"` in this branch's `launcher.config.json`); stable does not.
+
 The owner has authorized Claude's completed Earth V1 for the preview channel only. `preview` initially includes `claude/earth-v1`; neither PR #2 nor Education Mode PR #3 is merged into `main` by this setup. Preview displays the real interactive Earth and its exploration screen. The education engine remains a separate feature for later review/integration.
 
 | Channel | Checkout | Tracked branch | Launcher | Desktop shortcut | Ports |

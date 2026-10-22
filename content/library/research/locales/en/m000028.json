@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "A rare wild goat survives in a landscape where cliffs separate high grasslands from deep valleys.",
+    "Long erosion of an elevated plateau has left jagged peaks and exceptionally steep escarpments.",
+    "Some of the precipices descend about 1,500 metres, making changes in elevation a defining feature.",
+    "This protected mountain landscape lies on the Ethiopian plateau and shelters gelada baboons.",
+    "Look in northern Ethiopia for the national park whose highland cliffs shelter the endemic Walia ibex."
+  ],
+  "identity": "Simien Mountains National Park",
+  "targetLabel": "Simien Mountains National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The protected landscape links erosion of a high plateau with habitats for rare highland animals. The target is the park’s published reference point, not a particular summit or an animal observation site.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}
