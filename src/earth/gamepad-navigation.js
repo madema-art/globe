@@ -6,17 +6,18 @@
 // its only button use is an optional Earth camera action (north-up on right-stick click).
 //
 // Default mapping (browser "standard" layout, Xbox-style labels):
-//   Left stick  X: rotate east/west     Y: rotate north/south     (the surface follows the stick, like dragging)
-//   Right stick X: roll / twist about the view axis               Y: fine north/south adjustment
+//   Left stick  X: rotate east/west     Y: rotate north/south     (the view follows the stick, like steering a
+//                                                                   camera; owner preference after playtesting)
+//   Right stick X: roll / twist about the view axis               Y: fine north/south adjustment (same sense as left Y)
 //   RT: analog zoom in    LT: analog zoom out    Right-stick click: north up
 // All of it is data (`bindings`, `settings`) so it can be retuned after hands-on testing.
 
 export const DEFAULT_GAMEPAD_BINDINGS = Object.freeze({
   mapping: 'standard',
-  yaw: { axis: 0, invert: false },
-  pitch: { axis: 1, invert: false },
+  yaw: { axis: 0, invert: true },
+  pitch: { axis: 1, invert: true },
   roll: { axis: 2, invert: false },
-  finePitch: { axis: 3, invert: false },
+  finePitch: { axis: 3, invert: true },
   zoomIn: { button: 7 },
   zoomOut: { button: 6 },
   northUp: { button: 11 },

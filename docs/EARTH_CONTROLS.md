@@ -6,8 +6,8 @@ The Earth stays fixed and the camera moves around it (owner-approved). All rotat
 
 | Input | Action |
 | --- | --- |
-| Left stick ↔ | Rotate the Earth east/west. The surface follows the stick (like dragging) |
-| Left stick ↕ | Rotate the Earth north/south. The surface follows the stick |
+| Left stick ↔ | Move the view east/west. The view follows the stick (push right to look further east) |
+| Left stick ↕ | Move the view north/south. The view follows the stick (push up to look further north) |
 | Right stick ↔ | Roll/twist the Earth about the viewing axis (clockwise / counter-clockwise) |
 | Right stick ↕ | Fine north/south adjustment (30 % of the left stick) |
 | RT | Analog zoom in (speed follows trigger pressure) |
@@ -23,7 +23,7 @@ Behaviour:
 - **Screen-relative axes:** the left stick turns the globe about the screen's vertical and horizontal axes, like rolling a ball in your hands or dragging with the mouse. With north up this is east/west and north/south. A long horizontal sweep follows a great circle rather than a parallel of latitude. If hands-on testing prefers strict east/west spin about the polar axis, that's a contained change in `gamepad-navigation.js`.
 - **Both sticks work simultaneously:** the three axes combine into one rotation each frame.
 - **Connect/disconnect:** pads are re-read every frame. A disconnected pad stops all motion immediately. A button already held when a pad (re)connects must be released before it acts. With several pads, the last one moved drives the globe.
-- **Configurable:** `earthView.gamepad.configure({ mapping, yaw:{axis,invert}, pitch:{…}, roll:{…}, finePitch:{…}, zoomIn:{button}, zoomOut:{button}, northUp:{button} })`. Tunables live in `earthView.gamepad.settings` (dead zones, curve, speeds, sensitivity, smoothing). Use `invert` to switch to "the view follows the stick" if hands-on testing prefers it.
+- **Configurable:** `earthView.gamepad.configure({ mapping, yaw:{axis,invert}, pitch:{…}, roll:{…}, finePitch:{…}, zoomIn:{button}, zoomOut:{button}, northUp:{button} })`. Tunables live in `earthView.gamepad.settings` (dead zones, curve, speeds, sensitivity, smoothing). The default is "the view follows the stick" (owner playtest, 2026-10-22); set `invert: false` on `yaw`, `pitch` and `finePitch` for "the surface follows the stick".
 
 ## North-up levelling vs. deliberate roll
 

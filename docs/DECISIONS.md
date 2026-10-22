@@ -27,7 +27,7 @@
 - **Progressive detail:** four continuous levels (planetary → continental → regional → landmark) with smooth fades. Implemented as an altitude-keyed overlay registry; borders and rivers are the first layers. See EARTH_OVERLAYS.md. The border/naming policy is still open (provisional: Natural Earth de facto).
 - **Spoiler protection:** no answer-aware Earth APIs, uniform overlay rules, no markers in the `mystery` presentation, every mystery starts from the whole planet, the dev panel only in `explore`, reveal navigation only after confirmation.
 - **Controller:** dual-stick three-axis quaternion control. Left stick rotates east/west and north/south; right stick X rolls; right stick Y is fine pitch; RT/LT give analog zoom. A fixed centre reticle. X/A/B are gameplay actions owned by the education engine; the Earth exposes rotation/zoom and shares the host's single per-frame gamepad snapshot. Levelling never fights a deliberate roll and can be disabled. See EARTH_CONTROLS.md.
-- **Default stick convention** (proposal, to tune after hands-on testing): the surface follows the stick, like dragging. Per-axis `invert` exists.
+- **Default stick convention:** first proposal was "the surface follows the stick". After the owner's first playtest (2026-10-22) the default is **the view follows the stick** on both left-stick axes, and the right stick's fine vertical matches the left stick. Per-axis `invert` remains.
 
 ## 2026-10-22 — Earth V1 approved by the owner
 
