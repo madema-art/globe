@@ -60,7 +60,7 @@ test('gamepad navigation: mapping, no drift, clean stop, triggers, disconnect, h
   assert.deepEqual([controls.calls.yaw, controls.calls.pitch, controls.calls.roll, controls.calls.zoom], [0, 0, 0, 0], 'no drift in dead zones');
 
   run([padWith([1, 0, 0, 0])], 1);
-  assert.ok(controls.calls.yaw > 1 && controls.calls.yaw < 1.4, `left stick X drives yaw (${controls.calls.yaw})`);
+  assert.ok(controls.calls.yaw < -1 && controls.calls.yaw > -1.4, `left stick X drives yaw, view follows the stick (${controls.calls.yaw})`);
   run([padWith()], 0.5);
   const stopped = controls.calls.yaw;
   run([padWith()], 2);
@@ -69,7 +69,7 @@ test('gamepad navigation: mapping, no drift, clean stop, triggers, disconnect, h
 
   run([padWith([0, 0, 1, 1])], 0.5);
   assert.ok(controls.calls.roll > 0.3 && controls.calls.rollNotes > 0, 'right stick X rolls and marks a deliberate roll');
-  assert.ok(controls.calls.pitch > 0 && controls.calls.pitch < 0.3 * 1.25 * 0.5 + 0.01, 'right stick Y is fine pitch');
+  assert.ok(controls.calls.pitch < 0 && controls.calls.pitch > -(0.3 * 1.25 * 0.5 + 0.01), 'right stick Y is fine pitch, same sense as the left stick');
 
   const zoomBefore = controls.calls.zoom;
   run([padWith([0, 0, 0, 0], { 7: 1 })], 1);
@@ -97,11 +97,11 @@ test('gamepad navigation: mapping, no drift, clean stop, triggers, disconnect, h
   run([padWith([0, 0, 0, 0], { 0: 1, 1: 1, 2: 1 })], 0.5);
   assert.equal(JSON.stringify(controls.calls), before);
 
-  // Configurable mappings: invert yaw.
-  nav.configure({ ...DEFAULT_GAMEPAD_BINDINGS, yaw: { axis: 0, invert: true } });
+  // Configurable mappings: flip yaw back to "the surface follows the stick".
+  nav.configure({ ...DEFAULT_GAMEPAD_BINDINGS, yaw: { axis: 0, invert: false } });
   const yaw0 = controls.calls.yaw;
   run([padWith([1, 0, 0, 0])], 0.3);
-  assert.ok(controls.calls.yaw < yaw0, 'inverted binding reverses direction');
+  assert.ok(controls.calls.yaw > yaw0, 'flipping the binding reverses direction');
   assert.throws(() => nav.configure({ ...DEFAULT_GAMEPAD_BINDINGS, roll: {} }), TypeError);
 
   // Disabled (e.g. title screen): sticks do nothing.

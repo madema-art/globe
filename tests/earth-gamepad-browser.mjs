@@ -79,11 +79,11 @@ try {
   s = await earth();
   assert.deepEqual([s.camera.lat, s.camera.lon, s.camera.altitude], [before.camera.lat, before.camera.lon, before.camera.altitude], 'no drift inside dead zones');
 
-  // Left stick X: surface follows the stick (right => view moves west), latitude stays put.
+  // Left stick X: the view follows the stick (right => view moves east), latitude stays put.
   await pad([1, 0, 0, 0]);
   await advance(1);
   s = await earth();
-  assert.ok(lonDelta(s.camera.lon, before.camera.lon) < -30, `left stick right turns the planet east->west (Δlon ${lonDelta(s.camera.lon, before.camera.lon)})`);
+  assert.ok(lonDelta(s.camera.lon, before.camera.lon) > 30, `left stick right moves the view east (Δlon ${lonDelta(s.camera.lon, before.camera.lon)})`);
   // Screen-relative rotation follows a great circle (like a mouse drag), so latitude changes only slightly.
   assert.ok(Math.abs(s.camera.lat - before.camera.lat) < 0.15 * Math.abs(lonDelta(s.camera.lon, before.camera.lon)), 'east/west input moves mostly in longitude');
   // Release: short glide, then a complete stop (no drift).
@@ -95,15 +95,15 @@ try {
   assert.deepEqual([s.camera.lat, s.camera.lon], [settled.camera.lat, settled.camera.lon], 'stops completely after release');
   assert.deepEqual(s.gamepad.velocity, { yaw: 0, pitch: 0, roll: 0 });
 
-  // Left stick Y (down) => surface moves down => view moves north.
+  // Left stick Y (down) => view moves south (the view follows the stick).
   before = s;
   await pad([0, 1, 0, 0]);
   await advance(0.6);
   await pad([0, 0, 0, 0]);
   await advance(1);
   s = await earth();
-  const coarse = s.camera.lat - before.camera.lat;
-  assert.ok(coarse > 15, `left stick down shows more of the north (Δlat ${coarse})`);
+  const coarse = before.camera.lat - s.camera.lat;
+  assert.ok(coarse > 15, `left stick down moves the view south (Δlat ${-coarse})`);
 
   // Right stick Y: fine adjustment, much slower than the left stick.
   before = s;
@@ -112,7 +112,7 @@ try {
   await pad([0, 0, 0, 0]);
   await advance(1);
   s = await earth();
-  const fine = s.camera.lat - before.camera.lat;
+  const fine = before.camera.lat - s.camera.lat; // same sense as the left stick
   assert.ok(fine > 1 && fine < 0.4 * coarse, `right stick vertical is a fine adjustment (Δlat ${fine} vs ${coarse})`);
 
   // Right stick X: roll. Deliberate roll is kept: auto-levelling must not undo it.
@@ -197,7 +197,7 @@ try {
   // Poles: drive straight over the north pole; orientation stays valid, picking keeps working.
   await page.evaluate(() => { window.globeEarth.navigateTo(80, 10, { altitude: 1.5 }); });
   await advance(4);
-  await pad([0, 1, 0, 0]);
+  await pad([0, -1, 0, 0]); // stick up: the view heads north
   let maxLat = -90;
   for (let i = 0; i < 12; i++) { await advance(0.1); maxLat = Math.max(maxLat, (await earth()).camera.lat); }
   await pad([0, 0, 0, 0]);
