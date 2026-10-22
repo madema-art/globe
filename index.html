@@ -3,37 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#102c38" />
-    <title>Globe · A world to discover</title>
+    <meta name="theme-color" content="#0c1720" />
+    <title>Globe</title>
   </head>
-  <body>
+  <body data-screen="title" data-input="pointer">
     <canvas id="scene" aria-hidden="true"></canvas>
-    <main>
-      <header><a class="wordmark" href="/" aria-label="Globe home">GLOBE<span>✳</span></a><span class="edition">AN EXPLORATION IN GEOGRAPHY</span></header>
-      <section id="title" aria-labelledby="title-heading">
-        <p class="eyebrow">CURIOSITY HAS NO BORDERS</p>
-        <h1 id="title-heading">A world<br />to discover.</h1>
-        <p class="intro">Every place has a story.<br />Get to know the planet we call home.</p>
-        <div class="actions"><button id="earth-button" hidden>Explore the Earth <span>→</span></button><button id="about-button" class="secondary">Explore the vision <span>↗</span></button></div>
-        <p class="availability">The journey is taking shape. Geography challenges coming soon.</p>
+    <svg id="bezel" aria-hidden="true"></svg>
+    <main id="app">
+      <header class="masthead"><a class="wordmark" href="/" aria-label="Globe, return to the title">Globe</a></header>
+
+      <section id="title" class="screen" aria-labelledby="title-heading">
+        <h1 id="title-heading" class="title-wordmark">Globe</h1>
+        <p class="title-lede">Read the clues, turn the Earth, find the place.</p>
+        <nav class="index" aria-label="Main menu">
+          <button id="mystery-button" class="index-entry" data-nav disabled>
+            <span class="index-label">Begin a mystery</span>
+            <span class="index-note">Five clues lead to one place on Earth</span>
+          </button>
+          <button id="earth-button" class="index-entry" data-nav disabled>
+            <span class="index-label">Explore the Earth</span>
+            <span class="index-note">Turn and zoom the planet freely</span>
+          </button>
+          <button id="about-button" class="index-entry" data-nav>
+            <span class="index-label">About Globe</span>
+            <span class="index-note">What this atlas is for</span>
+          </button>
+        </nav>
       </section>
-      <section id="vision" hidden aria-labelledby="vision-heading">
-        <p class="eyebrow">THE JOURNEY AHEAD</p><h1 id="vision-heading">One planet.<br />Endless curiosity.</h1>
-        <p class="intro">Turn the Earth. Find a destination. Discover somewhere new.</p>
-        <p class="detail">Countries, cities, landscapes, and the connections between them. A geography game inspired by Topocopter, built around direct interaction with our planet.</p>
-        <button id="back-button">← Back to title</button>
+
+      <section id="vision" class="screen" hidden aria-labelledby="vision-heading">
+        <h1 id="vision-heading" class="page-title">About Globe</h1>
+        <div class="essay">
+          <p>Globe is an atlas you explore one mystery at a time. Each mystery is a place on Earth where something happened: a city, a ruin, a river, a discovery, a life.</p>
+          <p>You begin with a single difficult clue. Ask for more when you need them; each of the five is easier than the last. When you think you know, turn the planet until the place sits under the centre mark and confirm it.</p>
+          <p>The mysteries reach from the first Bronze Age cities to the present day, across every continent. There are no scores and no clock. The reward is the story behind the place.</p>
+        </div>
+        <button id="back-button" class="index-entry" data-nav><span class="index-label">Return to the title</span></button>
       </section>
-      <section id="explore" hidden aria-label="Explore the Earth">
-        <div class="explore-top"><button id="explore-back" class="secondary">← Title</button><p id="coordinate-readout" role="status" aria-live="off"></p></div>
+
+      <section id="mystery" class="screen" hidden aria-label="Mystery"></section>
+
+      <section id="explore" class="screen" hidden aria-label="Explore the Earth">
+        <div class="explore-top"><button id="explore-back" class="quiet-button" data-nav>Return to the title</button><p id="coordinate-readout" role="status" aria-live="off"></p></div>
         <div class="explore-panel">
-          <p class="eyebrow">DEV · GEOGRAPHIC TARGETING</p>
-          <div class="target-row"><label for="target-select" class="visually-hidden">Fly to a landmark</label><select id="target-select"></select><button id="target-go" type="button">Fly</button></div>
-          <form id="target-form" class="target-row"><label for="target-coords" class="visually-hidden">Latitude, longitude</label><input id="target-coords" placeholder="lat, lon  e.g. -18.91, 47.54" autocomplete="off" /><button type="submit">Go</button></form>
+          <h2 class="panel-heading">Developer tools</h2>
+          <div class="target-row"><label for="target-select" class="visually-hidden">Fly to a landmark</label><select id="target-select" data-nav></select><button id="target-go" type="button" class="quiet-button" data-nav>Fly</button></div>
+          <form id="target-form" class="target-row"><label for="target-coords" class="visually-hidden">Latitude, longitude</label><input id="target-coords" placeholder="Latitude, longitude  (e.g. -18.91, 47.54)" autocomplete="off" /><button type="submit" class="quiet-button">Go</button></form>
           <div id="layer-toggles" class="toggles" aria-label="Visual layers"></div>
-          <p class="hint">Drag to turn the Earth · Wheel or pinch to zoom · Arrows / + − on keyboard · Esc returns to title</p>
+          <p class="hint">Drag to turn the Earth, scroll to zoom. Keyboard: arrows turn, Q and E roll, N restores north, plus and minus zoom.</p>
         </div>
       </section>
-      <footer><span>01 / THE BEGINNING</span><span id="credits">Imagery NASA Blue Marble NG, Black Marble · Relief NOAA ETOPO 2022 · Natural Earth · GeoNames (CC BY 4.0)</span><span id="status" role="status">A WORLD IN THE MAKING</span></footer>
+
+      <footer class="colophon">
+        <p id="credits">Earth imagery: NASA Blue Marble Next Generation and Black Marble. Relief: NOAA ETOPO 2022. Map data: Natural Earth. Place data: GeoNames, CC BY 4.0.</p>
+        <p id="status" role="status"></p>
+      </footer>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

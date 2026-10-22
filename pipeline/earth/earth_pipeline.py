@@ -144,6 +144,39 @@ SOURCES = {
         'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
         'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
     },
+    'ne-10m-places': {
+        'title': 'Natural Earth 1:10m Cultural: Populated Places (simple)',
+        'provider': 'Natural Earth (naturalearthdata.com)',
+        'url': 'https://naciscdn.org/naturalearth/10m/cultural/ne_10m_populated_places_simple.zip',
+        'page': 'https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/',
+        'file': 'ne_10m_populated_places_simple.zip',
+        'resolution': 'Natural Earth vector data, WGS84',
+        'license': 'Public domain.',
+        'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
+        'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
+    },
+    'ne-10m-regions': {
+        'title': 'Natural Earth 1:10m Physical: Geography Regions (polygons)',
+        'provider': 'Natural Earth (naturalearthdata.com)',
+        'url': 'https://naciscdn.org/naturalearth/10m/physical/ne_10m_geography_regions_polys.zip',
+        'page': 'https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-physical-labels/',
+        'file': 'ne_10m_geography_regions_polys.zip',
+        'resolution': 'Natural Earth vector data, WGS84',
+        'license': 'Public domain.',
+        'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
+        'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
+    },
+    'ne-50m-marine': {
+        'title': 'Natural Earth 1:50m Physical: Marine Areas (polygons)',
+        'provider': 'Natural Earth (naturalearthdata.com)',
+        'url': 'https://naciscdn.org/naturalearth/50m/physical/ne_50m_geography_marine_polys.zip',
+        'page': 'https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-physical-labels/',
+        'file': 'ne_50m_geography_marine_polys.zip',
+        'resolution': 'Natural Earth vector data, WGS84',
+        'license': 'Public domain.',
+        'license_url': 'https://www.naturalearthdata.com/about/terms-of-use/',
+        'attribution': 'Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com',
+    },
     'geonames-cities15000': {
         'title': 'GeoNames gazetteer extract: cities with population > 15000',
         'provider': 'GeoNames (geonames.org)',
@@ -366,6 +399,7 @@ def build(args) -> None:
 
     landmarks = write_landmarks()
     build_overlays()
+    build_labels()
     write_runtime_manifest(outputs)
     write_provenance_manifest(outputs, landmarks)
     Image.fromarray(to_u8(land_preview * 255)).save(RAW / 'land-preview.png')
@@ -436,6 +470,102 @@ def build_overlays(_args=None) -> None:
     path.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(f'  wrote {path.relative_to(ROOT)}')
     return manifest
+
+
+def label_point(rings) -> tuple[float, float]:
+    """Area centroid of the largest ring, or its mean point if the centroid falls outside the bounding box."""
+    best = max(rings, key=lambda r: abs(signed_area(r)) if len(r) > 2 else 0)
+    try:
+        _, cx, cy = polygon_centroid(best)
+    except ZeroDivisionError:
+        cx, cy = best[:, 0].mean(), best[:, 1].mean()
+    if not (best[:, 0].min() <= cx <= best[:, 0].max() and best[:, 1].min() <= cy <= best[:, 1].max()):
+        cx, cy = best[:, 0].mean(), best[:, 1].mean()
+    return float(cy), float(cx)
+
+
+def build_labels(_args=None) -> dict:
+    """Place-name labels for the atlas overlay: countries, capitals, major cities, oceans/seas, ranges, deserts, regions."""
+    print('Atlas labels (Natural Earth)')
+    labels = []
+    def add(name, kind, lat, lon, level, rank):
+        if name and -90 <= lat <= 90:
+            labels.append({'n': name, 'k': kind, 'la': round(lat, 3), 'lo': round(((lon + 180) % 360) - 180, 3), 'l': level, 'r': int(rank)})
+    import shapefile  # pyshp
+    def records(zip_name):
+        archive = zipfile.ZipFile(RAW / zip_name)
+        base = next(n[:-4] for n in archive.namelist() if n.endswith('.shp'))
+        reader = shapefile.Reader(shp=io.BytesIO(archive.read(base + '.shp')), shx=io.BytesIO(archive.read(base + '.shx')),
+                                  dbf=io.BytesIO(archive.read(base + '.dbf')), encoding='utf-8')
+        return reader
+    for rec in records('ne_10m_admin_0_countries.zip').iterRecords():
+        rank = rec['LABELRANK']
+        if rank <= 6:
+            add(rec['NAME'], 'country', rec['LABEL_Y'], rec['LABEL_X'], 2 if rank <= 4 else 3, rank)
+    for rec in records('ne_10m_populated_places_simple.zip').iterRecords():
+        capital = rec['featurecla'] in ('Admin-0 capital', 'Admin-0 capital alt')
+        if capital or rec['scalerank'] <= 2:
+            add(rec['name'], 'capital' if capital else 'city', rec['latitude'], rec['longitude'], 3, rec['scalerank'])
+    kinds = {'Range/mtn': 'range', 'Desert': 'desert', 'Plateau': 'region', 'Basin': 'region', 'Plain': 'region', 'Continent': 'continent'}
+    reader = records('ne_10m_geography_regions_polys.zip')
+    for sr in reader.iterShapeRecords():
+        rec = sr.record.as_dict()
+        kind = kinds.get(rec['FEATURECLA'])
+        rank = rec['SCALERANK']
+        if not kind or rank > 5 or (kind == 'region' and rank > 3):
+            continue
+        shape = sr.shape
+        bounds = list(shape.parts) + [len(shape.points)]
+        rings = [np.asarray(shape.points[bounds[k]:bounds[k + 1]], dtype=np.float64) for k in range(len(bounds) - 1)]
+        lat, lon = label_point(rings)
+        name = rec.get('NAME_EN') or str(rec['NAME']).title()
+        add(name, kind, lat, lon, 2 if (rank <= 3 or kind == 'continent') else 3, rank)
+    reader = records('ne_50m_geography_marine_polys.zip')
+    for sr in reader.iterShapeRecords():
+        rec = sr.record.as_dict()
+        if rec['featurecla'] not in ('ocean', 'sea', 'gulf', 'bay', 'strait', 'channel') or rec['scalerank'] > 3:
+            continue
+        shape = sr.shape
+        bounds = list(shape.parts) + [len(shape.points)]
+        rings = [np.asarray(shape.points[bounds[k]:bounds[k + 1]], dtype=np.float64) for k in range(len(bounds) - 1)]
+        lat, lon = label_point(rings)
+        kind = 'ocean' if rec['featurecla'] == 'ocean' else 'sea'
+        add(rec.get('name_en') or rec['name'], kind, lat, lon, 2 if rec['scalerank'] <= 1 or kind == 'ocean' else 3, rec['scalerank'])
+    labels.sort(key=lambda x: (x['l'], x['r']))
+    out = {'schema': 'globe.atlas-labels/1', 'crs': 'WGS84 lat/lon degrees',
+           'fields': {'n': 'name (Natural Earth, English)', 'k': 'kind', 'la': 'latitude', 'lo': 'longitude', 'l': 'detail level (2 continental, 3 regional)', 'r': 'Natural Earth rank (lower = more important)'},
+           'credits': [SOURCES['ne-10m-places']['attribution']], 'labels': labels}
+    path = OUT / 'labels.json'
+    path.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+    print(f'  wrote {path.relative_to(ROOT)} ({len(labels)} labels, {path.stat().st_size:,} bytes)')
+    return out
+
+
+# Curated landmark registry (prototype set). Coordinates come from Wikidata (CC0) property P625.
+LANDMARKS = [
+    {'id': 'giza-pyramids', 'qid': 'Q37200', 'name': 'Pyramids of Giza', 'kind': 'monument', 'era': 'Bronze Age (Old Kingdom Egypt)', 'model': 'giza', 'importance': 1, 'headingDeg': 0},
+    {'id': 'eiffel-tower', 'qid': 'Q243', 'name': 'Eiffel Tower', 'kind': 'architecture', 'era': 'Modern (1889)', 'model': 'eiffel', 'importance': 1, 'headingDeg': 47},
+    {'id': 'mount-fuji', 'qid': 'Q39231', 'name': 'Mount Fuji', 'kind': 'natural', 'era': 'Natural wonder', 'model': 'fuji', 'importance': 1, 'headingDeg': 0},
+]
+
+
+def build_landmarks(_args=None) -> None:
+    print('Landmark registry (Wikidata coordinates)')
+    out = []
+    for entry in LANDMARKS:
+        url = f"https://www.wikidata.org/wiki/Special:EntityData/{entry['qid']}.json"
+        request = urllib.request.Request(url, headers={'User-Agent': 'GlobeAssetPipeline/1.0 (https://github.com/madema-art/globe)'})
+        with urllib.request.urlopen(request, timeout=60) as response:
+            entity = next(iter(json.loads(response.read())['entities'].values()))
+        coord = entity['claims']['P625'][0]['mainsnak']['datavalue']['value']
+        out.append({**entry, 'lat': round(coord['latitude'], 5), 'lon': round(coord['longitude'], 5), 'source': f"https://www.wikidata.org/wiki/{entry['qid']}"})
+        print(f"  {entry['name']}: {coord['latitude']:.5f}, {coord['longitude']:.5f}")
+    path = PROCESSED / 'landmarks.json'
+    path.write_text(json.dumps({'schema': 'globe.landmarks-registry/1', 'crs': 'WGS84 lat/lon degrees',
+                                'coordinates': 'Wikidata P625 (CC0 1.0), acquired ' + dt.date.today().isoformat(),
+                                'note': 'Prototype set. Models are procedural miniatures in src/earth/landmarks/miniatures.js.',
+                                'landmarks': out}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    print(f'  wrote {path.relative_to(ROOT)}')
 
 
 def polygon_centroid(ring: np.ndarray) -> tuple[float, float, float]:
@@ -541,6 +671,23 @@ def write_provenance_manifest(outputs: dict | None, landmarks: Path) -> None:
                       'format': 'json', 'sha256': sha256_file(landmarks),
                       'processing': ['Select listed cities by ASCII name + country (largest population on ties)', 'Madagascar = area centroid of largest Natural Earth polygon'],
                       'license': 'CC BY 4.0 (GeoNames) + public domain (Natural Earth)', 'attribution': [SOURCES['geonames-cities15000']['attribution']]})
+    registry = PROCESSED / 'landmarks.json'
+    if registry.exists():
+        sources.append({'id': 'wikidata', 'title': 'Wikidata entity coordinates (property P625)', 'provider': 'Wikimedia Foundation / Wikidata contributors',
+                        'url': 'https://www.wikidata.org/wiki/Special:EntityData/<QID>.json', 'page': 'https://www.wikidata.org/',
+                        'resolution': 'Point coordinates, WGS84', 'license': 'CC0 1.0 (public domain dedication)',
+                        'license_url': 'https://creativecommons.org/publicdomain/zero/1.0/', 'attribution': 'Coordinates from Wikidata (CC0)',
+                        'entities': [entry['qid'] for entry in LANDMARKS]})
+        generated.append({'name': str(registry.relative_to(ROOT)).replace('\\', '/'), 'derived_from': ['wikidata'], 'format': 'json',
+                          'sha256': sha256_file(registry), 'processing': ['Fetch P625 for each curated QID in LANDMARKS', 'Round to 5 decimals'],
+                          'license': 'CC0 1.0', 'attribution': ['Coordinates from Wikidata (CC0)']})
+    labels = OUT / 'labels.json'
+    if labels.exists():
+        generated.append({'name': 'public/earth/v1/labels.json', 'derived_from': ['ne-10m-admin0', 'ne-10m-places', 'ne-10m-regions', 'ne-50m-marine'],
+                          'format': 'json', 'bytes': labels.stat().st_size, 'sha256': sha256_file(labels),
+                          'processing': ['Countries: LABEL_X/LABEL_Y, LABELRANK <= 6', 'Places: Admin-0 capitals + scalerank <= 2',
+                                         'Ranges/deserts/regions/continents: centroid of the largest polygon', 'Oceans/seas: centroid of the largest polygon, scalerank <= 3'],
+                          'license': 'Public domain (Natural Earth)', 'attribution': [SOURCES['ne-10m-places']['attribution']]})
     overlays = OUT / 'overlays.json'
     if overlays.exists():
         for layer in json.loads(overlays.read_text(encoding='utf-8'))['layers'].values():
@@ -602,15 +749,18 @@ def validate(_args=None) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('step', choices=['fetch', 'build', 'overlays', 'validate', 'all'])
+    parser.add_argument('step', choices=['fetch', 'build', 'overlays', 'landmarks', 'validate', 'all'])
     parser.add_argument('--strict', action='store_true', help='fail when a source checksum differs from sources.lock.json')
     args = parser.parse_args()
     if args.step in ('fetch', 'all'):
         fetch(args)
     if args.step in ('build', 'all'):
         build(args)
+    if args.step == 'landmarks':
+        build_landmarks(args)
     if args.step == 'overlays':
         build_overlays(args)
+        build_labels(args)
         write_provenance_manifest(None, PROCESSED / 'earth-landmarks.json')
     if args.step in ('validate', 'all'):
         validate(args)

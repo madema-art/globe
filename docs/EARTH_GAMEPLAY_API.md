@@ -30,9 +30,32 @@ const bridge = createEducationEarthBridge({
 // Per frame: const pads = navigator.getGamepads?.() ?? []; earth.pollGamepads(pads); input.pollGamepads(pads);
 ```
 
+## Mystery screen (Claude's presentation of Codex's engine)
+
+`src/ui/mystery/mystery-screen.js` renders exactly the `MysterySession.getView()` projection and forwards actions. It has no game rules. It needs a *source* object:
+
+```js
+const source = {
+  getView: () => session.getView(),
+  subscribe: (listener) => session.subscribe(listener),
+  requestNextClue: () => session.requestNextClue(),
+  revealAnswer: () => session.revealAnswer(),
+  nextMystery: () => session.nextMystery(),
+  exit: () => session.exit(),
+  confirmSelection: () => bridge.confirmSelection(), // bridge.readCenter -> earth.pickCenter()
+};
+mysteryScreen.open(source);
+```
+
+Until PR #3 is integrated, `src/main.js` opens the screen with `createPreviewSource(earth)` (`src/ui/mystery/preview-source.js`). This is clearly labelled synthetic presentation data in the same view shape (sample text only, with the "answer" at 0°/0°). It is not an engine. Swap it for the real source in `navigate('mystery')`.
+
+The screen itself calls `earth.resetToPlanetView({ margin: 0.7 })` and `setLabelPolicy('none')` when a new `mysteryId` appears. On `ANSWER_REVEAL` it calls `setSelectionMarker`, `setLabelPolicy('all')` and `setFraming('side')`. The answer navigation stays the bridge's job (`navigateTo(..., { mark: true })`).
+
+**Input:** `src/ui/ui-input.js` turns keyboard and gamepad buttons into semantic actions (`up/down/left/right/activate/back/confirm/next`). Gamepad: D-pad, A (activate / next clue), B (back), X (confirm). Keyboard: arrows, Enter, Esc, X, Space. It shares the same per-frame gamepad snapshot as the Earth. This is an interim mapping layer: when Codex's input-action infrastructure (including `createConfirmationInput`) is wired in, it should emit these action names and replace the X/A/B edge detection here, so there is one source of truth for bindings.
+
 ## Responsibilities still open for Codex
 
-- The gameplay screen state that calls `setMode('mystery')`, renders clues, and hides the dev panel (it lives inside `#explore`).
+- Replace the preview source with the real `{ session, bridge }` source above (the mystery screen, presentation and spoiler handling already exist).
 - Wiring X/A/B through `createConfirmationInput` and the session (Earth ignores face buttons).
 - The single per-frame gamepad poll in the host loop. `src/main.js` currently feeds the Earth only; add the education input to the same snapshot.
 - Calling `resetToPlanetView()` at the start of every mystery; using `mark: true` only after reveal.

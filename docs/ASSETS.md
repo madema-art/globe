@@ -33,12 +33,14 @@ Record a stable ID, author/provider, original URL, download date, dataset versio
 | Item | Origin | Status |
 | --- | --- | --- |
 | Title orbital lines | Procedural project code, `src/engine/title-scene.js` | Abstract decoration; no geography |
-| UI typography | Installed system fonts | No font files distributed |
 | Three.js, Vite, Playwright | Locked npm dependencies | Their package licenses apply |
 | Earth day imagery | NASA Blue Marble NG (July 2004) → `public/earth/v1/day-*.webp` | Approved (Earth V1); see `assets/earth/MANIFEST.json` |
 | Water mask + terrain slopes | Natural Earth 10m land/lakes + NOAA ETOPO 2022 60″ → `public/earth/v1/surface-*.webp` | Approved (Earth V1) |
 | Clouds + night lights | NASA Blue Marble clouds + Black Marble 2016 → `public/earth/v1/atmos-*.jpg` | Approved (Earth V1) |
 | Landmark sample | GeoNames cities15000 (CC BY 4.0) + Natural Earth → `assets/data/processed/earth-landmarks.json` | Approved; validation and dev targeting only |
-| Borders/labels/rivers | Natural Earth / GeoNames (sources fetched, not yet rendered) | Future overlays, separate from Earth textures |
+| Borders, rivers | Natural Earth 10m → `public/earth/v1/overlays/*.bin` | Rendered (levels 2–3) |
+| Place-name labels | Natural Earth admin-0, populated places, geography regions, marine areas → `public/earth/v1/labels.json` | Rendered (levels 2–3; hidden during mysteries) |
+| Landmark registry | Wikidata P625 coordinates (CC0) → `assets/data/processed/landmarks.json` | Prototype set of three; procedural miniatures |
+| Interface typefaces | Bodoni Moda, Newsreader, Instrument Sans (Fontsource 5.3.0 builds) → `src/ui/fonts/` | SIL Open Font License 1.1; licence texts bundled |
 
 The owner must select the project source license. Do not add an assumed license or fabricated geographical assets.

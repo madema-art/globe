@@ -39,7 +39,7 @@ try {
   assert.equal(s.earth.mode, 'explore');
 
   // Geographic targeting: fly to Antananarivo using its GeoNames coordinates.
-  await page.selectOption('#target-select', { label: 'Antananarivo · MG' });
+  await page.selectOption('#target-select', { label: 'Antananarivo (MG)' });
   await advance(page, 4);
   s = await state(page);
   assert.equal(s.earth.target.name, 'Antananarivo');
