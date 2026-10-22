@@ -104,13 +104,13 @@ try {
       .filter((el) => el.offsetParent !== null)
       .map((el) => { const r = el.getBoundingClientRect(); return [r.left - 8, r.top - 6, r.right + 8, r.bottom + 6]; }));
     scene = {
-      render: (seconds) => {
+      render: (seconds, options) => {
         // One gamepad snapshot per frame, shared by every consumer (Earth analog control, UI navigation;
         // the education engine's confirmation input joins this same snapshot when integrated).
         const pads = navigator.getGamepads?.() ?? [];
         earth.pollGamepads(pads);
         uiInput.pollGamepads(pads);
-        earth.render(seconds);
+        earth.render(seconds, options);
         const p = earth.projection();
         bezel.update(p, seconds);
         updateLeaders(p);
@@ -133,7 +133,7 @@ try {
     scene = createTitleScene(canvas);
   }
   let last = performance.now();
-  const frame = (now) => { scene.render((now - last) / 1000); last = now; requestAnimationFrame(frame); };
+  const frame = (now) => { scene.render((now - last) / 1000, { paced: true }); last = now; requestAnimationFrame(frame); };
   requestAnimationFrame(frame);
   window.advanceTime = (ms) => scene.render(ms / 1000);
 } catch {
