@@ -1,0 +1,47 @@
+{
+  "schema": "globe.landmarks-registry/1",
+  "crs": "WGS84 lat/lon degrees",
+  "coordinates": "Wikidata P625 (CC0 1.0), acquired 2026-10-22",
+  "note": "Prototype set. Models are procedural miniatures in src/earth/landmarks/miniatures.js.",
+  "landmarks": [
+    {
+      "id": "giza-pyramids",
+      "qid": "Q37200",
+      "name": "Pyramids of Giza",
+      "kind": "monument",
+      "era": "Bronze Age (Old Kingdom Egypt)",
+      "model": "giza",
+      "importance": 1,
+      "headingDeg": 0,
+      "lat": 29.97915,
+      "lon": 31.13422,
+      "source": "https://www.wikidata.org/wiki/Q37200"
+    },
+    {
+      "id": "eiffel-tower",
+      "qid": "Q243",
+      "name": "Eiffel Tower",
+      "kind": "architecture",
+      "era": "Modern (1889)",
+      "model": "eiffel",
+      "importance": 1,
+      "headingDeg": 47,
+      "lat": 48.8583,
+      "lon": 2.29448,
+      "source": "https://www.wikidata.org/wiki/Q243"
+    },
+    {
+      "id": "mount-fuji",
+      "qid": "Q39231",
+      "name": "Mount Fuji",
+      "kind": "natural",
+      "era": "Natural wonder",
+      "model": "fuji",
+      "importance": 1,
+      "headingDeg": 0,
+      "lat": 35.36056,
+      "lon": 138.7275,
+      "source": "https://www.wikidata.org/wiki/Q39231"
+    }
+  ]
+}

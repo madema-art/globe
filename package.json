@@ -13,7 +13,8 @@
     "test:browser": "node tests/browser.mjs",
     "test:service": "node tests/service-check.mjs",
     "test:build": "node tests/build-check.mjs",
-    "test:earth": "node tests/earth-browser.mjs"
+    "test:earth": "node tests/earth-browser.mjs && node tests/earth-gamepad-browser.mjs",
+    "test:ui": "node tests/ui-browser.mjs"
   },
   "dependencies": { "three": "^0.180.0" },
   "devDependencies": { "vite": "^7.1.0", "playwright": "^1.56.0" }

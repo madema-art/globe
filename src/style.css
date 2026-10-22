@@ -1,55 +1,276 @@
-:root { font-family: 'Segoe UI', system-ui, sans-serif; color: #f5f3df; background: #102c38; font-synthesis: none; }
-* { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; background: radial-gradient(ellipse at 80% 45%, #21564f 0%, #102c38 65%); }
-#scene { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-main { position: relative; min-height: 100svh; padding: 35px 6vw 25px; display: flex; flex-direction: column; }
-header, footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-header { padding-bottom: 30px; border-bottom: 1px solid #8db2ad36; }
-.wordmark { color: inherit; font-size: 26px; font-weight: 750; letter-spacing: 5px; text-decoration: none; }
-.wordmark span { color: #d8eaa0; padding-left: 12px; }
-.edition, footer, .eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; }
-.edition, footer { color: #b4c8c4; }
-section { padding: 8vh 0; margin: auto 0; max-width: 760px; }
-[hidden] { display: none !important; }
-.eyebrow { color: #d8eaa0; margin: 0 0 24px; }
-h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(58px, 7.8vw, 112px); letter-spacing: -4px; line-height: 1.02; font-weight: 400; margin: 0 0 28px; }
-.intro { font-size: clamp(17px, 1.7vw, 22px); color: #c6d6cf; line-height: 1.6; margin-bottom: 30px; }
-button { border: 0; background: #d8eaa0; color: #163b38; padding: 18px 24px; font: 650 15px 'Segoe UI', sans-serif; border-radius: 3px; cursor: pointer; }
-button span { margin-left: 38px; }
-button:hover { background: #ecf8c6; }
-button:focus-visible, a:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
-.availability { font-size: 12px; color: #b4c8c4; max-width: 320px; line-height: 1.7; margin-top: 18px; }
-.detail { max-width: 520px; color: #c6d6cf; line-height: 1.8; margin-bottom: 26px; }
-footer { border-top: 1px solid #8db2ad36; padding-top: 22px; font-size: 10px; }
-@media (max-height: 800px) and (min-width: 651px) { section { padding: 3vh 0; } h1 { font-size: clamp(58px, 7vw, 88px); } }
-@media (max-width: 650px) { main { padding: 24px; } .edition { display: none; } h1 { letter-spacing: -2px; } footer { font-size: 8px; letter-spacing: 1px; } section { padding: 50px 0; } }
+/* Globe visual identity: "the instrument".
+   The interface is engraved onto the instrument that holds the Earth: text sits directly on the night sky,
+   structure comes from hairlines, leader lines and the brass bezel, never from boxed panels.
+   Tokens are the single source of colour and type; see docs/ART_DIRECTION.md. */
+:root {
+  --ink: #0c1720;          /* night-chart blue, the field the Earth floats in */
+  --ink-deep: #060c12;
+  --paper: #ece4cf;        /* primary text, warm chart-paper ivory */
+  --paper-dim: #a8a796;    /* secondary text */
+  --paper-faint: #6d7473;  /* tertiary, locked states */
+  --brass: #c9a35b;        /* instrument and interaction: focus, actions, bezel */
+  --brass-bright: #e2c17f;
+  --verdigris: #6fa595;    /* secondary marks */
 
-/* Earth (Claude): explore mode and globe interaction */
-body { transition: background-color 0.8s ease; }
-body.exploring { background: radial-gradient(ellipse at 50% 50%, #0b1a26 0%, #03070c 70%); }
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --font-text: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-ui: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+
+  /* Type scale (ratio ~1.333, perfect fourth), sized for reading from a sofa at 1080p. */
+  --step--1: 0.9375rem;
+  --step-0: 1.125rem;
+  --step-1: 1.5rem;
+  --step-2: 2rem;
+  --step-3: 2.666rem;
+  --step-4: 3.553rem;
+
+  --gutter: clamp(28px, 5.5vw, 104px);
+  --ease: cubic-bezier(0.22, 0.61, 0.21, 1);
+  color: var(--paper);
+  background: var(--ink-deep);
+  font: 400 var(--step-0) / 1.5 var(--font-ui);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 90% at 66% 50%, #10222f 0%, var(--ink) 48%, var(--ink-deep) 100%);
+}
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+
+/* ---------------------------------------------------------------- stage */
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 #scene.interactive { pointer-events: auto; cursor: grab; touch-action: none; }
 #scene.interactive.grabbing { cursor: grabbing; }
-body.exploring main { pointer-events: none; }
-body.exploring main button, body.exploring main input, body.exploring main select, body.exploring main label, body.exploring main a { pointer-events: auto; }
-body.exploring .edition, body.exploring footer > span:first-child { display: none; }
-body.exploring header, body.exploring footer { border-color: transparent; }
-.actions { display: flex; flex-wrap: wrap; gap: 14px; }
-button.secondary { background: transparent; color: #f5f3df; box-shadow: inset 0 0 0 1px #d8eaa080; }
-button.secondary:hover { background: #d8eaa01f; }
-#credits { color: #8fa6a2; text-align: center; flex: 1; }
-body:not(.exploring) #credits { opacity: 0.7; }
-#explore { margin: 0; padding: 18px 0 0; max-width: none; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
-.explore-top { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.explore-top button { padding: 10px 16px; font-size: 13px; }
-#coordinate-readout { margin: 0; font: 600 12px/1.4 ui-monospace, 'Cascadia Mono', Consolas, monospace; color: #cfe0db; letter-spacing: 0.5px; white-space: pre-wrap; text-shadow: 0 1px 3px #000; }
-.explore-panel { align-self: flex-start; width: min(340px, 100%); padding: 16px; border-radius: 6px; background: #06121bcc; box-shadow: inset 0 0 0 1px #8db2ad30; backdrop-filter: blur(6px); }
-.explore-panel .eyebrow { margin-bottom: 12px; font-size: 10px; }
-.target-row { display: flex; gap: 8px; margin-bottom: 8px; }
-.target-row select, .target-row input { flex: 1; min-width: 0; padding: 9px 10px; border-radius: 3px; border: 1px solid #8db2ad55; background: #0b1f2b; color: #f5f3df; font: 13px 'Segoe UI', system-ui, sans-serif; }
-.target-row button { padding: 9px 14px; font-size: 13px; }
-.toggles { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
-.toggle { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px; background: #0b1f2b; box-shadow: inset 0 0 0 1px #8db2ad40; font-size: 12px; color: #c6d6cf; cursor: pointer; user-select: none; }
-.toggle input { accent-color: #d8eaa0; margin: 0; }
-.hint { margin: 0; font-size: 11px; line-height: 1.6; color: #8fa6a2; }
+#bezel { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+
+#app { position: relative; height: 100svh; display: grid; grid-template-rows: auto 1fr auto; pointer-events: none; }
+#app button, #app a, #app input, #app select, #app label, #app .scrollable { pointer-events: auto; }
+.screen { grid-row: 2; min-height: 0; }
+
+/* Legibility without boxes: a soft darkening of the sky behind the text column. */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(6, 12, 18, 0.72) 0%, rgba(6, 12, 18, 0.35) 30%, rgba(6, 12, 18, 0) 48%);
+  opacity: 0; transition: opacity 0.8s var(--ease);
+}
+body[data-screen='title']::before, body[data-screen='vision']::before, body[data-screen='mystery']::before, body[data-screen='explore']::before { opacity: 1; }
+body.revealing::before { background: linear-gradient(90deg, rgba(6, 12, 18, 0.9) 0%, rgba(6, 12, 18, 0.78) 34%, rgba(6, 12, 18, 0) 55%); }
+
+/* ---------------------------------------------------------------- masthead + colophon */
+.masthead { grid-row: 1; padding: 34px var(--gutter) 0; }
+.wordmark {
+  font: italic 500 2rem / 1 var(--font-display); font-variation-settings: 'opsz' 96;
+  color: var(--paper); text-decoration: none; letter-spacing: -0.01em;
+  transition: opacity 0.6s var(--ease);
+}
+body[data-screen='title'] .wordmark { opacity: 0; pointer-events: none; }
+.colophon { grid-row: 3; display: flex; justify-content: space-between; align-items: baseline; gap: 32px; padding: 0 var(--gutter) 26px; }
+#credits { margin: 0; max-width: 62ch; font-size: 0.75rem; line-height: 1.5; color: var(--paper-faint); }
+#status { margin: 0; font-size: 0.8125rem; color: var(--brass); text-align: right; }
+
+/* ---------------------------------------------------------------- title page */
+#title { align-self: center; padding: 0 var(--gutter); max-width: 46rem; }
+.title-wordmark {
+  margin: 0; font: italic 400 clamp(6rem, 12.5vw, 13.5rem) / 0.82 var(--font-display);
+  font-variation-settings: 'opsz' 96; letter-spacing: -0.035em; color: var(--paper);
+  margin-left: -0.06em;
+}
+.title-lede {
+  margin: 0.9rem 0 3.6rem; max-width: 32ch;
+  font: italic 400 var(--step-1) / 1.35 var(--font-text); color: var(--paper-dim);
+}
+
+/* The index: menu entries set like an atlas's contents, focus drawn as a cartographic leader line. */
+.index { display: grid; gap: 1.55rem; justify-items: start; }
+.index-entry {
+  position: relative; display: grid; gap: 0.2rem; justify-items: start;
+  padding: 0; border: 0; background: none; cursor: pointer; text-align: left;
+}
+.index-label {
+  position: relative;
+  font: 400 var(--step-3) / 1 var(--font-display); font-variation-settings: 'opsz' 60;
+  letter-spacing: -0.012em; color: var(--paper);
+  transition: color 0.35s var(--ease);
+}
+.index-note { font-size: var(--step--1); color: var(--paper-dim); transition: color 0.35s var(--ease); }
+/* Leader line from the entry toward the globe, ending in a small station circle. */
+.index-label::after {
+  content: ''; position: absolute; left: calc(100% + 0.5em); top: 0.55em; height: 1px; width: 0;
+  background: linear-gradient(90deg, var(--brass), rgba(201, 163, 91, 0.25));
+  transition: width 0.5s var(--ease);
+}
+.index-label::before {
+  content: ''; position: absolute; top: calc(0.55em - 4px); left: calc(100% + 0.5em + var(--leader, 18vw));
+  width: 7px; height: 7px; border: 1px solid var(--brass); border-radius: 50%; opacity: 0;
+  transition: opacity 0.3s var(--ease) 0.25s;
+}
+.index-entry:is(:hover, :focus-visible, .is-focused) .index-label { color: var(--brass-bright); }
+.index-entry:is(:hover, :focus-visible, .is-focused) .index-note { color: var(--paper); }
+.index-entry:is(:hover, :focus-visible, .is-focused) .index-label::after { width: var(--leader, 18vw); }
+.index-entry:is(:hover, :focus-visible, .is-focused) .index-label::before { opacity: 1; }
+.index-entry:focus { outline: none; }
+.index-entry:disabled { cursor: default; }
+.index-entry:disabled .index-label { color: var(--paper-faint); }
+.index-entry:disabled .index-note::after { content: ' (preparing the Earth)'; }
+
+/* ---------------------------------------------------------------- about page */
+#vision { align-self: center; padding: 0 var(--gutter); }
+.page-title { margin: 0 0 2rem; font: italic 400 var(--step-4) / 1 var(--font-display); font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; }
+.essay { max-width: 34rem; margin-bottom: 3rem; }
+.essay p { margin: 0 0 1.1em; font: 400 1.3125rem / 1.62 var(--font-text); color: var(--paper); }
+.essay p:first-child { font-size: var(--step-1); line-height: 1.45; }
+#back-button .index-label { font-size: var(--step-2); }
+
+/* ---------------------------------------------------------------- explore (developer) */
+#explore { display: grid; grid-template-rows: auto 1fr; align-content: space-between; padding: 22px var(--gutter) 22px; }
+.explore-top { display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; }
+#coordinate-readout { margin: 0; white-space: pre; font: 500 0.875rem / 1.4 var(--font-ui); font-variant-numeric: tabular-nums; color: var(--paper-dim); text-shadow: 0 1px 2px var(--ink-deep); }
+.quiet-button {
+  padding: 0.35em 0; border: 0; border-bottom: 1px solid rgba(201, 163, 91, 0.45); background: none; cursor: pointer;
+  font: 500 0.9375rem / 1.2 var(--font-ui); color: var(--paper); letter-spacing: 0.01em;
+}
+.quiet-button:is(:hover, :focus-visible, .is-focused) { color: var(--brass-bright); border-color: var(--brass-bright); outline: none; }
+.explore-panel { align-self: end; justify-self: start; width: min(23rem, 100%); padding: 18px 0 0; border-top: 1px solid rgba(201, 163, 91, 0.4); }
+.panel-heading { margin: 0 0 12px; font: italic 400 var(--step-1) / 1 var(--font-display); color: var(--paper); }
+.target-row { display: flex; gap: 14px; margin-bottom: 10px; align-items: end; }
+.target-row select, .target-row input {
+  flex: 1; min-width: 0; padding: 7px 0; border: 0; border-bottom: 1px solid rgba(236, 228, 207, 0.25);
+  background: transparent; color: var(--paper); font: 400 0.9375rem var(--font-ui); border-radius: 0;
+}
+.target-row select option { background: var(--ink); }
+.target-row :is(select, input):focus-visible { outline: none; border-color: var(--brass-bright); }
+.toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 12px; }
+.toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 0.8125rem; color: var(--paper-dim); cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--brass); margin: 0; }
+.hint { margin: 0; font-size: 0.75rem; line-height: 1.55; color: var(--paper-faint); }
+
+/* ---------------------------------------------------------------- mystery screen */
+#mystery { position: relative; display: grid; grid-template-columns: minmax(0, 27rem) 1fr; padding: 6px var(--gutter) 0; min-height: 0; }
+.ledger { align-self: center; display: grid; gap: 1.4rem; max-height: 100%; overflow: hidden; }
+.ledger-heading { margin: 0; font: italic 400 1.75rem / 1.1 var(--font-text); color: var(--paper-dim); }
+.clues { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.15rem; }
+.clue { display: grid; grid-template-columns: 2.6rem 1fr; align-items: baseline; }
+.clue-numeral { font: 500 var(--step-1) / 1 var(--font-display); font-variation-settings: 'opsz' 40; color: var(--brass); }
+.clue-text { margin: 0; font: 400 1.375rem / 1.48 var(--font-text); color: var(--paper); max-width: 27ch; }
+.clue[data-state='locked'] .clue-numeral { color: var(--paper-faint); }
+.clue[data-state='locked'] .clue-text { position: relative; height: 1.48em; color: transparent; }
+.clue[data-state='locked'] .clue-text::after { content: ''; position: absolute; left: 0; right: 30%; top: 0.75em; height: 1px; background: linear-gradient(90deg, rgba(236, 228, 207, 0.22), transparent); }
+.clue[data-state='new'] .clue-text { animation: ink-in 1.1s var(--ease) both; }
+.clue[data-state='new'] .clue-numeral { animation: ink-in 0.6s var(--ease) both; }
+@keyframes ink-in { from { opacity: 0; filter: blur(5px); transform: translateX(-6px); } to { opacity: 1; filter: none; transform: none; } }
+.ledger-note { margin: 0; max-width: 30ch; font: italic 400 var(--step-0) / 1.45 var(--font-text); color: var(--paper-dim); }
+
+.actions { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 2.6rem; align-items: center; white-space: nowrap; }
+.action {
+  display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.4rem 0; border: 0; background: none; cursor: pointer;
+  font: 500 var(--step-0) / 1 var(--font-ui); color: var(--paper); letter-spacing: 0.005em;
+}
+.action:disabled { display: none; }
+.action:is(:hover, :focus-visible, .is-focused) { color: var(--brass-bright); outline: none; }
+.action:is(:hover, :focus-visible, .is-focused) .glyph { border-color: var(--brass-bright); color: var(--brass-bright); }
+/* Engraved control glyphs: a roundel for controller buttons, a keycap for keyboard keys. */
+.glyph {
+  display: inline-grid; place-items: center; min-width: 1.75rem; height: 1.75rem; padding: 0 0.35rem;
+  border: 1px solid rgba(201, 163, 91, 0.75); border-radius: 50%;
+  font: 600 0.8125rem / 1 var(--font-ui); color: var(--brass); letter-spacing: 0;
+}
+body:not([data-input='gamepad']) .glyph { border-radius: 4px; }
+.glyph [data-for] { display: none; }
+body[data-input='gamepad'] .glyph [data-for='gamepad'], body:not([data-input='gamepad']) .glyph [data-for='keyboard'] { display: inline; }
+
+.aim {
+  position: fixed; left: 50%; top: calc(50% + 70px); transform: translateX(-50%);
+  font: 500 0.8125rem / 1 var(--font-ui); font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+  color: rgba(236, 228, 207, 0.7); text-shadow: 0 1px 3px var(--ink-deep); pointer-events: none; white-space: nowrap;
+}
+
+body.revealing .aim { display: none; }
+body.revealing .actions { left: var(--gutter); transform: none; }
+body.revealing .preview-notice { display: none; }
+.answer { align-self: center; max-width: 34rem; max-height: calc(100% - 4.5rem); margin-bottom: 4.5rem; mask-image: linear-gradient(180deg, #000 calc(100% - 2.5rem), transparent); overflow-y: auto; padding-right: 1.2rem; scrollbar-width: thin; scrollbar-color: rgba(201, 163, 91, 0.4) transparent; }
+.answer-kicker { margin: 0 0 0.6rem; font: italic 400 var(--step-0) / 1.4 var(--font-text); color: var(--paper-dim); }
+.answer-identity { margin: 0; font: 400 var(--step-4) / 1.02 var(--font-display); font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; color: var(--paper); }
+.answer-place { margin: 0.7rem 0 1.6rem; font: italic 400 var(--step-1) / 1.35 var(--font-text); color: var(--brass-bright); }
+.answer-facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.4rem; margin: 0 0 1.6rem; padding: 0.9rem 0; border-block: 1px solid rgba(201, 163, 91, 0.3); }
+.answer-facts dt { font: 500 var(--step--1) / 1.5 var(--font-ui); color: var(--paper-dim); }
+.answer-facts dd { margin: 0; font: 400 var(--step-0) / 1.5 var(--font-text); }
+.answer-explanation { margin: 0 0 1.2rem; font: 400 1.3125rem / 1.6 var(--font-text); max-width: 36ch; }
+.answer-uncertainty { margin: 0 0 1.4rem; font: italic 400 var(--step-0) / 1.5 var(--font-text); color: var(--paper-dim); max-width: 40ch; }
+.answer-sources { margin: 0 0 1rem; padding: 0; list-style: none; font-size: var(--step--1); color: var(--paper-dim); }
+.answer-sources li { margin-bottom: 0.35rem; }
+.answer-sources cite { font-style: italic; color: var(--paper); }
+
+.preview-notice {
+  position: absolute; right: var(--gutter); top: 0; max-width: 21rem; margin: 0;
+  font: italic 400 var(--step--1) / 1.45 var(--font-text); color: var(--verdigris); text-align: right;
+}
+
+/* Atlas labels (DOM text placed by src/earth/overlays/label-layer.js). Cartographic conventions:
+   countries in spaced capitals, water in blue italics, relief features in italics, settlements upright with a point. */
+.atlas-labels { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.atlas-label-layer { position: absolute; inset: 0; transition: opacity 0.25s linear; }
+.atlas-label {
+  position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform; translate: -50% -50%;
+  color: rgba(236, 228, 207, 0.92);
+  text-shadow: 0 0 3px rgba(6, 12, 18, 0.95), 0 0 8px rgba(6, 12, 18, 0.6);
+}
+.atlas-country { font: 500 12.5px / 1 var(--font-display); text-transform: uppercase; letter-spacing: 0.22em; }
+.atlas-continent { font: italic 400 20px / 1 var(--font-display); letter-spacing: 0.3em; color: rgba(236, 228, 207, 0.7); }
+.atlas-ocean { font: italic 400 18px / 1 var(--font-text); letter-spacing: 0.24em; color: #a9cbd8; }
+.atlas-sea { font: italic 400 14px / 1 var(--font-text); letter-spacing: 0.08em; color: #a9cbd8; }
+.atlas-range, .atlas-desert, .atlas-region { font: italic 400 14px / 1 var(--font-text); letter-spacing: 0.06em; color: rgba(236, 228, 207, 0.78); }
+.atlas-range { letter-spacing: 0.14em; }
+.atlas-capital, .atlas-city { translate: -4px -50%; padding-left: 12px; font: 500 13px / 1 var(--font-ui); }
+.atlas-capital::before, .atlas-city::before { content: ''; position: absolute; left: 0; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 1px rgba(6, 12, 18, 0.8); }
+.atlas-capital::before { width: 7px; height: 7px; margin-top: -3.5px; left: -1px; background: var(--ink); border: 1.5px solid var(--paper); }
+
+/* Earth reticle (element created by the Earth view): a thin instrument sight. */
+.globe-reticle { position: fixed; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; pointer-events: none; }
+.globe-reticle::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(226, 193, 127, 0.85); box-shadow: 0 0 0 1px rgba(6, 12, 18, 0.35); }
+.globe-reticle::after { content: ''; position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 2px var(--ink-deep); }
+.globe-reticle[hidden] { display: none; }
+
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-@media (max-width: 650px) { #credits { display: none; } body.exploring #credits { display: block; font-size: 8px; } .explore-panel { width: 100%; padding: 12px; } .hint { display: none; } }
+
+/* ---------------------------------------------------------------- screen transitions */
+.screen:not([hidden]) { animation: screen-in 0.7s var(--ease) both; }
+@keyframes screen-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+body[data-screen='mystery'] #credits { display: none; }
+@media (max-height: 860px) {
+  #mystery { grid-template-columns: minmax(0, 23rem) 1fr; }
+  .ledger { gap: 0.9rem; }
+  .ledger-heading { font-size: 1.4rem; }
+  .clues { gap: 0.65rem; }
+  .clue { grid-template-columns: 2.2rem 1fr; }
+  .clue-numeral { font-size: 1.15rem; }
+  .clue-text { font-size: 1.0625rem; line-height: 1.42; }
+  .ledger-note { font-size: 0.9375rem; }
+  .actions { gap: 1.8rem; }
+  .action { font-size: 1rem; }
+  .answer-identity { font-size: var(--step-3); }
+  .answer-explanation { font-size: 1.125rem; }
+}
+@media (max-height: 760px) {
+  .title-wordmark { font-size: clamp(5rem, 10vw, 9rem); }
+  .title-lede { margin-bottom: 2.2rem; }
+  .index { gap: 1.1rem; }
+  .index-label { font-size: var(--step-2); }
+}
+@media (max-width: 760px) {
+  body { overflow: auto; }
+  .colophon { flex-direction: column; gap: 6px; }
+  #mystery { grid-template-columns: 1fr; }
+  .actions { gap: 1.2rem; }
+  .index-label::after, .index-label::before { display: none; }
+}

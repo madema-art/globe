@@ -4,7 +4,7 @@ Codex, Claude, ChatGPT, and the owner are building one game. GitHub at `https://
 
 ## Working responsibilities
 
-Codex: infrastructure, Three.js engine, runtime integration, Windows launch/update system. Claude: Earth asset research, Blender visual development, imagery, terrain datasets, geographical asset production. ChatGPT: game design, architecture coordination, implementation planning. Owner: final decisions. Responsibilities guide coordination; they do not establish exclusive ownership.
+Claude (lead visual designer and visual implementation, owner decision 2026-10-22): all visual design and implementation: everything the player sees, including Earth rendering, globe controls and movement presentation, the title screen, menus, typography, buttons and panels, the five-clue interface, historical information displays, controller-focused navigation, HUD, reticles, transitions, borders, rivers, labels, skylines, landmark miniatures and art direction. Codex: the non-visual systems: the educational mystery engine, historical and geographical content research, the mystery library, clue progression, content selection and repetition prevention, persistent player history, data validation and accuracy, input-action infrastructure, GitHub collaboration, the launcher and general application and test infrastructure. Shared seams (the mystery view and action adapter, gamepad snapshot, Earth gameplay API) are coordinated through GitHub; see docs/EARTH_GAMEPLAY_API.md. ChatGPT: game design, architecture coordination, implementation planning. Owner: final decisions. Responsibilities guide coordination; they do not establish exclusive ownership.
 
 ## Exchange work
 
