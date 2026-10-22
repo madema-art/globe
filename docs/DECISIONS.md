@@ -11,6 +11,26 @@
 - Automatic checks run about every two minutes while the service is alive. Browser checks run about every 20 seconds on the title. Browser timers may be throttled in background tabs.
 - Store checkout-specific service ownership and logs below `%LOCALAPPDATA%\Globe`. Authenticated loopback shutdown affects only the verified Globe instance; never kill arbitrary PIDs.
 
+## 2026-10-22 — Earth V1 approved by the owner
+
+The owner played Earth V1 and approved it, and its general technical architecture, for integration into `main` (PR #2). Answers to the open questions in issue #1:
+
+- **Camera architecture:** approved. The Earth stays stationary in its Earth-fixed frame; the camera moves around it. The player must experience natural, unrestricted rotation.
+- **Graphics memory:** ≈ 256 MB on the high tier is accepted provisionally. Visual quality has priority; medium and low tiers stay available. Texture compression (KTX2) will be decided after real measurements on the owner's Windows gaming PC.
+- **Git LFS:** compact processed assets stay in ordinary Git and raw downloads stay out of the repository. Agree an LFS/external-storage policy before adding substantially larger textures, Blender files or 3D landmark libraries.
+- **Performance target:** smooth 60 fps at 1920×1080 on the owner's Windows gaming PC. Codex helps identify the hardware and set up benchmarks. Mobile is not a priority.
+- **Linux infrastructure quirks** (`npmCi` npm path, `build-check` `EISDIR`): left to Codex; Claude does not rewrite unrelated infrastructure.
+
+## 2026-10-22 — Earth V1 prototype (Claude; approved above)
+
+- Proposed contract: WGS84 degrees `(lat, lon)` at data boundaries, lon `[-180,180)`. Earth-fixed render frame `+X` = 0°/0°, `+Y` = north, `+Z` = 0°/90°W. Unit = equatorial radius; WGS84 ellipsoid geometry. Per-fragment equirectangular texturing with seam-safe gradients. See EARTH_ASSET_CONTRACT.md.
+- The camera orbits a fixed Earth (grab-trackball, no Euler angles), so overlays and the sun share one Earth-fixed frame.
+- Sources: NASA Blue Marble NG (July 2004), NASA Blue Marble clouds, NASA Black Marble 2016, NOAA ETOPO 2022 60″, Natural Earth 10m, GeoNames cities15000. All downloaded from official hosts by a reproducible pipeline; raw data stays out of Git.
+- Texture tiers high/medium/low (day 8K/4K/2K; surface and atmosphere data 4K/4K/2K), WebP/JPEG. Low tier loads first. No KTX2 yet.
+- Default lighting is a camera-relative "studio" sun so the visible side is lit and a terminator shows at the limb. A "Real sun" toggle uses the current UTC subsolar point.
+- Explore mode added beside title/vision. The title now shows the real Earth instead of the abstract orbit lines; those remain as the no-Earth fallback.
+- Everything above can be reverted by removing `src/earth`, `src/shaders/earth`, `public/earth` and the explore UI hooks.
+
 ## Pending owner/Claude decisions
 
-Earth representation and asset interface; axis mapping and UV seam; source dataset licenses and attribution; initial content set; border/name policy; rendering budgets and reference hardware; project source license; scoring and challenge rules; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.
+Review/approval of Claude's Earth asset contract (axes, UV seam, formats, budgets) and Earth V1 dataset licences; initial content set; border/name policy; rendering budgets and reference hardware; project source license; scoring and challenge rules; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.

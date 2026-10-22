@@ -7,7 +7,7 @@ import { root, git, run, json } from '../scripts/common.mjs';
 // All intentionally broken sources live in an ignored disposable fixture.
 await mkdir(path.join(root, 'work'), { recursive: true });
 const fixture = await mkdtemp(path.join(root, 'work', 'build-test-'));
-for (const entry of ['.gitignore', 'package.json', 'package-lock.json', 'index.html', 'vite.config.js', 'src', 'scripts', 'public']) {
+for (const entry of ['.gitignore', 'package.json', 'package-lock.json', 'index.html', 'vite.config.js', 'src', 'scripts', 'public', 'assets/data/processed']) {
   await cp(path.join(root, entry), path.join(fixture, entry), { recursive: true });
 }
 await git(['init'], fixture);

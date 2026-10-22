@@ -2,7 +2,7 @@
 
 A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath the camera, zoom toward destinations, and locate countries, cities, and geographical features. There is no helicopter.
 
-This initial release provides a working Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. The orbital lines on the title are abstract decoration, not an Earth asset. Gameplay and geographical assets await coordination with Claude.
+This release provides a Three.js title screen, Vite build, safe Windows launcher/update service, and shared development foundation. It also includes the **Earth V1 prototype**: a real, interactive 3D Earth built from NASA, NOAA, Natural Earth and GeoNames data. Choose **Explore the Earth** on the title. Drag to turn the planet, use the wheel to zoom, pick a landmark to fly to, and press Esc to return. Earth V1 and its asset contract were approved by the owner (see docs/DECISIONS.md). Gameplay has not started yet.
 
 ## Launch on Windows
 
@@ -27,6 +27,7 @@ npx.cmd playwright install chromium
 npm.cmd run test:browser
 npm.cmd run test:service
 npm.cmd run test:build
+npm.cmd run test:earth
 ```
 
 `npm run dev` is a separate Vite development session with HMR. Play using the launcher to avoid development reloads. Builds are published under ignored `.globe/builds/<id>/`; `npm run build` reports the published version. `npm start -- --no-browser` starts the production service without opening a browser.
@@ -41,8 +42,12 @@ launcher.config.json       Tracked branch, ports, update interval
 src/engine/                Three.js runtime and rendering
 src/runtime/               App lifecycle and safe version refresh
 src/game/                  Future challenges and scoring
-src/geography/             Future coordinate/data adapters
-src/shaders/               Future shader sources
+src/earth/                 Earth renderer, globe controls, explore HUD (Earth V1)
+src/geography/             WGS84 coordinate conventions and conversions
+src/shaders/earth/         Earth surface, cloud and atmosphere GLSL
+pipeline/earth/            Reproducible Earth asset pipeline (Python)
+public/earth/v1/           Runtime Earth textures + earth.json manifest
+assets/earth/              Earth asset provenance (MANIFEST.json, ATTRIBUTION.md)
 assets/blender/            Claude's editable visual sources
 assets/textures/           Approved textures and provenance
 assets/data/raw/           Ignored large raw downloads

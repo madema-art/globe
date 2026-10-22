@@ -1,0 +1,297 @@
+{
+  "schema": "globe.asset-provenance/1",
+  "generated": "2026-10-22",
+  "pipeline": "pipeline/earth/earth_pipeline.py",
+  "status": "approved by the owner 2026-10-22 (Earth V1, PR #2)",
+  "sources": [
+    {
+      "id": "bmng-200407",
+      "title": "NASA Blue Marble: Next Generation, July 2004 (no topography/bathymetry shading)",
+      "provider": "NASA Earth Observatory / NASA Goddard Space Flight Center (Reto Stöckli)",
+      "url": "https://eoimages.gsfc.nasa.gov/images/imagerecords/74000/74092/world.200407.3x21600x10800.jpg",
+      "page": "https://visibleearth.nasa.gov/images/74092",
+      "resolution": "21600x10800 (500 m/px at the equator), equirectangular, WGS84",
+      "license": "NASA imagery: not copyrighted in the United States; free to use and redistribute with credit. Must not imply NASA endorsement.",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "attribution": "NASA Earth Observatory, Blue Marble: Next Generation (Reto Stöckli, NASA GSFC)",
+      "raw_file": "world.200407.3x21600x10800.jpg",
+      "sha256": "dea8b4dc8a4f93f5f8bce0c8c85a508a178e7901e9ed8e6bf86e6ce7ef6d61e2",
+      "bytes": 21125326,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "bmng-clouds",
+      "title": "NASA Blue Marble clouds (combined MODIS cloud composite)",
+      "provider": "NASA Goddard Space Flight Center (Reto Stöckli); MODIS data",
+      "url": "https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57747/cloud_combined_8192.tif",
+      "page": "https://visibleearth.nasa.gov/images/57747",
+      "resolution": "8192x4096, equirectangular",
+      "license": "NASA imagery: not copyrighted in the United States; free to use and redistribute with credit.",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "attribution": "NASA Goddard Space Flight Center, Blue Marble clouds (Reto Stöckli), MODIS data",
+      "raw_file": "cloud_combined_8192.tif",
+      "sha256": "d137775d8966ab8d443fd5126dc6e7ad72072bc1ed50555c5818d221735daf0f",
+      "bytes": 35870468,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "black-marble-2016",
+      "title": "NASA Black Marble 2016, grayscale 3 km",
+      "provider": "NASA Earth Observatory (Joshua Stevens), Suomi NPP VIIRS data (Miguel Román, NASA GSFC)",
+      "url": "https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144897/BlackMarble_2016_3km_gray.jpg",
+      "page": "https://earthobservatory.nasa.gov/features/NightLights",
+      "resolution": "13500x6750 (~3 km/px), equirectangular",
+      "license": "NASA imagery: not copyrighted in the United States; free to use and redistribute with credit.",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "attribution": "NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA GSFC",
+      "raw_file": "BlackMarble_2016_3km_gray.jpg",
+      "sha256": "3fbc8aae3529dc1ebfcf3aa9361bd3dfc11d19950a6af6d8ed2df61bd8b0134d",
+      "bytes": 3064569,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "etopo-2022-60s",
+      "title": "ETOPO 2022 Global Relief Model, 60 arc-second, ice surface elevation (v1)",
+      "provider": "NOAA National Centers for Environmental Information (NCEI)",
+      "url": "https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO2022/60s/60s_surface_elev_netcdf/ETOPO_2022_v1_60s_N90W180_surface.nc",
+      "page": "https://www.ncei.noaa.gov/products/etopo-global-relief-model",
+      "resolution": "21600x10800 cells (1 arc-minute), metres, EGM2008 geoid heights",
+      "license": "U.S. Government work (NOAA); public domain.",
+      "license_url": "https://www.ncei.noaa.gov/products/etopo-global-relief-model",
+      "attribution": "NOAA National Centers for Environmental Information. 2022: ETOPO 2022 Global Relief Model. https://doi.org/10.25921/fd45-gt74",
+      "raw_file": "ETOPO_2022_v1_60s_N90W180_surface.nc",
+      "sha256": "74bbc5c23e85188d93f0beba8116babf69e1a8f160e8dc9f053bf8df01b197b6",
+      "bytes": 478290125,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-land",
+      "title": "Natural Earth 1:10m Physical: Land (v5.x)",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_land.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-land/",
+      "resolution": "1:10,000,000 vector polygons, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_land.zip",
+      "sha256": "e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc",
+      "bytes": 3269070,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-lakes",
+      "title": "Natural Earth 1:10m Physical: Lakes + Reservoirs",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/physical/ne_10m_lakes.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-lakes/",
+      "resolution": "1:10,000,000 vector polygons, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_lakes.zip",
+      "sha256": "0803a06f9c3cb4671d89b68c48b142aad9366ba40f665245e12a913fbc61722a",
+      "bytes": 2349685,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "ne-10m-admin0",
+      "title": "Natural Earth 1:10m Cultural: Admin 0 Countries",
+      "provider": "Natural Earth (naturalearthdata.com)",
+      "url": "https://naciscdn.org/naturalearth/10m/cultural/ne_10m_admin_0_countries.zip",
+      "page": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+      "resolution": "1:10,000,000 vector polygons, WGS84",
+      "license": "Public domain.",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "attribution": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+      "raw_file": "ne_10m_admin_0_countries.zip",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "bytes": 4930492,
+      "acquired": "2026-10-22"
+    },
+    {
+      "id": "geonames-cities15000",
+      "title": "GeoNames gazetteer extract: cities with population > 15000",
+      "provider": "GeoNames (geonames.org)",
+      "url": "https://download.geonames.org/export/dump/cities15000.zip",
+      "page": "https://www.geonames.org/export/",
+      "resolution": "Point records, WGS84 decimal degrees",
+      "license": "Creative Commons Attribution 4.0 (CC BY 4.0).",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0",
+      "raw_file": "cities15000.zip",
+      "sha256": "306220b96c4dc00fd3bd7b2427290afed492a05ad5111d071644d74c79eba707",
+      "bytes": 3362689,
+      "acquired": "2026-10-22"
+    }
+  ],
+  "generated_assets": [
+    {
+      "name": "public/earth/v1/atmos-2048x1024.jpg",
+      "derived_from": [
+        "bmng-clouds",
+        "black-marble-2016"
+      ],
+      "resolution": "2048x1024",
+      "format": "jpg",
+      "bytes": 1050759,
+      "sha256": "4c5d7212a0b2d4f5ce998fb63d6e592d3dc6ab3489d343925e1d0f8ff75acbc4",
+      "processing": [
+        "Clouds: NASA cloud_combined_8192.tif, antimeridian edge feathered over 64 columns, box-averaged",
+        "Night lights: Black Marble 2016 3 km gray box-averaged",
+        "Pack R=clouds, G=lights; JPEG q92 4:4:4"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "NASA Goddard Space Flight Center, Blue Marble clouds (Reto Stöckli), MODIS data",
+        "NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA GSFC"
+      ]
+    },
+    {
+      "name": "public/earth/v1/atmos-4096x2048.jpg",
+      "derived_from": [
+        "bmng-clouds",
+        "black-marble-2016"
+      ],
+      "resolution": "4096x2048",
+      "format": "jpg",
+      "bytes": 3802295,
+      "sha256": "c76770fa0464a0e2f34f7c4159fdd3b8f1c58b40b061402a0346544cfe7beebc",
+      "processing": [
+        "Clouds: NASA cloud_combined_8192.tif, antimeridian edge feathered over 64 columns, box-averaged",
+        "Night lights: Black Marble 2016 3 km gray box-averaged",
+        "Pack R=clouds, G=lights; JPEG q92 4:4:4"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "NASA Goddard Space Flight Center, Blue Marble clouds (Reto Stöckli), MODIS data",
+        "NASA Earth Observatory images by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA GSFC"
+      ]
+    },
+    {
+      "name": "public/earth/v1/day-2048x1024.webp",
+      "derived_from": [
+        "bmng-200407"
+      ],
+      "resolution": "2048x1024",
+      "format": "webp",
+      "bytes": 197788,
+      "sha256": "369c325312535db3e93e9b32c95fcebfcb27bf0fe5925664e65ad1ab0da1a477",
+      "processing": [
+        "Decode Blue Marble NG JPEG (sRGB)",
+        "Feather antimeridian edge mismatch over 64 columns",
+        "Lanczos resample to tier width (2:1)",
+        "WebP lossy q90"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "NASA Earth Observatory, Blue Marble: Next Generation (Reto Stöckli, NASA GSFC)"
+      ]
+    },
+    {
+      "name": "public/earth/v1/day-4096x2048.webp",
+      "derived_from": [
+        "bmng-200407"
+      ],
+      "resolution": "4096x2048",
+      "format": "webp",
+      "bytes": 701176,
+      "sha256": "1864c54c0d89bc7333a87f6a056ef3d949db179ffeb8caf3e0d93a1bc10dec1e",
+      "processing": [
+        "Decode Blue Marble NG JPEG (sRGB)",
+        "Feather antimeridian edge mismatch over 64 columns",
+        "Lanczos resample to tier width (2:1)",
+        "WebP lossy q90"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "NASA Earth Observatory, Blue Marble: Next Generation (Reto Stöckli, NASA GSFC)"
+      ]
+    },
+    {
+      "name": "public/earth/v1/day-8192x4096.webp",
+      "derived_from": [
+        "bmng-200407"
+      ],
+      "resolution": "8192x4096",
+      "format": "webp",
+      "bytes": 2476082,
+      "sha256": "34de77c66da6ed340126698611f628ac3a5eb4e106d55ce18a20ecfecf7bd862",
+      "processing": [
+        "Decode Blue Marble NG JPEG (sRGB)",
+        "Feather antimeridian edge mismatch over 64 columns",
+        "Lanczos resample to tier width (2:1)",
+        "WebP lossy q90"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "NASA Earth Observatory, Blue Marble: Next Generation (Reto Stöckli, NASA GSFC)"
+      ]
+    },
+    {
+      "name": "public/earth/v1/surface-2048x1024.webp",
+      "derived_from": [
+        "ne-10m-land",
+        "ne-10m-lakes",
+        "etopo-2022-60s"
+      ],
+      "resolution": "2048x1024",
+      "format": "webp",
+      "bytes": 1257070,
+      "sha256": "02dfe382d266c74efbd4c07390a6b93035d821ff274a36f2d9541691585085fc",
+      "processing": [
+        "Rasterize Natural Earth 10m land minus 10m lakes at 43200x21600, box-average to 21600x10800",
+        "ETOPO 2022 60s surface elevation; sea forced to 0 m; centred differences on WGS84 authalic radius 6371008.8 m with cos(lat) metric",
+        "Box-average slopes to tier size; sqrt encoding with slopeMax 0.12",
+        "Pack R=water, G=east slope, B=north slope; WebP lossless"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+        "NOAA National Centers for Environmental Information. 2022: ETOPO 2022 Global Relief Model. https://doi.org/10.25921/fd45-gt74"
+      ]
+    },
+    {
+      "name": "public/earth/v1/surface-4096x2048.webp",
+      "derived_from": [
+        "ne-10m-land",
+        "ne-10m-lakes",
+        "etopo-2022-60s"
+      ],
+      "resolution": "4096x2048",
+      "format": "webp",
+      "bytes": 4789064,
+      "sha256": "2e064b25f79e43ff8e5936c2efee8aef2490eb7d5ed8cc18bdd418d7be8b3917",
+      "processing": [
+        "Rasterize Natural Earth 10m land minus 10m lakes at 43200x21600, box-average to 21600x10800",
+        "ETOPO 2022 60s surface elevation; sea forced to 0 m; centred differences on WGS84 authalic radius 6371008.8 m with cos(lat) metric",
+        "Box-average slopes to tier size; sqrt encoding with slopeMax 0.12",
+        "Pack R=water, G=east slope, B=north slope; WebP lossless"
+      ],
+      "license": "Inherits source terms; see sources",
+      "attribution": [
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+        "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com",
+        "NOAA National Centers for Environmental Information. 2022: ETOPO 2022 Global Relief Model. https://doi.org/10.25921/fd45-gt74"
+      ]
+    },
+    {
+      "name": "assets/data/processed/earth-landmarks.json",
+      "derived_from": [
+        "geonames-cities15000",
+        "ne-10m-admin0"
+      ],
+      "format": "json",
+      "sha256": "27fd42dbbf06f27ffe80e1d8becfe0d7aa363206a2e5101f3a3a16d147a5268b",
+      "processing": [
+        "Select listed cities by ASCII name + country (largest population on ties)",
+        "Madagascar = area centroid of largest Natural Earth polygon"
+      ],
+      "license": "CC BY 4.0 (GeoNames) + public domain (Natural Earth)",
+      "attribution": [
+        "Contains data from GeoNames (https://www.geonames.org/), licensed under CC BY 4.0"
+      ]
+    }
+  ]
+}
