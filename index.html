@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102c38" />
+    <title>Globe · A world to discover</title>
+  </head>
+  <body>
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <main>
+      <header><a class="wordmark" href="/" aria-label="Globe home">GLOBE<span>✳</span></a><span class="edition">AN EXPLORATION IN GEOGRAPHY</span></header>
+      <section id="title" aria-labelledby="title-heading">
+        <p class="eyebrow">CURIOSITY HAS NO BORDERS</p>
+        <h1 id="title-heading">A world<br />to discover.</h1>
+        <p class="intro">Every place has a story.<br />Get to know the planet we call home.</p>
+        <button id="about-button">Explore the vision <span>↗</span></button>
+        <p class="availability">The journey is taking shape. Geography challenges coming soon.</p>
+      </section>
+      <section id="vision" hidden aria-labelledby="vision-heading">
+        <p class="eyebrow">THE JOURNEY AHEAD</p><h1 id="vision-heading">One planet.<br />Endless curiosity.</h1>
+        <p class="intro">Turn the Earth. Find a destination. Discover somewhere new.</p>
+        <p class="detail">Countries, cities, landscapes, and the connections between them. A geography game inspired by Topocopter, built around direct interaction with our planet.</p>
+        <button id="back-button">← Back to title</button>
+      </section>
+      <footer><span>01 / THE BEGINNING</span><span id="status" role="status">A WORLD IN THE MAKING</span></footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
