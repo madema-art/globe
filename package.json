@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.12" },
+  "engines": {
+    "node": ">=22.12"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "node scripts/build.mjs",
@@ -19,8 +21,14 @@
     "content:add": "node scripts/content/cli.mjs add",
     "content:stage": "node scripts/content/cli.mjs stage",
     "content:review": "node scripts/content/cli.mjs review",
-    "content:approve": "node scripts/content/cli.mjs approve"
+    "content:approve": "node scripts/content/cli.mjs approve",
+    "content:develop": "node scripts/content/cli.mjs develop"
   },
-  "dependencies": { "three": "^0.180.0" },
-  "devDependencies": { "vite": "^7.1.0", "playwright": "^1.56.0" }
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0",
+    "playwright": "^1.56.0"
+  }
 }

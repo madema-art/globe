@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000051",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "非常に多様な魚類により、この保護された水辺は進化の研究で重要となっている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "多くの魚が固有種であり、隔離と多様化がその意義の中心にある。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "岩の湖岸、砂の入り江、林のある丘、潟が、多様な湖辺の景観をなす。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "東アフリカ大地溝帯にある、深く澄んだ湖の南端に位置する公園である。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "マラウイという国と名を共有する大きな湖の南岸で、世界遺産に登録された国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "マラウイ湖国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -14.033330000000001,
+      "longitude": 34.88333,
+      "label": "マラウイ湖国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "湖全体ではなく、その南端の登録国立公園を扱う。魚類の多様性が、生態や進化の問いを地理的な場所と結びつける。目標は出典の公園基準点であり、湖や地溝帯はそこからはるかに広がっている。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1984,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/289/",
+      "title": "Lake Malawi National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S14 1 59.988 E34 52 59.988 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "east-africa",
+    "era": "not-applicable",
+    "countryGroup": "g059",
+    "destinationKey": "d-m000051",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "lakes",
+      "evolution",
+      "freshwater"
+    ],
+    "subjectKeys": [
+      "s-m000051"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

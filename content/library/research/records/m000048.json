@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000048",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "円錐状の丘の集まりと孤立した塔状の峰が、異なるカルスト地形の共存を示す。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "石灰岩の景観に海が入り込み、陸の地形が海の景観となった。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "植物をまとった石灰岩の柱や多数の島々が、水面から立ち上がる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "統合された世界遺産は、ベトナム北東部のトンキン湾に位置する。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ハイフォンに近いベトナムの有名な石灰岩の湾と隣接群島で、塔のような島が並ぶ景観を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "ハロン湾－カットバ群島",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 20.83277777777778,
+      "longitude": 107.16111111111111,
+      "label": "ハロン湾－カットバ群島の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "現在の登録範囲は湾と隣接群島の双方を含むため、古い範囲ではなく統合された名称を用いる。公表基準点は登録範囲全体の代表で、各石灰岩の塔の位置ではない。カルストの形と海の侵入が、独特な海景を説明する。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1994,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/672/",
+      "title": "Ha Long Bay – Cat Ba Archipelago — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N20 49 58 E107 9 40 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "southeast-asia",
+    "era": "not-applicable",
+    "countryGroup": "g057",
+    "destinationKey": "d-m000048",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "coasts",
+      "islands",
+      "karst"
+    ],
+    "subjectKeys": [
+      "s-m000048"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

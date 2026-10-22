@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Seasonal floods carry nutrients between river basins and help sustain fish populations.",
+    "An abrupt transition from flooded lowlands to a mountainous ridge adds ecological variety.",
+    "The protected property consists of four adjoining reserves rather than the whole ecosystem.",
+    "It lies in western central Brazil within one of the world’s largest freshwater wetland regions.",
+    "Find the Brazilian World Heritage wetland complex near the borders with Bolivia and Paraguay."
+  ],
+  "identity": "Pantanal Conservation Area",
+  "targetLabel": "Pantanal Conservation Area — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "The designated conservation area protects only a small part of a much larger wetland system. Flooding is an ecological connection between basins, lowlands and uplands, not merely a disturbance. The reference point represents the protected complex rather than an asserted centre of the entire wetland.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

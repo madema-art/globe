@@ -1,5 +1,5 @@
 import { syntheticRecord } from './education.mjs';
-import { hash, metadata } from '../../scripts/content/pipeline.mjs';
+import { hash, metadata, approvalDigest } from '../../scripts/content/pipeline.mjs';
 import { LazyMysteryLibrary } from '../../src/game/library/library.js';
 
 export function authored(id = 'm900001') {
@@ -31,6 +31,8 @@ export function memoryAdapter() {
 export function lazyFixture(items = [authored()]) {
   const files = new Map(), entries = [], reads = [];
   for (const { canonical, translations } of items) {
+    canonical.editorial.reviewStatus = 'reviewed';
+    canonical.library.publication = { approved: true, reviewer: 'Synthetic fixture only', approvedDigest: approvalDigest(canonical, translations) };
     const canonicalDigest = hash(canonical), locales = Object.fromEntries(Object.entries(translations).map(([key, value]) => [key, hash(value)]));
     const digest = hash({ canonicalDigest, locales });
     entries.push(metadata(canonical, digest));

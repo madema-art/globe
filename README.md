@@ -1,4 +1,6 @@
-# Globe
+# HISTOGRAPHY
+
+The working title is HISTOGRAPHY, with no tagline or subtitle. Repository names, package identity and infrastructure paths remain `globe` for compatibility.
 
 A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath the camera, zoom toward destinations, and locate countries, cities, and geographical features. There is no helicopter.
 
@@ -65,3 +67,5 @@ Source licensing has not yet been selected by the owner. Public visibility does 
 ## Mystery library
 
 The headless library adds durable presentation history, seeded diversity selection, lazy records and a separate research/review/publication pipeline. Run `npm.cmd run content:validate`, `npm.cmd run content:report` and `npm.cmd run content:publish` for spoiler-free checks. The pilot contains 27 source-checked mysteries and 135 clues; independent review/approval is pending, so the published playable pool is empty. See [the workflow, architecture and aggregate coverage](docs/MYSTERY_LIBRARY.md). Visual integration remains with Claude.
+
+The geography expansion preserves the original 27 and adds 24: **51 mysteries, 255 clues, history/geography 22/29**. See the [spoiler-free expansion report](docs/GEOGRAPHY_EXPANSION.md) and [Claude integration contract](docs/LIBRARY_INTEGRATION.md). Internal content requires `npm.cmd run content:develop -- --enable-development-content` plus explicit runtime opt-in and separate development progress. Production approval remains strict.

@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "m000046",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "枕状溶岩などの露出した岩から、海底の地質の歴史を陸上で調べられる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "島は、大部分が海中にある海嶺の、海面から出た頂部である。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "プレート境界付近の隆起が、マントル由来の物質を含む深い海洋の岩石を海面上へ持ち上げた。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ペンギンやアザラシ、海鳥が集まる土地で、オーストラリアによる長年の科学活動が続いてきた。",
+      "sourceIds": [
+        "r1",
+        "r2"
+      ]
+    },
+    {
+      "text": "タスマニアの南東、南極へ向かうおよそ中間の海域で、オーストラリアに属する細長い亜南極の島を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "マッコーリー島",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": -54.594722222222224,
+      "longitude": 158.89555555555555,
+      "label": "マッコーリー島の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "海嶺と、深部の岩石が海面上に上がる過程の証拠を示す島である。オーストラリア南極局の資料は、観測拠点と繁殖する動物についても記述する。目標は登録された島の基準点で、観測基地や動物の繁殖地そのものではない。",
+    "sourceIds": [
+      "r1",
+      "r2"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1997,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/629/",
+      "title": "Macquarie Island — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference S54 35 41 E158 53 44 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    },
+    {
+      "id": "r2",
+      "url": "https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/macquarie-island/",
+      "title": "Research station and island overview",
+      "publisher": "Australian Antarctic Division",
+      "accessedOn": "2026-10-22",
+      "notes": "Accessible official overview supports the long-running research presence, island setting and concentrations of penguins, seals and seabirds."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [
+    "m000040"
+  ],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "subantarctic",
+    "era": "not-applicable",
+    "countryGroup": "g055",
+    "destinationKey": "d-m000046",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "islands",
+      "tectonics",
+      "wildlife"
+    ],
+    "subjectKeys": [
+      "s-m000046"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}

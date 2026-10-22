@@ -35,3 +35,8 @@ test('browser adapter requires cross-tab locking and preserves a prior snapshot'
   adapter.write(encodeProgress(emptyProgress('two')));
   assert.equal(decodeProgress(adapter.backup()).seed, 'one');
 });
+test('legacy progress without a channel retains its state as production history', () => {
+  const legacy = emptyProgress('legacy'); delete legacy.channel; legacy.sequence = 17; legacy.revision = 19;
+  const saved = validateProgress(legacy);
+  assert.equal(saved.channel, 'production'); assert.equal(saved.sequence, 17); assert.equal(saved.revision, 19); assert.equal(saved.seed, 'legacy');
+});

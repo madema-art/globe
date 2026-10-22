@@ -16,9 +16,9 @@ export function approvalDigest(canonical, translations) {
   const copy = structuredClone(canonical); copy.library.publication = { approved: false, reviewer: null, approvedDigest: null };
   return hash({ canonical: copy, translations });
 }
-export function metadata(record, digest) {
+export function metadata(record, digest, { channel = 'production' } = {}) {
   const m = record.library;
-  return { id: record.id, contentVersion: m.contentVersion, category: record.category, kind: m.kind, region: m.region, era: m.era, countryGroup: m.countryGroup, destinationKey: m.destinationKey, cultures: m.cultures, themes: m.themes, subjectKeys: m.subjectKeys, relatedIds: record.relatedIds || [], aliases: m.aliases, approved: true, digest };
+  return { id: record.id, contentVersion: m.contentVersion, category: record.category, kind: m.kind, region: m.region, era: m.era, countryGroup: m.countryGroup, destinationKey: m.destinationKey, cultures: m.cultures, themes: m.themes, subjectKeys: m.subjectKeys, relatedIds: record.relatedIds || [], aliases: m.aliases, approved: m.publication.approved, digest, ...(channel === 'development' ? { reviewStatus: record.editorial.reviewStatus } : {}) };
 }
 export async function auditLibrary(directory) {
   const records = [], failures = [], warnings = [];
@@ -87,24 +87,28 @@ export function safeReport(audit) {
     failures: tally(audit.failures.map(item => item.code)), warnings: tally(audit.warnings.map(item => item.code)),
   };
 }
-export async function publishLibrary(directory, output) {
+export async function publishLibrary(directory, output, { channel = 'production', enableDevelopment = false } = {}) {
+  if (!['production', 'development'].includes(channel)) throw new Error('INVALID_CONTENT_CHANNEL');
+  if (channel === 'development' && enableDevelopment !== true) throw new Error('DEVELOPMENT_CONTENT_DISABLED');
+  // A development invocation always uses a separate pointer, ledger and release tree.
+  if (channel === 'development') output = path.join(output, 'development');
   const audit = await auditLibrary(directory);
   if (audit.failures.length) throw new Error('PUBLICATION_VALIDATION_FAILED');
-  const approved = audit.records.filter(item => item.canonical.library.publication.approved);
+  const approved = audit.records.filter(item => channel === 'production' ? item.canonical.library.publication.approved : ['source-checked', 'source-checked-sample', 'reviewed'].includes(item.canonical.editorial.reviewStatus));
   if (audit.warnings.some(item => item.code === 'POTENTIAL_ANSWER_LEAK' && approved.some(record => record.canonical.id === item.id))) throw new Error('ANSWER_LEAK_REVIEW_REQUIRED');
   const entries = [];
-  const version = hash(approved).slice(0, 20);
+  const version = hash(channel === 'production' ? approved : { channel, records: approved }).slice(0, 20);
   const release = path.join(output, 'releases', version);
   await mkdir(release, { recursive: true });
   for (const { canonical, translations } of approved) {
     const canonicalDigest = hash(canonical), locales = Object.fromEntries(Object.entries(translations).map(([locale, content]) => [locale, hash(content)]));
     const digest = hash({ canonicalDigest, locales });
-    entries.push(metadata(canonical, digest));
+    entries.push(metadata(canonical, digest, { channel }));
     for (const [relative, data] of [[`records/${canonical.id}.json`, canonical], [`digests/${canonical.id}.json`, { version: canonical.library.contentVersion, digest, canonicalDigest, locales }], ...Object.entries(translations).map(([locale, content]) => [`locales/${locale}/${canonical.id}.json`, content])]) {
       const file = path.join(release, relative); await mkdir(path.dirname(file), { recursive: true }); await writeFile(file, JSON.stringify(data));
     }
   }
-  const catalog = validateCatalog({ schemaVersion: 1, version, entries });
+  const catalog = validateCatalog({ schemaVersion: 1, version, entries, channel }, { allowDevelopment: enableDevelopment });
   await writeFile(path.join(release, 'catalog.json'), JSON.stringify(catalog));
   // Never silently change content bytes under an unchanged ID/version across releases.
   let history = {}, previous = null;
@@ -121,9 +125,9 @@ export async function publishLibrary(directory, output) {
   }
   for (const entry of catalog.entries) history[entry.id] = { contentVersion: entry.contentVersion, digest: entry.digest };
   await mkdir(output, { recursive: true });
-  await writeFile(path.join(output, 'current.tmp'), JSON.stringify({ version, history }));
+  await writeFile(path.join(output, 'current.tmp'), JSON.stringify({ version, history, channel }));
   await rename(path.join(output, 'current.tmp'), path.join(output, 'current.json'));
-  return { ...safeReport(audit), published: entries.length, version };
+  return { ...safeReport(audit), published: entries.length, version, channel, provisional: channel === 'development' };
 }
 
 // Import finished authoring files without editing application modules. Roll back a failed stage.

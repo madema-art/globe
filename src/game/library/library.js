@@ -3,11 +3,11 @@ import { validateMystery, validateLocalization, ContentValidationError } from '.
 
 export class LazyMysteryLibrary {
   #catalog; #byId; #readJson; #locale; #digest;
-  constructor({ catalog, readJson, locale = 'en', digest = async text => {
+  constructor({ catalog, readJson, locale = 'en', allowDevelopment = false, digest = async text => {
     const bytes = new TextEncoder().encode(text);
     return [...new Uint8Array(await globalThis.crypto.subtle.digest('SHA-256', bytes))].map(value => value.toString(16).padStart(2, '0')).join('');
   } }) {
-    this.#catalog = validateCatalog(catalog); this.#byId = new Map(this.#catalog.entries.map(entry => [entry.id, entry]));
+    this.#catalog = validateCatalog(catalog, { allowDevelopment }); this.#byId = new Map(this.#catalog.entries.map(entry => [entry.id, entry]));
     this.#readJson = readJson; this.#locale = locale; this.#digest = digest;
     if (typeof readJson !== 'function' || !/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(locale)) throw new TypeError('Invalid library capabilities.');
   }
@@ -22,6 +22,9 @@ export class LazyMysteryLibrary {
       if (canonical.id !== id || expected.version !== entry.contentVersion || expected.digest !== entry.digest || await this.#digest(JSON.stringify({ canonicalDigest: expected.canonicalDigest, locales: expected.locales })) !== entry.digest || await this.#digest(JSON.stringify(canonical)) !== expected.canonicalDigest) throw new Error('Digest mismatch');
       if (localization && await this.#digest(JSON.stringify(localization)) !== expected.locales[this.#locale]) throw new Error('Locale mismatch');
       const result = validateMystery(canonical);
+      if (result.library?.contentVersion !== entry.contentVersion || result.library?.publication.approved !== entry.approved) throw new Error('Publication mismatch');
+      if ((this.#catalog.channel || 'production') === 'production' && result.editorial.reviewStatus !== 'reviewed') throw new Error('Review required');
+      if (this.#catalog.channel === 'development' && result.editorial.reviewStatus !== entry.reviewStatus) throw new Error('Review status mismatch');
       if (localization) result.localizations = { [this.#locale]: validateLocalization(localization) };
       return result;
     } catch { throw new ContentValidationError('library', 'CONTENT_UNAVAILABLE'); }

@@ -1,0 +1,18 @@
+{
+  "clues": [
+    "Some groundwater animals here have survived environmental changes extending back through the Ice Age.",
+    "Eruptions beneath ice can release sudden floods known as jökulhlaups.",
+    "Those floods help reshape outwash plains, rivers and rapidly changing canyons.",
+    "Several central volcanoes lie beneath the great ice cap at the heart of this protected area.",
+    "In south-eastern Iceland, find the national park where a vast ice cap and active volcanism meet."
+  ],
+  "identity": "Vatnajökull National Park",
+  "targetLabel": "Vatnajökull National Park — designated property reference point",
+  "modernContext": "UNESCO’s published representative point for the designated property, not its uniquely correct centre.",
+  "explanation": "This landscape makes the interaction of ice, eruptions and flowing water visible. A jökulhlaup is a sudden glacial outburst flood, and the source describes eruption-related examples here; the clue does not claim that every such flood everywhere has the same cause. The point represents the designated park.",
+  "dateLabel": "First UNESCO World Heritage inscription year, not the age of the natural feature",
+  "cultures": [
+    "Physical geography, conservation and scientific study"
+  ],
+  "uncertainty": "Source-checked authoring only; independent factual, English and clue-order review is pending. The point represents the designated property, not every part of a large natural feature. Source descriptions and dynamic environmental conditions may differ in date or extent; precise current measurements are not implied."
+}

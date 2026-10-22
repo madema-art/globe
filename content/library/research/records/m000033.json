@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "m000033",
+  "category": "natural-feature",
+  "subjectType": "自然地形と保護景観",
+  "authoredLocale": "ja",
+  "clues": [
+    {
+      "text": "山岳の保護景観は、人のいない荒野ではなく、生きた文化的伝統のある土地でもある。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "世界遺産の解説では、ユキヒョウやレッサーパンダが希少な動物として挙げられている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "非常に高い峰々の周囲で、氷河と深い谷が景観を形づくる。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "ネパールのこのヒマラヤ山岳保護区は、シェルパの人々の暮らしと深く結びついている。",
+      "sourceIds": [
+        "r1"
+      ]
+    },
+    {
+      "text": "世界最高峰エベレストを中心に広がる、ネパール側の国立公園を探そう。",
+      "sourceIds": [
+        "r1"
+      ]
+    }
+  ],
+  "answer": {
+    "identity": "サガルマータ国立公園",
+    "target": {
+      "kind": "point",
+      "referenceFrame": "WGS84",
+      "latitude": 27.96528,
+      "longitude": 86.91306,
+      "label": "サガルマータ国立公園の登録基準点",
+      "modernContext": "ユネスコが公表する登録範囲の代表基準点。範囲全体の唯一の中心ではない。"
+    },
+    "explanation": "生態、氷河、シェルパ文化を通じて山岳保護景観をたどる。出典にある古い山頂標高の数値は用いず、標高測定値の違いを問題にはしない。公園の公表基準点を用い、登山上の目的地を指定するものではない。",
+    "sourceIds": [
+      "r1"
+    ]
+  },
+  "history": {
+    "date": {
+      "kind": "year",
+      "label": "ユネスコ世界遺産への初回登録年（地形の形成年代ではない）",
+      "at": {
+        "year": 1979,
+        "era": "CE",
+        "approximate": false
+      }
+    },
+    "cultures": [
+      "自然地理・保全・科学研究"
+    ]
+  },
+  "sources": [
+    {
+      "id": "r1",
+      "url": "https://whc.unesco.org/en/list/120/",
+      "title": "Sagarmatha National Park — World Heritage listing",
+      "publisher": "UNESCO World Heritage Centre",
+      "accessedOn": "2026-10-22",
+      "notes": "Listing description and statement of outstanding universal value support the linked clues and explanation. Published property reference N27 57 55.008 E86 54 47.016 converted from degrees/minutes/seconds to WGS84 decimal degrees; a representative property point, not a surveyed entrance, summit, moving ice front or unique centre. Historical date below is the first UNESCO inscription year, not formation time."
+    }
+  ],
+  "uncertainty": "出典を確認した執筆段階であり、事実・英語・手がかり順序の独立した査読は未実施。座標は登録された範囲の代表点で、大きな自然地形の全域を一点とみなさない。資料の時点や範囲と変化する現況は異なる場合があり、現在の厳密な測定値を断定しない。",
+  "editorial": {
+    "clueOrderReviewed": true,
+    "reviewStatus": "source-checked",
+    "notes": "公開された機関資料と代表座標を確認し、五つの異なる手がかりを個別に執筆。独立査読・公開承認は未実施。"
+  },
+  "relatedIds": [],
+  "library": {
+    "contentVersion": 1,
+    "kind": "geography",
+    "region": "south-asia",
+    "era": "not-applicable",
+    "countryGroup": "g045",
+    "destinationKey": "d-m000033",
+    "cultures": [
+      "natural-science"
+    ],
+    "themes": [
+      "mountains",
+      "glaciers",
+      "culture"
+    ],
+    "subjectKeys": [
+      "s-m000033"
+    ],
+    "learningObjective": "地形・生態・人との関係を異なる手がかりから結びつけ、大きな自然地域の代表点と範囲の違いを学ぶ。",
+    "aliases": [],
+    "relatedPlaces": [],
+    "publication": {
+      "approved": false,
+      "reviewer": null,
+      "approvedDigest": null
+    }
+  }
+}
