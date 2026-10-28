@@ -38,7 +38,8 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 10);
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const layers = { clouds: true, atmosphere: true, nightLights: true, relief: true, ocean: true, realSun: false, borders: true, rivers: true, labels: true, landmarks: true };
+  // Clouds are off by default for now (owner request, 2026-10-28); Explore's developer panel can still turn them on.
+  const layers = { clouds: false, atmosphere: true, nightLights: true, relief: true, ocean: true, realSun: false, borders: true, rivers: true, labels: true, landmarks: true };
   const sunDir = new THREE.Vector3(1, 0, 0);
   const sunColor = new THREE.Color(1.0, 0.97, 0.92).multiplyScalar(1.9);
   const blank = new THREE.DataTexture(new Uint8Array([0, 128, 128, 255]), 1, 1);
@@ -468,7 +469,7 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   window.addEventListener('resize', resize);
   resize();
   controls.altitude = fitAltitude(3.3);
-  setLayer('clouds', true);
+  setLayer('clouds', layers.clouds);
 
   return {
     ready, render, setMode, setLayer, flyTo, clearTarget, state, controls, pickSurface, pickGeodetic,
