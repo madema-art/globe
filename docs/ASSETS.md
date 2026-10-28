@@ -44,3 +44,7 @@ Record a stable ID, author/provider, original URL, download date, dataset versio
 | Interface typefaces | Bodoni Moda, Newsreader, Instrument Sans (Fontsource 5.3.0 builds) → `src/ui/fonts/` | SIL Open Font License 1.1; licence texts bundled |
 
 The owner must select the project source license. Do not add an assumed license or fabricated geographical assets.
+
+## Strategy land mask (2026-10-28)
+
+`public/strategy/v1/landmask-4096x2048.rle` (114 KB): a 1-bit land/water mask in a run-length format ("GLM1"), equirectangular with row 0 at 90°N, derived from the Earth V1 surface texture's water fraction (Natural Earth 10m land and lakes, public domain) by `pipeline/strategy/landmask.py`. Used only by the strategy prototype's movement rule, and loaded only when that mode opens.

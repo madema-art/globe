@@ -18,6 +18,11 @@ uniform float uCloudOffset;  // cloud longitude drift in UV units
 uniform vec2 uCloudRange;    // coverage remap (low, high)
 uniform float uCloudHeight;  // shell height above the surface, Earth radii
 uniform float uExposure;
+// Strategy map (the physical Earth stays fully visible; only human information is drawn on it).
+uniform float uStrategy;       // 0 off, 1 on
+uniform sampler2D uTerritory;  // R: owned by the player (equal-angle grid, row 0 = south, bilinear)
+uniform vec4 uObservers[4];    // xyz: Earth-fixed unit normal, w: observation radius (radians)
+uniform int uObserverCount;
 
 #include <common_earth>
 
@@ -30,6 +35,42 @@ float ggx(float nh, float roughness) {
   float a2 = roughness * roughness * roughness * roughness;
   float d = nh * nh * (a2 - 1.0) + 1.0;
   return a2 / (PI * d * d);
+}
+
+// Small value noise so territory edges follow natural, irregular lines instead of the gameplay grid.
+float hash3(vec3 p) { p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
+float noise3(vec3 x) {
+  vec3 i = floor(x), f = fract(x);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(mix(hash3(i), hash3(i + vec3(1, 0, 0)), f.x), mix(hash3(i + vec3(0, 1, 0)), hash3(i + vec3(1, 1, 0)), f.x), f.y),
+             mix(mix(hash3(i + vec3(0, 0, 1)), hash3(i + vec3(1, 0, 1)), f.x), mix(hash3(i + vec3(0, 1, 1)), hash3(i + vec3(1, 1, 1)), f.x), f.y), f.z);
+}
+
+// Territory: a warm wash inside and a thin brass boundary engraved on the ground. Observation: a faint
+// ivory circle around each observer marking what is seen right now. Both are lit by the same sun.
+vec3 strategyMarks(vec3 color, vec3 n, vec2 uv, float light) {
+  // Derivatives must stay in uniform control flow, so the territory field is evaluated everywhere.
+  float t = texture(uTerritory, uv).r;
+  {
+    float wobble = (noise3(n * 1400.0) - 0.5) * 0.22 + (noise3(n * 4200.0) - 0.5) * 0.08;
+    float field = t + wobble * smoothstep(0.0, 0.3, t) * smoothstep(1.0, 0.7, t);
+    float w = max(fwidth(field), 1e-4);
+    float inside = smoothstep(0.5 - w, 0.5 + w, field);
+    float line = 1.0 - smoothstep(0.0, 1.4 * w, abs(field - 0.5));
+    vec3 brass = vec3(0.62, 0.40, 0.12);
+    color = mix(color, color * vec3(1.16, 1.06, 0.84) + brass * 0.015 * light, inside * 0.55);
+    color = mix(color, brass * (0.35 + 0.65 * light), line * 0.9);
+  }
+  for (int i = 0; i < 4; i++) {
+    if (i >= uObserverCount) break;
+    float d = acos(clamp(dot(n, uObservers[i].xyz), -1.0, 1.0));
+    float w = max(fwidth(d), 1e-6);
+    float ring = 1.0 - smoothstep(0.0, 1.2 * w, abs(d - uObservers[i].w));
+    float inner = 1.0 - smoothstep(uObservers[i].w - 6.0 * w, uObservers[i].w, d);
+    color = mix(color, color * 1.06, inner * 0.5);
+    color = mix(color, vec3(0.86, 0.82, 0.70) * (0.3 + 0.7 * light), ring * 0.45);
+  }
+  return color;
 }
 
 void main() {
@@ -83,6 +124,8 @@ void main() {
   float clouds = uClouds * cloudCover(sampleEquirect(uAtmos, g, uCloudOffset).r);
   float lights = pow(atmos.g, 1.8) * (1.0 - smoothstep(-0.18, 0.02, geoNL)) * (1.0 - 0.75 * clouds);
   color += uNightLights * lights * vec3(1.0, 0.72, 0.42) * 2.2;
+
+  if (uStrategy > 0.5) color = strategyMarks(color, n, g.uv, max(daylight, 0.25));
 
   gl_FragColor = vec4(color * uExposure, 1.0);
   #include <tonemapping_fragment>

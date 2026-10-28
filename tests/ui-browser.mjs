@@ -50,14 +50,17 @@ try {
   await page.keyboard.press('ArrowDown');
   assert.equal(await focused(), 'earth-button');
   await tap(13); // D-pad down
+  assert.equal(await focused(), 'strategy-button');
+  await tap(13);
   assert.equal(await focused(), 'about-button');
   await tap(12); // D-pad up
-  await tap(12);
+  await tap(12); await tap(12);
   assert.equal(await focused(), 'mystery-button');
   assert.ok(await page.evaluate(() => document.querySelectorAll('#bezel g[opacity]')[0].getAttribute('opacity') > 0), 'bezel visible on the title');
   await page.screenshot({ path: path.join(results, 'ui-title.png'), timeout: 120_000 });
 
   // About via keyboard Enter, back with controller B.
+  await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('Enter');
@@ -67,7 +70,7 @@ try {
   assert.equal(await focused(), 'about-button', 'focus returns to the entry that opened the page');
 
   // Begin a mystery with controller A.
-  await tap(12); await tap(12);
+  await tap(12); await tap(12); await tap(12);
   assert.equal(await focused(), 'mystery-button');
   await tap(0);
   assert.equal(await mode(), 'mystery');

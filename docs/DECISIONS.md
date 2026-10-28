@@ -59,6 +59,14 @@ The owner played Earth V1 and approved it, and its general technical architectur
 - Ambient title/idle redraws are paced on devices where a frame is very expensive (software rendering), so the page stays responsive. This was the root cause of the PR #6 CI poll timeout.
 - Browser storage is per origin; the preview normally keeps port 8775. A fallback port shows a recovery notice. A service-side store is a possible Codex follow-up.
 
+## 2026-10-28 — Strategy prototype, Milestone 1 (owner; implemented by Claude)
+
+- A separate **Strategy Prototype** mode starting in 6000 BCE with one Neolithic village in the lower Jordan Valley, one exploring party, turns of 50 years (prototype), gradual territory, and save/resume. Mystery and Explore are unchanged.
+- **The physical Earth is always visible; human knowledge is revealed gradually.** No terrain-concealing fog of war. Existence (`state.world`) and knowledge (`state.knowledge[player]`) are separate; knowledge can come from observation or reports and can be uncertain or out of date. Camera movement never reveals information.
+- Strategy mode is **keyboard and mouse only**: WASD navigation, Q/E roll, drag, wheel, double-click centring, click selection, an explicit move command, Enter to end the turn, I (information) and U (settlement) screens, Esc closing screens before leaving. Clean default interface.
+- Controller in Explore and mysteries: **LB/RB roll** (smooth while held); the right stick is unassigned; the left stick, triggers and right-stick click are unchanged.
+- All strategy values and places are labelled prototype data; the rules are replaceable modules for Codex's permanent simulation. See STRATEGY_PROTOTYPE.md.
+
 ## Pending owner/Claude decisions
 
 Initial content review and approval; border/name policy; rendering budgets and reference hardware; project source license; future feedback design; Git LFS policy. No custom cube-sphere or enormous tile architecture selected.

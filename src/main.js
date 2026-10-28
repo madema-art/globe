@@ -9,6 +9,7 @@ import { createFocusNavigator } from './ui/focus.js';
 import { createUiInput } from './ui/ui-input.js';
 import { createMysteryScreen } from './ui/mystery/mystery-screen.js';
 import { createLibraryHost } from './app/library-host.js';
+import { createStrategyScreen } from './strategy-view/strategy-screen.js';
 import { createConfirmationInput, XBOX_X_BINDING } from './game/education/index.js';
 
 // Screens: 'title' | 'vision' (about) | 'explore' (developer exploration) | 'mystery'.
@@ -25,30 +26,34 @@ const watcher = createVersionWatcher({
   reload: () => window.location.reload(),
 });
 const $ = (selector) => document.querySelector(selector);
-const screens = { title: $('#title'), vision: $('#vision'), explore: $('#explore'), mystery: $('#mystery') };
+const screens = { title: $('#title'), vision: $('#vision'), explore: $('#explore'), mystery: $('#mystery'), strategy: $('#strategy') };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const focus = createFocusNavigator();
 let earth = null;
 let panel = null;
 let mystery = null;
+let strategy = null;
 let bezel = null;
 let lastTitleFocus = null;
 
 function navigate(next) {
   const previous = mode;
   if (previous === 'mystery' && next !== 'mystery') mystery?.close();
+  if (previous === 'strategy' && next !== 'strategy') strategy?.close();
   mode = next;
   for (const [name, section] of Object.entries(screens)) section.hidden = name !== next;
   document.body.dataset.screen = next;
-  earth?.setMode(next === 'explore' ? 'explore' : next === 'mystery' ? 'mystery' : 'title');
+  earth?.setMode(['explore', 'mystery', 'strategy'].includes(next) ? next : 'title');
   if (next === 'mystery') void mystery.open();
+  if (next === 'strategy') void strategy.open();
   const preferred = { title: previous === 'vision' ? $('#about-button') : lastTitleFocus, vision: $('#back-button'), explore: $('#explore-back') }[next];
-  if (next !== 'mystery') focus.enter(screens[next], preferred);
+  if (next !== 'mystery' && next !== 'strategy') focus.enter(screens[next], preferred);
   if (next === 'title') watcher.titleEntered();
 }
 
 $('#mystery-button').onclick = () => { lastTitleFocus = $('#mystery-button'); navigate('mystery'); };
 $('#earth-button').onclick = () => { lastTitleFocus = $('#earth-button'); navigate('explore'); };
+$('#strategy-button').onclick = () => { lastTitleFocus = $('#strategy-button'); navigate('strategy'); };
 $('#about-button').onclick = () => navigate('vision');
 $('#back-button').onclick = () => navigate('title');
 $('#explore-back').onclick = () => navigate('title');
@@ -56,6 +61,7 @@ $('#explore-back').onclick = () => navigate('title');
 // Semantic UI actions from keyboard and controller (see src/ui/ui-input.js).
 function onAction(action, meta) {
   if (mode === 'mystery') return mystery.handle(action, meta);
+  if (mode === 'strategy') return meta?.source === 'gamepad' ? false : strategy.handle(action, meta); // keyboard and mouse only
   if (action === 'back') { if (mode !== 'title') { navigate('title'); return true; } return false; }
   if (mode === 'explore') return action === 'activate' ? focus.activate() : false; // arrows turn the globe here
   if (action === 'up' || action === 'left') return focus.move(screens[mode], 'previous');
@@ -113,6 +119,7 @@ try {
       root: screens.mystery, earth, host, onLeave: () => navigate('title'),
       confirmGlyph: { gamepad: XBOX_X_BINDING.buttonIndex === 2 ? 'X' : '?', keyboard: 'X', title: XBOX_X_BINDING.label },
     });
+    strategy = createStrategyScreen({ root: screens.strategy, earth, canvas, onLeave: () => navigate('title') });
     bezel = createBezel($('#bezel'), { reduceMotion: () => reduceMotion.matches });
     // Map labels keep clear of interface text on the current screen.
     earth.setLabelExclusions(() => [...document.querySelectorAll('.masthead .wordmark, .explore-top, .explore-panel, .ledger, .answer, .actions, .aim')]
@@ -132,11 +139,13 @@ try {
         updateLeaders(p);
         if (mode === 'explore') panel.update();
         if (mode === 'mystery') mystery.update();
+        if (mode === 'strategy') strategy.update();
       },
     };
     earth.ready.then(() => {
       $('#mystery-button').disabled = false;
       $('#earth-button').disabled = false;
+      $('#strategy-button').disabled = false;
       bezel.setVisible(true);
       // Start on the first entry unless the player already moved focus while the Earth was loading.
       if (mode === 'title' && !lastTitleFocus && document.activeElement === $('#about-button')) focus.enter(screens.title, $('#mystery-button'));
@@ -161,7 +170,7 @@ focus.enter(screens.title);
 // Test/diagnostic snapshot. The mystery part carries lifecycle facts only (no clues, answers or coordinates).
 window.render_game_to_text = () => JSON.stringify({
   mode, build: __BUILD_ID__, pendingUpdate: watcher.pending, gameplayAvailable: Boolean(mystery),
-  contentChannel: __CONTENT_CHANNEL__, mystery: mystery?.state() ?? null, earth: earth?.state() ?? null,
+  contentChannel: __CONTENT_CHANNEL__, mystery: mystery?.state() ?? null, strategy: strategy?.state() ?? null, earth: earth?.state() ?? null,
 });
 // Browser storage belongs to one origin (host and port). The launcher prefers its first port; if another
 // program held it, progress saved under the usual address is not visible here (it is not lost).

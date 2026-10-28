@@ -8,6 +8,7 @@ import atmosphereFrag from '../shaders/earth/atmosphere.frag?raw';
 import { POLAR_RATIO, geodeticToNormal, geodeticToPosition, positionToGeodetic, subsolarPoint } from '../geography/coordinates.js';
 import { createGlobeControls } from './globe-controls.js';
 import { createGamepadNavigation } from './gamepad-navigation.js';
+import { createKeyboardNavigation } from './keyboard-navigation.js';
 import { chooseTier, disposeEarthTier, earthAssetBase, loadEarthManifest, loadEarthTier } from './assets.js';
 import { createOverlayManager } from './overlays/overlay-manager.js';
 import { createPolylineLayer } from './overlays/polyline-layer.js';
@@ -68,6 +69,8 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
       uDay: { value: blank }, uSurface: { value: blank },
       uSlopeMax: { value: 0.12 }, uRelief: { value: 9 }, uOcean: { value: 1 }, uNightLights: { value: 1 },
       uCloudShadow: { value: 0.55 }, uCloudHeight: { value: CLOUD_HEIGHT },
+      uStrategy: { value: 0 }, uTerritory: { value: blank }, uObserverCount: { value: 0 },
+      uObservers: { value: [0, 1, 2, 3].map(() => new THREE.Vector4()) },
     },
   });
   const earth = new THREE.Mesh(surfaceGeometry, surfaceMaterial);
@@ -134,10 +137,14 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   });
 
   // Presentations: 'title' (backdrop), 'explore' (development/inspection, dev markers allowed),
-  // 'mystery' (gameplay: interactive, reticle, never a marker unless the host reveals an answer).
+  // 'mystery' (gameplay: interactive, reticle, never a marker unless the host reveals an answer),
+  // 'strategy' (the strategy map: interactive, closer zoom, no modern human overlays; the physical Earth stays
+  // fully visible and the host draws only what the player's people know).
   let mode = 'title';
   let sideFraming = false; // reveal screens frame the globe right of the text, like the title
-  const gamepad = createGamepadNavigation(controls, { isEnabled: () => controls.enabled });
+  // The strategy map is keyboard-and-mouse only: the gamepad drives the camera in the other presentations.
+  const gamepad = createGamepadNavigation(controls, { isEnabled: () => controls.enabled && mode !== 'strategy' });
+  const keyboard = createKeyboardNavigation(controls);
   let gamepadSnapshot = null;
   const reticle = document.createElement('div');
   reticle.className = 'globe-reticle';
@@ -260,14 +267,34 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   }
   const ready = load();
 
+  // Modern human information (borders, place names, monuments, city lights) is not part of a 6000 BCE world;
+  // the strategy map hides it and restores the player's layer choices afterwards. Rivers are physical, so stay.
+  const STRATEGY_LAYERS = { borders: false, labels: false, landmarks: false, nightLights: false };
+  let layersBeforeStrategy = null;
   function setMode(next) {
-    if (!['title', 'explore', 'mystery'].includes(next)) throw new RangeError(`Unknown Earth presentation ${next}`);
+    if (!['title', 'explore', 'mystery', 'strategy'].includes(next)) throw new RangeError(`Unknown Earth presentation ${next}`);
     const interactive = next !== 'title';
+    if (next === 'strategy' && mode !== 'strategy') {
+      layersBeforeStrategy = Object.fromEntries(Object.keys(STRATEGY_LAYERS).map((k) => [k, layers[k]]));
+      for (const [k, v] of Object.entries(STRATEGY_LAYERS)) setLayer(k, v);
+      controls.setAltitudeRange(0.05);
+      controls.keyboardEnabled = false;
+      keyboard.enabled = true;
+      surfaceMaterial.uniforms.uStrategy.value = 1;
+    } else if (next !== 'strategy' && mode === 'strategy') {
+      for (const [k, v] of Object.entries(layersBeforeStrategy ?? {})) setLayer(k, v);
+      layersBeforeStrategy = null;
+      controls.setAltitudeRange(0.2);
+      controls.keyboardEnabled = true;
+      keyboard.enabled = false;
+      surfaceMaterial.uniforms.uStrategy.value = 0;
+      setObservers([]);
+    }
     mode = next;
     controls.enabled = interactive;
     canvas.classList.toggle('interactive', interactive);
     sideFraming = false;
-    reticle.hidden = !interactive;
+    reticle.hidden = !interactive || next === 'strategy';
     gamepad.reset();
     if (next === 'explore') controls.zoomTo(controls.planetFitAltitude());
     else if (next === 'title') { clearTarget(); controls.zoomTo(fitAltitude(3.3)); }
@@ -305,8 +332,105 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   /** 'center' (aiming: reticle at the screen centre) or 'side' (reading: globe right of the text, no reticle). */
   function setFraming(name) {
     sideFraming = name === 'side';
-    reticle.hidden = mode === 'title' || sideFraming;
+    reticle.hidden = mode === 'title' || mode === 'strategy' || sideFraming;
     needsRender = true;
+  }
+
+  // ---------------------------------------------------------------- strategy map hooks (no game rules here)
+  let territoryTexture = null;
+  /** Owned-territory mask on the equal-angle grid (one byte per cell, row 0 = south), or null to clear. */
+  function setTerritory(mask, cols, rows) {
+    if (!mask) { surfaceMaterial.uniforms.uTerritory.value = blank; needsRender = true; return; }
+    if (!territoryTexture || territoryTexture.image.width !== cols || territoryTexture.image.height !== rows) {
+      territoryTexture?.dispose();
+      territoryTexture = new THREE.DataTexture(mask, cols, rows, THREE.RedFormat, THREE.UnsignedByteType);
+      territoryTexture.magFilter = territoryTexture.minFilter = THREE.LinearFilter;
+      territoryTexture.wrapS = THREE.RepeatWrapping;
+      territoryTexture.generateMipmaps = false;
+    } else territoryTexture.image.data = mask;
+    territoryTexture.needsUpdate = true;
+    surfaceMaterial.uniforms.uTerritory.value = territoryTexture;
+    needsRender = true;
+  }
+
+  /** Observation circles: up to four { lat, lon, km } drawn faintly on the ground. */
+  function setObservers(list) {
+    const slots = surfaceMaterial.uniforms.uObservers.value;
+    const shown = list.slice(0, slots.length);
+    shown.forEach((o, i) => { const n = geodeticToNormal(o.lat, o.lon); slots[i].set(n.x, n.y, n.z, o.km / 6371.0088); });
+    surfaceMaterial.uniforms.uObserverCount.value = shown.length;
+    needsRender = true;
+  }
+
+  // Objects anchored to the surface at a WGS84 point, upright (+Y = local up, -Z = north), kept at a constant
+  // on-screen size so miniatures stay readable at every zoom. Hidden by the Earth itself when on the far side.
+  const anchors = new Set();
+  const basis = new THREE.Matrix4();
+  const up = new THREE.Vector3(), east = new THREE.Vector3(), south = new THREE.Vector3();
+  function placeAnchor(a) {
+    const p = geodeticToPosition(a.lat, a.lon, 0);
+    const n = geodeticToNormal(a.lat, a.lon);
+    up.set(n.x, n.y, n.z);
+    east.set(0, 1, 0).cross(up);
+    if (east.lengthSq() < 1e-12) east.set(0, 0, -1);
+    east.normalize();
+    south.crossVectors(east, up).normalize();
+    basis.makeBasis(east, up, south);
+    a.object.quaternion.setFromRotationMatrix(basis);
+    a.object.position.set(p.x, p.y, p.z).addScaledVector(up, a.lift);
+    a.ground.copy(a.object.position);
+    needsRender = true;
+  }
+  // popUp: like the landmark miniatures, seen from about 30° above its horizon whatever the camera angle.
+  function anchor(object, { lat, lon, pixelSize = 40, lift = 0.00002, popUp = false }) {
+    const a = {
+      object, lat, lon, pixelSize, lift, popUp, ground: new THREE.Vector3(),
+      setPosition(nextLat, nextLon) { a.lat = nextLat; a.lon = nextLon; placeAnchor(a); },
+      setVisible(on) { object.visible = on; needsRender = true; },
+      remove() { globe.remove(object); anchors.delete(a); needsRender = true; },
+    };
+    globe.add(object);
+    anchors.add(a);
+    placeAnchor(a);
+    return a;
+  }
+  const popBasis = new THREE.Matrix4();
+  const camUp = new THREE.Vector3(), camBack = new THREE.Vector3(), popUpAxis = new THREE.Vector3(), popFwd = new THREE.Vector3(), popSide = new THREE.Vector3();
+  const POP_ELEVATION = THREE.MathUtils.degToRad(30);
+  function scaleAnchors() {
+    const perPixel = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / height;
+    camUp.set(0, 1, 0).applyQuaternion(camera.quaternion);
+    camBack.set(0, 0, 1).applyQuaternion(camera.quaternion);
+    popUpAxis.copy(camUp).multiplyScalar(Math.cos(POP_ELEVATION)).addScaledVector(camBack, Math.sin(POP_ELEVATION)).normalize();
+    popFwd.copy(camBack).addScaledVector(popUpAxis, -camBack.dot(popUpAxis)).normalize();
+    popSide.crossVectors(popUpAxis, popFwd);
+    popBasis.makeBasis(popSide, popUpAxis, popFwd);
+    for (const a of anchors) {
+      const size = camera.position.distanceTo(a.ground) * perPixel * a.pixelSize;
+      a.object.scale.setScalar(size);
+      if (!a.popUp) continue;
+      a.object.quaternion.setFromRotationMatrix(popBasis);
+      // Slide toward the viewer along the line of sight: same place on screen, clear of the ground behind it.
+      a.object.position.copy(a.ground).addScaledVector(tmp.copy(camera.position).sub(a.ground).normalize(), size * 0.8);
+    }
+  }
+
+  /** Smoothly centre a WGS84 point, keeping the current zoom (strategy double-click). */
+  function centerOn(lat, lon) { return controls.flyTo(lat, lon, { altitude: controls.altitude, duration: reduceMotion.matches ? 0.01 : 0.7 }); }
+
+  /** Add an Earth-fixed object (e.g. route lines) to the globe; returns a function that removes it. */
+  function attach(object) { globe.add(object); needsRender = true; return () => { globe.remove(object); needsRender = true; }; }
+
+  /** Screen position (CSS px) of a WGS84 point and whether it faces the camera. */
+  const projectTmp = new THREE.Vector3();
+  function projectGeo(lat, lon) {
+    const p = geodeticToPosition(lat, lon, 0);
+    const n = geodeticToNormal(lat, lon);
+    projectTmp.set(p.x, p.y, p.z);
+    const facing = (camera.position.x - p.x) * n.x + (camera.position.y - p.y) * n.y + (camera.position.z - p.z) * n.z;
+    projectTmp.project(camera);
+    const rect = canvas.getBoundingClientRect();
+    return { x: rect.left + (projectTmp.x + 1) / 2 * rect.width, y: rect.top + (1 - projectTmp.y) / 2 * rect.height, front: facing > 0 && projectTmp.z < 1 };
   }
 
   /** Feed the host's per-frame navigator.getGamepads() snapshot (shared with other input consumers). */
@@ -409,6 +533,7 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
     const steps = Math.min(600, Math.max(1, Math.ceil(dt / 0.05)));
     for (let i = 0; i < steps; i++) {
       if (gamepadSnapshot && gamepad.update(dt / steps, gamepadSnapshot)) needsRender = true;
+      if (keyboard.enabled && keyboard.update(dt / steps)) needsRender = true;
       if (controls.update(dt / steps)) needsRender = true;
     }
 
@@ -436,6 +561,7 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
     const ambient = mode === 'title' || !needsRender; // title spin, or the idle cloud-drift refresh
     if (paced && ambient && frameCost > 50 && sinceRender < Math.min(4, (frameCost / 1000) * 3)) return false;
     renderedLastCall = true;
+    if (anchors.size) scaleAnchors();
     updateSun();
     renderer.render(scene, camera);
     needsRender = false;
@@ -474,6 +600,7 @@ export function createEarthView(canvas, { onStatus = () => {} } = {}) {
   return {
     ready, render, setMode, setLayer, flyTo, clearTarget, state, controls, pickSurface, pickGeodetic,
     pickCenter, navigateTo, resetToPlanetView, pollGamepads, gamepad, overlays, setSelectionMarker, projection, setFraming, setLabelPolicy,
+    setTerritory, setObservers, anchor, attach, projectGeo, centerOn, keyboard,
     get labelPolicy() { return labelPolicy; },
     /** Interface areas labels must avoid: () => Array<[left, top, right, bottom]> in CSS px. */
     setLabelExclusions(fn) { labelExclusions = fn; labelContext.dirty = true; },

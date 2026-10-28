@@ -2,7 +2,7 @@
 
 The working title is HISTOGRAPHY, with no tagline or subtitle. Repository names, package identity and infrastructure paths remain `globe` for compatibility.
 
-This checkout is **Globe Preview**, the shared reviewed development channel at `D:\globe-preview`, tracking `origin/preview` on ports 8775–8784. It carries the **HISTOGRAPHY first playable**: double-click **Globe Preview** on the Windows Desktop, then choose **Begin a mystery** (or **Explore the Earth**). See [docs/FIRST_PLAYABLE.md](docs/FIRST_PLAYABLE.md). Stable **Globe** stays at `D:\globe` on `origin/main`. See [permanent launchers and preview publishing](docs/PREVIEW_WORKFLOW.md).
+This checkout is **Globe Preview**, the shared reviewed development channel at `D:\globe-preview`, tracking `origin/preview` on ports 8775–8784. It carries the **HISTOGRAPHY first playable**: double-click **Globe Preview** on the Windows Desktop, then choose **Begin a mystery**, **Explore the Earth** or **Strategy Prototype** ([strategy prototype](docs/STRATEGY_PROTOTYPE.md)). See [docs/FIRST_PLAYABLE.md](docs/FIRST_PLAYABLE.md). Stable **Globe** stays at `D:\globe` on `origin/main`. See [permanent launchers and preview publishing](docs/PREVIEW_WORKFLOW.md).
 
 A geography game inspired by Topocopter. Players will rotate a 3D Earth beneath the camera, zoom toward destinations, and locate countries, cities, and geographical features. There is no helicopter.
 

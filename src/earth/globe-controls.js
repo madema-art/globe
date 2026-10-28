@@ -14,8 +14,8 @@ import { geodeticToPosition } from '../geography/coordinates.js';
 const Y = new THREE.Vector3(0, 1, 0);
 
 export function createGlobeControls(camera, element, options = {}) {
-  const minAltitude = options.minAltitude ?? 0.2;   // Earth radii above the surface
-  const maxAltitude = options.maxAltitude ?? 6;
+  let minAltitude = options.minAltitude ?? 0.2;   // Earth radii above the surface (presentations may change it)
+  let maxAltitude = options.maxAltitude ?? 6;
   const reduceMotion = options.reduceMotion ?? (() => false);
 
   const orientation = new THREE.Quaternion();
@@ -195,8 +195,9 @@ export function createGlobeControls(camera, element, options = {}) {
     lastInteraction = performance.now();
   }
 
+  let keyboardEnabled = true; // presentations with their own key scheme (the strategy map) switch this off
   function onKeyDown(event) {
-    if (!enabled || event.target.closest?.('input, select, textarea')) return;
+    if (!enabled || !keyboardEnabled || event.target.closest?.('input, select, textarea')) return;
     const step = 0.06 * Math.min(1, altitude);
     const keys = { ArrowLeft: [0, -step], ArrowRight: [0, step], ArrowUp: [-step, 0], ArrowDown: [step, 0] };
     if (event.ctrlKey || event.altKey || event.metaKey) return;
@@ -332,6 +333,15 @@ export function createGlobeControls(camera, element, options = {}) {
     leveling,
     get rollHeld() { return rollHeld; },
     get minAltitude() { return minAltitude; },
+    get keyboardEnabled() { return keyboardEnabled; },
+    set keyboardEnabled(on) { keyboardEnabled = Boolean(on); },
+    /** Change the zoom limits (e.g. the strategy map allows closer views); the current altitude is clamped. */
+    setAltitudeRange(min, max = maxAltitude) {
+      minAltitude = min; maxAltitude = max;
+      altitude = THREE.MathUtils.clamp(altitude, minAltitude, maxAltitude);
+      targetAltitude = THREE.MathUtils.clamp(targetAltitude, minAltitude, maxAltitude);
+      changed = true;
+    },
     get maxAltitude() { return maxAltitude; },
     get altitude() { return altitude; },
     set altitude(value) { altitude = targetAltitude = THREE.MathUtils.clamp(value, minAltitude, maxAltitude); changed = true; },
