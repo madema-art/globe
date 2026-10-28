@@ -18,6 +18,7 @@
     "test:earth": "node tests/earth-browser.mjs && node tests/earth-gamepad-browser.mjs",
     "test:ui": "node tests/ui-browser.mjs",
     "test:game": "node tests/game-browser.mjs",
+    "test:strategy": "node tests/strategy-browser.mjs",
     "content:validate": "node scripts/content/cli.mjs validate",
     "content:report": "node scripts/content/cli.mjs report",
     "content:publish": "node scripts/content/cli.mjs publish",

@@ -67,9 +67,22 @@ test('gamepad navigation: mapping, no drift, clean stop, triggers, disconnect, h
   assert.equal(controls.calls.yaw, stopped, 'complete stop after release');
   assert.deepEqual(nav.state().velocity, { yaw: 0, pitch: 0, roll: 0 });
 
+  // Right stick: deliberately unassigned (no rotation, roll or pitch from either axis).
+  const beforeRightStick = { ...controls.calls };
   run([padWith([0, 0, 1, 1])], 0.5);
-  assert.ok(controls.calls.roll > 0.3 && controls.calls.rollNotes > 0, 'right stick X rolls and marks a deliberate roll');
-  assert.ok(controls.calls.pitch < 0 && controls.calls.pitch > -(0.3 * 1.25 * 0.5 + 0.01), 'right stick Y is fine pitch, same sense as the left stick');
+  run([padWith([0, 0, -1, -1])], 0.5);
+  assert.deepEqual([controls.calls.yaw, controls.calls.pitch, controls.calls.roll], [beforeRightStick.yaw, beforeRightStick.pitch, beforeRightStick.roll], 'right stick moves nothing');
+  // Shoulder buttons: LB rolls the camera counterclockwise (globe turns clockwise on screen: roll > 0), RB the other way.
+  run([padWith([0, 0, 0, 0], { 4: 1 })], 0.5);
+  assert.ok(controls.calls.roll > 0.3 && controls.calls.rollNotes > 0, 'LB rolls smoothly and marks a deliberate roll');
+  run([padWith()], 0.5);
+  const rolled = controls.calls.roll;
+  run([padWith([0, 0, 0, 0], { 5: 1 })], 0.5);
+  assert.ok(controls.calls.roll < rolled - 0.3, 'RB rolls the other way');
+  run([padWith()], 0.5);
+  const settled = controls.calls.roll;
+  run([padWith()], 1);
+  assert.equal(controls.calls.roll, settled, 'releasing the shoulder button stops the roll');
 
   const zoomBefore = controls.calls.zoom;
   run([padWith([0, 0, 0, 0], { 7: 1 })], 1);
@@ -102,7 +115,7 @@ test('gamepad navigation: mapping, no drift, clean stop, triggers, disconnect, h
   const yaw0 = controls.calls.yaw;
   run([padWith([1, 0, 0, 0])], 0.3);
   assert.ok(controls.calls.yaw > yaw0, 'flipping the binding reverses direction');
-  assert.throws(() => nav.configure({ ...DEFAULT_GAMEPAD_BINDINGS, roll: {} }), TypeError);
+  assert.throws(() => nav.configure({ ...DEFAULT_GAMEPAD_BINDINGS, rollClockwise: {} }), TypeError);
 
   // Disabled (e.g. title screen): sticks do nothing.
   const quiet = createGamepadNavigation(fakeControls(), { isEnabled: () => false });

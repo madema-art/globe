@@ -60,7 +60,7 @@ body::before {
   background: linear-gradient(90deg, rgba(6, 12, 18, 0.72) 0%, rgba(6, 12, 18, 0.35) 30%, rgba(6, 12, 18, 0) 48%);
   opacity: 0; transition: opacity 0.8s var(--ease);
 }
-body[data-screen='title']::before, body[data-screen='vision']::before, body[data-screen='mystery']::before, body[data-screen='explore']::before { opacity: 1; }
+body[data-screen='title']::before, body[data-screen='vision']::before, body[data-screen='mystery']::before, body[data-screen='explore']::before, body[data-screen='strategy']::before { opacity: 1; }
 body.revealing::before { background: linear-gradient(90deg, rgba(6, 12, 18, 0.94) 0%, rgba(6, 12, 18, 0.9) 31%, rgba(6, 12, 18, 0.55) 40%, rgba(6, 12, 18, 0) 58%); }
 
 /* ---------------------------------------------------------------- masthead + colophon */
@@ -296,3 +296,145 @@ body[data-screen='mystery'] #credits { display: none; }
   .index-label::after, .index-label::before { display: none; }
   .title-wordmark { font-size: 7.6vw; letter-spacing: 0.07em; }
 }
+
+/* ---------------------------------------------------------------- strategy prototype */
+/* Keyboard-and-mouse strategy map. The Earth fills the screen; by default only the year, the turn, the current
+   selection and End turn are drawn, engraved at the edges. Everything else lives in the I and U screens. */
+body[data-screen='strategy'] #credits { display: none; }
+body[data-screen='strategy']::before {
+  background: radial-gradient(ellipse 120% 90% at 50% 50%, rgba(6, 12, 18, 0) 55%, rgba(6, 12, 18, 0.55) 100%);
+}
+body.strategy-sheet-open .strategy-markers, body.strategy-sheet-open #bezel { visibility: hidden; }
+#strategy[data-sheet='info'] :is(.almanac, .selection), #strategy[data-sheet='settlement'] :is(.almanac, .selection) { visibility: hidden; }
+#strategy { position: relative; padding: 0 var(--gutter); min-height: 0; }
+/* Shading that sits ABOVE the transparent globe canvas: soft top and bottom edges keep the year and controls
+   legible over bright deserts; an open screen veils the whole globe without a box. */
+#strategy::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; transition: background-color 0.35s var(--ease);
+  background: linear-gradient(180deg, rgba(6, 12, 18, 0.55) 0, rgba(6, 12, 18, 0) 190px, rgba(6, 12, 18, 0) calc(100% - 170px), rgba(6, 12, 18, 0.72) 100%);
+}
+#strategy:is([data-sheet='info'], [data-sheet='settlement'])::before { background-color: rgba(6, 12, 18, 0.86); }
+#strategy:is([data-sheet='info'], [data-sheet='settlement']) .dispatch { visibility: hidden; }
+#strategy :is(.almanac, .selection, .dispatch, .strategy-bar) { text-shadow: 0 1px 2px rgba(6, 12, 18, 0.9), 0 0 14px rgba(6, 12, 18, 0.75); }
+#strategy:not([data-phase='playing']) :is(.almanac, .selection, .dispatch, .strategy-bar) { display: none; }
+#strategy .strategy-lobby { position: absolute; left: var(--gutter); top: 50%; transform: translateY(-50%); max-width: min(36rem, 44vw); }
+
+.almanac { position: absolute; left: var(--gutter); top: 0.2rem; }
+.almanac p { margin: 0; }
+.almanac-year { font: 400 var(--step-3) / 1 var(--font-display); font-variation-settings: 'opsz' 96; color: var(--paper); }
+.almanac-detail { margin-top: 0.35rem !important; font: 500 var(--step--1) / 1.4 var(--font-ui); color: var(--paper-dim); font-variant-numeric: tabular-nums; }
+.almanac-period { font: italic 400 var(--step-0) / 1 var(--font-text); color: var(--brass-bright); margin-right: 0.6em; }
+
+/* The selection: one line of context at the lower left, plus Move for the party. */
+.selection { position: absolute; left: var(--gutter); bottom: 1.4rem; max-width: 28rem; }
+.selection p { margin: 0; }
+.selection-name { font: 400 var(--step-1) / 1.15 var(--font-display); font-variation-settings: 'opsz' 60; color: var(--paper); }
+.selection-detail { margin-top: 0.25rem !important; font: italic 400 var(--step-0) / 1.4 var(--font-text); color: var(--paper-dim); }
+.selection-move { margin-top: 0.5rem; }
+#strategy.commanding .selection-detail { color: var(--brass-bright); }
+#scene.commanding { cursor: crosshair; }
+
+/* Transient news, fading out after a few seconds. */
+.dispatch {
+  position: absolute; left: 50%; top: 1rem; transform: translateX(-50%); max-width: 34rem; margin: 0; text-align: center;
+  font: italic 400 var(--step-0) / 1.45 var(--font-text); color: var(--paper);
+  opacity: 0; transition: opacity 1.2s var(--ease);
+}
+.dispatch.is-shown { opacity: 1; transition-duration: 0.3s; }
+
+.strategy-bar { position: absolute; right: var(--gutter); bottom: 1.4rem; display: flex; align-items: baseline; gap: 1.6rem; }
+.strategy-bar .quiet-button { color: var(--paper); border-bottom-color: rgba(201, 163, 91, 0.3); }
+.strategy-bar .quiet-button.is-open { color: var(--brass-bright); border-bottom-color: var(--brass-bright); }
+.end-turn {
+  padding: 0.55rem 1.3rem; border: 1px solid rgba(201, 163, 91, 0.75); border-radius: 999px; background: rgba(6, 12, 18, 0.45); cursor: pointer;
+  font: 500 var(--step-0) / 1 var(--font-ui); color: var(--brass-bright); letter-spacing: 0.01em;
+}
+.end-turn:is(:hover, :focus-visible) { background: rgba(201, 163, 91, 0.16); outline: none; color: var(--paper); }
+
+/* The I and U screens: a reading sheet over the left of the globe (no box; the sky darkens behind it). */
+.strategy-sheet {
+  position: absolute; inset: 0.6rem var(--gutter) 4.6rem; overflow-y: auto; padding-right: 1rem; pointer-events: auto;
+  scrollbar-width: thin; scrollbar-color: rgba(201, 163, 91, 0.4) transparent; animation: screen-in 0.35s var(--ease) both;
+}
+.strategy-sheet:focus { outline: none; }
+.sheet-head { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; max-width: 74rem; padding-bottom: 0.9rem; border-bottom: 1px solid rgba(201, 163, 91, 0.35); }
+.sheet-kind { margin: 0 0 0.2rem; font: 500 var(--step--1) / 1.3 var(--font-ui); color: var(--verdigris); }
+.sheet-title { margin: 0; font: 400 var(--step-3) / 1 var(--font-display); font-variation-settings: 'opsz' 96; color: var(--paper); }
+.sheet-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.4rem 3rem; max-width: 74rem; padding-top: 1.2rem; }
+.sheet-section { min-width: 0; }
+.sheet-section.is-placeholder { opacity: 0.72; }
+.sheet-heading { margin: 0 0 0.6rem; font: italic 400 var(--step-1) / 1.2 var(--font-text); color: var(--brass-bright); }
+.sheet-section > .sheet-heading:not(:first-child) { margin-top: 1.4rem; }
+.sheet-text { margin: 0 0 0.8rem; font: 400 var(--step-0) / 1.55 var(--font-text); color: var(--paper); max-width: 34ch; }
+.sheet-note { margin: 0.6rem 0 0; font: italic 400 0.9375rem / 1.5 var(--font-text); color: var(--paper-faint); max-width: 38ch; }
+.sheet-facts, .sheet-keys { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1.2rem; margin: 0; }
+.sheet-facts dt, .sheet-keys dt { font: 500 var(--step--1) / 1.55 var(--font-ui); color: var(--paper-dim); }
+.sheet-facts dd, .sheet-keys dd { margin: 0; font: 400 var(--step-0) / 1.5 var(--font-text); font-variant-numeric: tabular-nums; }
+kbd { display: inline-grid; place-items: center; min-width: 1.55rem; height: 1.55rem; padding: 0 0.3rem; border: 1px solid rgba(201, 163, 91, 0.7); border-radius: 4px; font: 600 0.75rem / 1 var(--font-ui); color: var(--brass-bright); }
+.sheet-list, .settlement-list { margin: 0.4rem 0 0; padding: 0; list-style: none; font: 400 0.9375rem / 1.5 var(--font-text); color: var(--paper-dim); }
+.settlement-list { padding-top: 1.4rem; }
+.chronicle { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; font: 400 0.9375rem / 1.45 var(--font-text); color: var(--paper-dim); }
+.chronicle-year { font: 500 0.8125rem / 1 var(--font-ui); color: var(--brass); margin-right: 0.4em; font-variant-numeric: tabular-nums; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font: 400 0.9375rem / 1.3 var(--font-text); color: var(--paper-dim); }
+.legend li { display: flex; align-items: center; gap: 0.8rem; }
+.legend-symbol { position: relative; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--paper); }
+.legend-symbol.marker-observed { background: var(--paper); border-color: var(--brass); }
+.legend-symbol.marker-new { background: var(--brass-bright); }
+.legend-symbol.marker-known { border-color: rgba(236, 228, 207, 0.72); }
+.legend-symbol.marker-reported { border: 1.5px dashed rgba(226, 193, 127, 0.8); background: rgba(201, 163, 91, 0.06); }
+.legend-symbol.marker-outdated { border: 1.5px dashed rgba(236, 228, 207, 0.4); }
+.legend-line { flex: none; width: 14px; height: 0; border-top: 2px solid #c19a52; }
+.legend-line.legend-sight { border-top: 1px solid rgba(236, 228, 207, 0.6); }
+
+/* Map symbols anchored to the globe (positioned per frame by the strategy screen). */
+.strategy-markers { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.strategy-marker {
+  /* A 28 px hit area centred on the point; symbol and label are placed from its centre. */
+  position: absolute; left: 0; top: 0; width: 28px; height: 28px; margin: -14px 0 0 -14px; padding: 0; border: 0;
+  background: none; color: var(--paper); pointer-events: auto; cursor: pointer; will-change: transform;
+}
+.strategy-marker[hidden] { display: none; }
+.marker-symbol {
+  pointer-events: none;
+  position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%;
+  border: 1.5px solid var(--paper); background: rgba(6, 12, 18, 0.35); box-shadow: 0 0 0 1px rgba(6, 12, 18, 0.55);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.marker-label {
+  position: absolute; left: calc(50% + 12px); top: 50%; margin-top: -0.62em; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+  font: 500 13px / 1.2 var(--font-ui); color: rgba(236, 228, 207, 0.92);
+  text-shadow: 0 0 3px rgba(6, 12, 18, 0.95), 0 0 8px rgba(6, 12, 18, 0.6);
+}
+.strategy-marker.show-label .marker-label, .strategy-marker:is(:hover, :focus-visible) .marker-label { opacity: 1; }
+.strategy-marker:focus { outline: none; }
+.strategy-marker:is(:hover, :focus-visible) .marker-symbol, .strategy-marker.is-selected .marker-symbol { transform: scale(1.35); border-color: var(--brass-bright); }
+.strategy-marker.is-selected .marker-label { color: var(--brass-bright); }
+
+/* Your settlement: a brass-ringed point named in the atlas serif. At close range the miniature takes over. */
+.marker-settlement .marker-symbol { width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid var(--brass-bright); background: var(--paper); }
+.marker-settlement .marker-label { font: 500 15px / 1.2 var(--font-display); letter-spacing: 0.02em; left: calc(50% + 14px); }
+.marker-unit .marker-symbol { width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 2px; transform: rotate(45deg); border-color: var(--paper); background: var(--brass); }
+.marker-unit .marker-label { left: auto; right: calc(50% + 12px); }
+.marker-unit:is(:hover, :focus-visible) .marker-symbol, .marker-unit.is-selected .marker-symbol { transform: rotate(45deg) scale(1.35); }
+.strategy-marker.as-miniature .marker-symbol { opacity: 0; }
+.strategy-marker.as-miniature .marker-label { top: calc(50% + 26px); left: 50%; right: auto; transform: translateX(-50%); }
+.marker-unit.as-miniature .marker-label { top: calc(50% - 46px); }
+
+/* Knowledge states of other places. */
+.marker-observed .marker-symbol { background: var(--paper); border-color: var(--brass); }
+.marker-new .marker-symbol { background: var(--brass-bright); border-color: var(--paper); }
+.marker-new .marker-label { color: var(--brass-bright); }
+.marker-known .marker-symbol { background: transparent; border-color: rgba(236, 228, 207, 0.72); }
+.marker-known .marker-label { color: rgba(236, 228, 207, 0.72); }
+.marker-reported .marker-symbol, .marker-outdated .marker-symbol {
+  width: var(--uncertainty, 18px); height: var(--uncertainty, 18px); margin: calc(var(--uncertainty, 18px) / -2) 0 0 calc(var(--uncertainty, 18px) / -2);
+  background: rgba(201, 163, 91, 0.06); border: 1.5px dashed rgba(226, 193, 127, 0.8);
+}
+.marker-reported .marker-label, .marker-outdated .marker-label { font: italic 400 14px / 1.2 var(--font-text); left: calc(50% + var(--uncertainty, 18px) / 2 + 6px); }
+.marker-outdated .marker-symbol { border-color: rgba(236, 228, 207, 0.4); background: transparent; }
+.marker-outdated .marker-label { color: rgba(236, 228, 207, 0.55); }
+.strategy-marker.just-found .marker-symbol::after, .marker-new .marker-symbol::after {
+  content: ''; position: absolute; inset: -2px; border-radius: 50%; border: 1px solid var(--brass-bright);
+  animation: found 1.6s var(--ease) 1 both;
+}
+@keyframes found { from { transform: scale(1); opacity: 1; } to { transform: scale(3.2); opacity: 0; } }

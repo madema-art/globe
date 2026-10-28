@@ -17,6 +17,13 @@ Vite bundles JavaScript and Three.js. `src/main.js` controls the title/vision/ex
 
 Conventions and formats: [EARTH_ASSET_CONTRACT.md](EARTH_ASSET_CONTRACT.md).
 
+## Strategy prototype (preview, 2026-10-28)
+
+- `src/strategy/`: pure, replaceable rules (calendar, grid, terrain, world, knowledge, observation, territory, units, turns, saves). No Three.js or DOM.
+- `src/strategy-view/`: presentation (screen, markers, miniatures, I/U screens, keyboard and mouse input).
+- Earth hooks: the `strategy` presentation, territory texture and observation circles in the surface shader, surface-anchored objects, `projectGeo`, `centerOn`, `src/earth/keyboard-navigation.js`.
+- Details: [STRATEGY_PROTOTYPE.md](STRATEGY_PROTOTYPE.md).
+
 ## First playable (preview, 2026-10-22)
 
 - `src/app/library-host.js`: capabilities for Codex's library (pinned strict JSON reader, browser progress per channel, WGS84 centre reading, abortable reveal navigation). No game rules.

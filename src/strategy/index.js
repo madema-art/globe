@@ -1,0 +1,10 @@
+export { PROTOTYPE, SCHEMA, createGame, endTurn, moveUnit, observe, describeDate } from './game.js';
+export { addYears, formatYear, periodOf, toAstronomical, fromAstronomical } from './calendar.js';
+export { CELL_DEG, COLS, ROWS, CELL_COUNT, cellOf, cellCenter, cellAreaKm2, cellsWithin, distanceKm, interpolate, neighbours, normalizeLon } from './grid.js';
+export { decodeLandMask, createTerrain, TerrainError } from './terrain.js';
+export { createKnowledge, learn, knows, recordRoute, knowledgeState, OUTDATED_AFTER_YEARS } from './knowledge.js';
+export { observers, observedPlaceIds } from './visibility.js';
+export { PROTOTYPE_PLACES, PROTOTYPE_REPORTS, placesExistingIn } from './world.js';
+export { initialTerritory, growTerritory, territoryAreaKm2 } from './territory.js';
+export { planMove, applyMove, MoveError } from './units.js';
+export { SAVE_KEY, PREVIOUS_KEY, serialize, deserialize, createSaveStore, SaveError } from './save.js';

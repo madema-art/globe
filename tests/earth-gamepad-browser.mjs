@@ -105,27 +105,33 @@ try {
   const coarse = before.camera.lat - s.camera.lat;
   assert.ok(coarse > 15, `left stick down moves the view south (Δlat ${-coarse})`);
 
-  // Right stick Y: fine adjustment, much slower than the left stick.
+  // Right stick: deliberately unassigned. Neither axis moves the camera.
   before = s;
-  await pad([0, 0, 0, 1]);
+  await pad([0, 0, 1, 1]);
+  await advance(0.6);
+  await pad([0, 0, -1, -1]);
   await advance(0.6);
   await pad([0, 0, 0, 0]);
   await advance(1);
   s = await earth();
-  const fine = before.camera.lat - s.camera.lat; // same sense as the left stick
-  assert.ok(fine > 1 && fine < 0.4 * coarse, `right stick vertical is a fine adjustment (Δlat ${fine} vs ${coarse})`);
+  assert.deepEqual([s.camera.lat, s.camera.lon], [before.camera.lat, before.camera.lon], 'right stick axes move nothing');
+  close(s.roll, before.roll, 0.005, 'right stick axes do not roll (only north-up levelling may settle)');
 
-  // Right stick X: roll. Deliberate roll is kept: auto-levelling must not undo it.
+  // Shoulder buttons roll (LB: camera counterclockwise, i.e. the globe turns clockwise on screen; RB the reverse).
+  // Deliberate roll is kept: auto-levelling must not undo it.
   await page.evaluate(() => { window.globeEarth.navigateTo(20, 30, { altitude: 2 }); });
   await advance(4);
   before = await earth();
   close(before.roll, 0, 0.01, 'north-up after navigation');
-  await pad([0, 0, 1, 0]);
+  const north0 = await page.evaluate(() => window.globeEarth.projection().north);
+  await pad([0, 0, 0, 0], { 4: 1 });
   await advance(0.5);
   await pad([0, 0, 0, 0]);
   await advance(0.5);
   s = await earth();
-  assert.ok(Math.abs(s.roll) > 0.4, `right stick rolls the globe (roll ${s.roll})`);
+  assert.ok(Math.abs(s.roll) > 0.3, `LB rolls the globe (roll ${s.roll})`);
+  const northLB = await page.evaluate(() => window.globeEarth.projection().north);
+  assert.ok(northLB > north0 + 0.2, `LB turns the globe clockwise on screen (north ${north0} -> ${northLB})`);
   assert.equal(s.rollHeld, true);
   close(s.camera.lat, before.camera.lat, 0.5, 'roll keeps the centre point (lat)');
   close(lonDelta(s.camera.lon, before.camera.lon), 0, 0.5, 'roll keeps the centre point (lon)');
@@ -143,14 +149,14 @@ try {
   close(s.roll, 0, 0.01, 'right-stick click restores north-up');
   assert.equal(s.rollHeld, false);
 
-  // Both sticks at once: rotation and roll combine.
+  // Left stick and a shoulder button at once: rotation and roll combine.
   before = s;
-  await pad([0.8, 0, 0.8, 0]);
+  await pad([0.8, 0, 0, 0], { 5: 1 });
   await advance(0.5);
   await pad([0, 0, 0, 0]);
   await advance(1);
   s = await earth();
-  assert.ok(Math.abs(lonDelta(s.camera.lon, before.camera.lon)) > 5 && Math.abs(s.roll) > 0.2, 'simultaneous left + right stick input');
+  assert.ok(Math.abs(lonDelta(s.camera.lon, before.camera.lon)) > 5 && Math.abs(s.roll) > 0.2, 'simultaneous left-stick and shoulder-button input');
   await page.keyboard.press('KeyN');
   await advance(2);
 
@@ -212,8 +218,8 @@ try {
   // Reticle picking: the centre point equals the camera centre, also when rolled.
   await page.evaluate(() => { window.globeEarth.navigateTo(-33.9, 18.4, { altitude: 1 }); });
   await advance(4);
-  await pad([0, 0, 0.6, 0]);
-  await advance(0.6);
+  await pad([0, 0, 0, 0], { 5: 1 });
+  await advance(0.4);
   await pad([0, 0, 0, 0]);
   await advance(1);
   const picked = await page.evaluate(() => window.globeEarth.pickCenter());
@@ -269,5 +275,5 @@ try {
   await page.screenshot({ path: path.join(results, 'earth-mystery-reticle.png'), timeout: 120_000 });
 
   assert.deepEqual(errors, []);
-  console.log('Earth gamepad browser passed: dead zones, no drift, left-stick rotation, fine right-stick pitch, roll kept by levelling, north-up click, simultaneous sticks, analog RT/LT zoom with limits, precision scaling, pole crossing, rolled centre picking, reticle centring, disconnect/reconnect, overlays by level, mystery presentation API.');
+  console.log('Earth gamepad browser passed: dead zones, no drift, left-stick rotation, roll kept by levelling, north-up click, shoulder-button roll (LB/RB), right stick unassigned, simultaneous stick and roll, analog RT/LT zoom with limits, precision scaling, pole crossing, rolled centre picking, reticle centring, disconnect/reconnect, overlays by level, mystery presentation API.');
 } finally { await browser.close(); }

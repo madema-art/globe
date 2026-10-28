@@ -2,22 +2,23 @@
 //
 // The host polls navigator.getGamepads() ONCE per frame and passes the same snapshot here and to the
 // education engine's confirmation input, so both share one controller without competing listeners.
-// This module never reads face buttons for gameplay (X / A / B belong to Codex's education engine);
-// its only button use is an optional Earth camera action (north-up on right-stick click).
+// This module never reads face buttons for gameplay (X / A / B belong to the game screens); its buttons are
+// camera actions only: shoulder-button roll, trigger zoom and north-up on right-stick click.
 //
-// Default mapping (browser "standard" layout, Xbox-style labels):
-//   Left stick  X: rotate east/west     Y: rotate north/south     (the view follows the stick, like steering a
-//                                                                   camera; owner preference after playtesting)
-//   Right stick X: roll / twist about the view axis               Y: fine north/south adjustment (same sense as left Y)
-//   RT: analog zoom in    LT: analog zoom out    Right-stick click: north up
+// Default mapping (browser "standard" layout, Xbox-style labels), owner decisions after playtesting:
+//   Left stick  X: rotate east/west     Y: rotate north/south     (the view follows the stick)
+//   LB (L1): roll the camera counterclockwise (the globe turns clockwise on screen), smoothly while held
+//   RB (R1): roll the camera clockwise (the globe turns counterclockwise on screen), smoothly while held
+//   RT: analog zoom in    LT: analog zoom out    Right-stick click (R3): north up
+//   Right stick axes: deliberately unassigned (reserved for a future strategy function).
 // All of it is data (`bindings`, `settings`) so it can be retuned after hands-on testing.
 
 export const DEFAULT_GAMEPAD_BINDINGS = Object.freeze({
   mapping: 'standard',
   yaw: { axis: 0, invert: true },
   pitch: { axis: 1, invert: true },
-  roll: { axis: 2, invert: false },
-  finePitch: { axis: 3, invert: true },
+  rollCounterClockwise: { button: 4 },
+  rollClockwise: { button: 5 },
   zoomIn: { button: 7 },
   zoomOut: { button: 6 },
   northUp: { button: 11 },
@@ -28,8 +29,7 @@ export const DEFAULT_GAMEPAD_SETTINGS = Object.freeze({
   triggerDeadZone: 0.06,
   responseExponent: 1.7,    // >1 gives fine control near the centre, full speed at the rim
   rotationSpeed: 1.25,      // rad/s at full deflection when the whole planet is in view
-  fineScale: 0.3,           // right-stick vertical relative to the left stick
-  rollSpeed: 1.6,           // rad/s at full deflection
+  rollSpeed: 1.1,           // rad/s while a shoulder button is held
   zoomSpeed: 1.5,           // natural-log altitude change per second at full trigger
   sensitivity: 1,           // overall multiplier for rotation
   accelerationTime: 0.09,   // seconds to approach the commanded speed
@@ -76,9 +76,11 @@ export function createGamepadNavigation(controls, { bindings = DEFAULT_GAMEPAD_B
 
   function read(pad) {
     const [yaw, pitch] = shapeStick(axis(pad, map.yaw), axis(pad, map.pitch), tune.stickDeadZone, tune.responseExponent);
-    const [roll, fine] = shapeStick(axis(pad, map.roll), axis(pad, map.finePitch), tune.stickDeadZone, tune.responseExponent);
+    // Shoulder buttons: rotateInView's roll > 0 twists the globe clockwise on screen, i.e. the camera rolls
+    // counterclockwise. So LB gives +1 and RB -1. Smoothing below turns the on/off press into a smooth roll.
+    const roll = (button(pad, map.rollCounterClockwise) > 0.5 ? 1 : 0) - (button(pad, map.rollClockwise) > 0.5 ? 1 : 0);
     const zoom = shapeAxis(button(pad, map.zoomIn), tune.triggerDeadZone, 1.4) - shapeAxis(button(pad, map.zoomOut), tune.triggerDeadZone, 1.4);
-    return { yaw, pitch: pitch + fine * tune.fineScale, roll, zoom };
+    return { yaw, pitch, roll, zoom };
   }
 
   /**
@@ -140,8 +142,8 @@ export function createGamepadNavigation(controls, { bindings = DEFAULT_GAMEPAD_B
     get bindings() { return structuredClone(map); },
     /** Replace bindings (e.g. swap sticks, invert an axis, use another trigger); validated minimally. */
     configure(next) {
-      for (const key of ['yaw', 'pitch', 'roll', 'finePitch']) if (!Number.isInteger(next[key]?.axis)) throw new TypeError(`Binding ${key} needs an axis index.`);
-      for (const key of ['zoomIn', 'zoomOut']) if (!Number.isInteger(next[key]?.button)) throw new TypeError(`Binding ${key} needs a button index.`);
+      for (const key of ['yaw', 'pitch']) if (!Number.isInteger(next[key]?.axis)) throw new TypeError(`Binding ${key} needs an axis index.`);
+      for (const key of ['rollCounterClockwise', 'rollClockwise', 'zoomIn', 'zoomOut']) if (!Number.isInteger(next[key]?.button)) throw new TypeError(`Binding ${key} needs a button index.`);
       map = structuredClone(next);
       buttonsHeld.clear();
     },
